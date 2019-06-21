@@ -1,0 +1,134 @@
+---
+title: "PPHA 44100"
+author: "Morgan Conklin Spangler"
+date: "11/9/2018"
+output: pdf_document
+header-includes:
+- \usepackage{amsmath}
+- \usepackage{tikz}
+- \usepackage{pgfplots}
+- \usepackage{float}
+- \floatplacement{figure}{H}
+---
+
+##Exercise 5.1
+
+Suppose a technology $Y$ is convex and has the property that, if $y^0$ and $y^1$ are both in $Y$ and $\alpha \in (0,1)$, then $\alpha y^0 +(1-\alpha)y^1$ is not production effcient in $Y$. Show that, if prices are strictly positive, there is at most one solution to the profit maximization problem.
+
+We want to show that it cannot be the case that there exists a non-unique solution to the profit maximization problem under these assumptions. Suppose that the solution set $y^*(p)$ contains two elements, $y^*_1(p)$ and $y^*_2(p)$ such that $y^*_1(p) \neq y^*_2(p)$. Then we can say that both $y^*_1(p)$ and $y^*_2(p)$ are points at which the highest isoprofit line is tangent to our feasible set, $Y$. 
+
+Given that $Y$ is convex and has the property that if $y^0$ and $y^1$ are both in $Y$ and $\alpha \in (0,1)$, then $\alpha y^0 +(1-\alpha)y^1$ is not production effcient in $Y$, we can say that $Y$ is strictly convex. Then, due to strict convexity, there cannot be more than one point of tangency along the isoprofit line. Therefore, we have contradicted our initial assumption and find that the solution must be unique if a solution exists.
+
+
+##Exercise 5.7
+Suppose commodity 1 can be used to produce commodity 2 according to the technology
+$$Y=\{(y_1,y_2)|y_1 \leq 0 \ and \ g(y)=-y_1-y_2-y_2^3 \geq0\}$$
+  
+1. Show that $Y$ is a convex set.
+
+We say that $Y$ is a convex set if, given $y_A$ and $y_B\in Y$ and $\alpha \in [0,1]$, $\alpha y_A + (1-\alpha)y_B \in Y$. 
+
+Suppose $y_A = \{y_{a1},y_{a2}\}$ and $y_B=\{y_{b1},y_{b2}\}$. Then, $Y=\{(y_{a1},y_{a2})|y_{a1} \leq 0 \ and \ g(y_A)=-y_{a1}-y_{a2}-y_{a2}^3 \geq0\}$ and $Y=\{(y_{b1},y_{b2})|y_{b1} \leq 0 \ \ and \ g(y_B)=-y_{b1}-y_{b2}-y_{b2}^3 \geq0\}$. 
+
+$$\Rightarrow \alpha y_A + (1-\alpha)y_B \in Y \ \ if \ \ \alpha y_{a1} +(1-\alpha)y_{b1} \leq 0 \ \ and \ \ \alpha g(y_A) + (1- \alpha) g(y_B) \geq0$$
+We satisfy the first part below. 
+$$y_{a1} \leq 0, y_{b2} \leq 0, \alpha \in [0,1] \Rightarrow \alpha y_{a1} +(1-\alpha)y_{b1} \leq 0$$
+Then we solve to satisfy the second part. We can say that the differentiable function $g(\cdot)$ is convex if the second derivative in both inputs is non-negative.
+$$g'(y_1)=-1$$
+$$\frac{\partial g^2}{\partial ^2y_1}=0, \frac{\partial g^2}{\partial y_1 \partial y_2}=0$$
+$$g'(y_2)=-1-3y_2^2$$
+$$\frac{\partial g^2}{\partial ^2y_2}=-6y_2, \frac{\partial g^2}{\partial y_2 \partial y_1}=0$$
+Therefore, $Y$ is convex if $y_2 \geq 0$. We know this must be the case because, given $y_1 \leq 0$, $g(y)=-y_1-y_2-y_2^3 \geq0$ only if $y_2 \geq 0$. 
+
+Therefore, we know $Y$ is a convex set.
+
+2. Show that the production plan $\bar{y}=(-10,2)$ is on the boundary of this set.
+
+We know that the production plan is on the boundary of the set if $g(y)=0$. 
+$$\Rightarrow g(y)=-y_1-y_2-y_2^3= 10-2-8$$
+$$\Rightarrow g(y)=0$$
+Therefore, we know the production plan is on the boundary of the set.
+
+3. Calculate the supporting prices for the production plan $\bar{y}$.
+
+
+We know that the supporting prices are $p_1,p_2$ such that they are where $g(y)=0$.
+$$\Rightarrow \max_{y_2} p_1(-y_2-y_2^3)+p_2y_2$$
+$$\Rightarrow \partial y_2: -p_1-3p_1-y_2^2+p_2=0$$
+Given that we have one equation and 2 unknowns, we can normalize $p_1=1$ to solve for the relative price of good 2 (the output).
+$$\Rightarrow 13=p_2$$
+Therefore, our supporting relative prices are $p_1=1,p_2=13$
+
+4. Verify directly that $\bar{y}$ maximizes profits at the prices you calculated in the previous step.
+
+$$\max_{y_1,y_2} y_1 + 13y_2\ \ s.t. \ \ -y_1-y_2-y_2^3 \geq 0$$
+Maximization implies that we are not waste any output, therefore we say $$\max_{y_1,y_2} y_1 + 13y_2\ \ s.t. \ \ y_2+y_2^3 = -y_1$$
+
+$$\Rightarrow \max_{y_2} -y_2-y_2^3+13y_2$$
+$$\Rightarrow \partial y_2: -1-3y_2^2+13=0$$
+$$\Rightarrow y_2^*=2$$
+$$\Rightarrow y_1^*=-10$$
+
+5. Depict the production set and the supporting line in a neat figure.
+
+![](Desktop/plot.png)
+
+##Exercise 8.3
+
+A firm has technology $Y$. It chooses production plan $y\in Y$ to maximize profits given prices $p$.
+Let $y^*(p)$ be the profit maximizing production plan, and let $\pi(p)$ be the *profit function* $p\cdot y^*(p)$. (Assume that $y^*$ is single-valued.)
+
+1. Show that $\pi$ is a convex function of $p$.
+
+$\pi$ is a convex function of $p$ if it is non-negative in its second derivative.
+
+$$\frac{\partial \pi}{\partial p}=y^*(p)+y^*_p\cdot p$$
+$$\frac{\partial^2 \pi}{\partial p^2}=2y^*_p+y^*_{pp}\cdot p$$
+Assuming prices are strictly positive, it only needs to be the case that $\frac{dy}{dp} \geq 0$ and $\frac{d^2y}{dp^2}\geq 0$ for $\pi$ to be a convex function of $p$. Given that $y$ is our profit maximizing production plan, we know that $\frac{dy}{dp} \geq 0$, supply is upward sloping, and $\frac{d^2y}{dp^2}\geq 0$, production sets are convex. Therefore, $\pi$ is convex in $p$.
+
+2. Explain how to calculate $y^*$ given only knowledge of $\pi$.
+
+Assume the production plan $y^*$ is broken up into inputs, $x$, $z=-x$, and outputs $q$. We know that the optimal level of production is simply when the marginal price of the output is equal to the marginal price of the input. So, given just the profit function $\pi$, the optimal level of quantity, $y^*$, is simply when $\frac{\partial \pi}{\partial z}=\frac{\partial \pi}{\partial q}$. In this way, we only need to know what the function $\pi$ looks like in order to get $y^*$, such that $y^*=y(q^*,z^*)$
+
+3. Show that supply is upward-sloping: $\frac{\partial y^*_i}{\partial p_i}(p)\geq 0$
+
+Supply being upward sloping means that for an increase in price of good $i$, $p_i$, we see a relative increase in supply for good $i$, $y_i$, holding all else constant. 
+
+Suppose $p_i'>p_i$ holding all other factors constant. Then, a profit maximizing firm will use this new price, $p_i'$ to solve its profit maximization problem just for good $i$ (given that all else is constant). 
+$$\max_{y_i} p_i'y_i$$ subject to some feasibility constaint. Obviously, the marginal benefit of producing an additional unit $y_i$ is now $p_i'$, whereas before it was $p_i$. Therefore, this firm will now produce until $MC_i=p_i'$, when the marginal cost of input to produce good $i$ is equal to the price of the output. Since we assummed $p_i'>p_i$, it is obvious that the producer will now choose to produce a quantity of $i$ at least as large as before. So, since we have an non-decreasing quantity with an increasing price, we see that supply is upward-sloping, $\frac{\partial y^*_i}{\partial p_i}(p)\geq 0$.
+
+##Exercise 8.6
+
+Economists use the following model to think about labor supply. An individual values two goods, consumption $(c)$ and leisure ($\ell$), according to the strictly monotone, strictly concave utility function $U(c,\ell)$. She has $\bar L$ units of time that can be divided between leisure and work for wage $w>0$. Thus, her budget constraint is $c\leq w(\bar L-\ell)+I$, where $I$ is non-labor income. 
+Mimic, as much as you can, our development leading up to the Slutsky equation to study this problem. How can your analysis account for the empirical fact that (at least for "prime-aged" men) hours worked have remained roughly constant in the face of dramatic increases in real wages?
+
+We can imagine that, indirectly, consumers are facing the general optimization problem,
+$$\max_{c,\ell} U(c,\ell) \ \ s.t. \ \ c\leq w(\bar L-\ell)+I$$
+Given that everyone consumes non-negative and non-zero amounts of both of these goods, we assume an interior solution. So, the FOCs are,
+$$\partial c: \frac{\partial U(c,\ell)}{\partial c}=\lambda$$
+$$\partial \ell: \frac{\partial U(c,\ell)}{\partial \ell}=-w\lambda$$
+and the budget constraint, $c\leq w(\bar L-\ell)+I$. Further, I will assume that everyone is choosing to either participate in leisure or work in their time, and there is no alternative option, I will place the stricter constraint that $c = w(\bar L-\ell)+I$.
+
+From this, we have that people will consume consumption and leisure, $c,\ell$, such that $$-w\frac{\partial U(c,\ell)}{\partial c}=\frac{\partial U(c,\ell)}{\partial \ell}$$
+
+$$\Rightarrow -w=\frac{\partial U(c,\ell)}{\partial \ell}\frac{\partial c}{\partial U(c,\ell)}$$
+$$\Rightarrow -w=\frac{\partial c}{\partial \ell}, \ c = w(\bar L-\ell)+I$$
+
+This is best depicted graphically, shown below.
+
+\begin{tikzpicture}
+\draw[->] (-1,0)--(5,0);
+\draw[->] (0,3)--(0,-1);
+\node [above] at (2.5,1) {at $w$};
+\node [above] at (4.5,1) {at $w'$};
+\node [right] at (5,0) {$c$};
+\node [above] at (0,3) {$\bar L - \ell$};
+  \draw (0,0) .. controls (1,1) .. (2,1);
+  \draw [-] (2,1)--(5,1);
+  \draw [dashed] (2.5,1)--(2.5,0);
+  \draw [dashed] (4.5,1)--(4.5,0);
+\end{tikzpicture}
+
+Clearly, with the increases in real wages, $w'$, consumers ("prime-aged" men) are able to enjoy larger amounts of consumption, $c$, while enjoying the same amount of leisure $\ell$ as they are no longer on the section of their utility function which shows increasing amounts of work with increases in wages. From this depiction, the amount worked will remain constant with any amount of increases in wages. 
+
+It is possible that at some point the graph begins to slope downward, however as the posed question only mentions when hours worked is constant that is all I have depicted on my plot.

@@ -1,0 +1,278 @@
+---
+\title: "Compiled Notes"
+author: "Morgan Conklin Spangler"
+date: "2/11/2019"
+fontsize: 12pt
+geometry: margin=2cm
+output: pdf_document
+header-includes:
+  - \usepackage{setspace}\onehalfspacing
+  - \usepackage{ amssymb }
+  - \usepackage{amsmath}
+  - \usepackage{tikz}
+  - \usepackage{pgfplots}
+  - \usepackage{float}
+  - \floatplacement{figure}{H}
+  - \usepackage{dsfont}
+  - \usepackage{ mathrsfs }
+  - \usepackage{ wasysym }
+  - \usepackage{mathtools}
+  - \usepackage{tcolorbox}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+#Notes
+##Tax Incidence
+###Set-Up
+  * $L$ goods in the economy, indexed by $l$
+  * $\mathds{I}$ individuals, indexed by $i$
+  * Consumers have utility $u_i(x_i)$ over bundles of goods $x_i=(x_{1i},x_{2i},...,x_{Li})$ in their consumption set $X_i\in \mathds{R}^L$
+  * Each individual has an endowment of $\omega_i=(\omega_{1i},\omega_{2i},...,\omega_{Li})$ of each good, with total endowment of good $l$ in the economy equal to $\omega_l=\sum_i \omega_{li}$
+  * $J$ firms, each with production set $Y_j\in \mathds{R}^L$, and production vectors $y_j=(y_{1j},...,y_{Lj})$.
+  * Net amount of each good $l$ in the economy is $\omega_l + \sum_{j} y_{lj}$
+  
+###Pareto Optimality
+  * Given an endowment of goods $\omega=(\omega_1,...,\omega_L)$, consumption sets $X_i$ and production sets $Y_j$, define a **feasible allocation** as an economic allocation $(x_1,.,,,.x_{\mathds{I}},y_1,...,y_J)$ that satisfies: $$\sum_{i=1}^{\mathds{I}}x_{li}\leq\omega_l+\sum_{j=1}^J \ {for} \ {all} \ l=1,...,L$$
+  * A feasible allocation $(x_1,.,,,.x_{\mathds{I}},y_1,...,y_J)$ is **Pareto Optimal (Pareto Efficient)** if there is no other feasible allocation $(x'_1,...,x'_I,y'_1,...,y'_J)$ such that $u_i(x'_j)\geq u_i(x_i)$ for all $i$ and $u_i(x'_i)>u_i(x_i)$ for some $i$.
+  
+###Competitive Equilibrium
+The allocation $(x_1^*,...,x_{\mathds{I}}^*,y_1^*,...,y_J^*)$ and price $p^*$ is a **competitive (or Walrasian) equilibrium** if it satisfies the following:  
+    1. Profit maximization: For each firm $j$, $y_j^*$ solves $$\max_{y_j\in Y_j} p^*\cdot y_j$$
+    2. Utility maximization: For each consumer $i$, $x_j^*$ solves $$\max_{x_i\in X_i} u_i(x_i)$$ $${s.t.} \ \ p^*\cdot x_i\leq p^*\cdot \omega_i + \sum_{j=1}^J\theta_{ij}(p^*\cdot y_j)$$ 
+    3. Market clearing: For each good $l=1,...,L$ $$\sum_{i=1}^{\mathds{I}}x^*_{li}=\omega_l+\sum_{j=1}^Jy^*_{lj}$$
+Two lemmas regarding competitive equilibrium that we make repeated use of: 
+
+  1. **Numeraire good**: if $p^*$ constitutes an equilibrium for $(x_1^*,...,x_{\mathds{I}}^*,y_1^*,...,y_J^*)$, then so does $\alpha p^*$, where $\alpha \geq 0$. Therefore, we can normalize prices without loss of generality and set the price of one good to 1.  
+  2. **Accounting identity**: If $(x_1^*,...,x_{\mathds{I}}^*,y_1^*,...,y_J^*)$ and $p$ satisfy the market clearing condition for all markets except one, $l=k$, and if every consumer's budget constraint is satisfied with equality, then market $k$ also clears. Therefore, we only need to make sure that $L-1$ markets clear.
+    
+##Partial Equilibrium Model
+###Demand
+  * Individuals maximize utility over good $x^d$ and a numeraire good $y$ characterized by a *quasilinear utility function*\newline $U_i(x_i^d,y_i)=u_i(x_i^d)+y_i$ subject to a budget constraint: $p\cdot x_i^d + y_i \leq w_i$,\newline optimization leads to an **inverse demand function**: $p^d_i=u'_i(d_i^d)$
+  * Aggregate demand: $x^d=\sum_i x_i^d$
+  * Assuming *quasilinear utility*, we treat aggregate demand in a competitive market as the solution to an aggregate optimization problem: $u(x^d)=\max_{(x_1^d,...,x_{\mathds{I}}^d)} \sum_{i=1}^{\mathds{I}}u_i(x_i^d)$$ ${s.t.} \ \ \sum_{i=1}^{\mathds{I}} x_i^d\leq x^d$
+  * Optimization of aggregate utility $u(x^d)+y$, subject to the budget constraint $p\cdot x^d + y \leq w$, where $y=\sum_i y_i$ and $w=\sum_i w_i$
+  * $\Rightarrow$ This leads to an **aggregate inverse demand function**: $p^d=u'(x^d)$
+  
+###Supply
+  * Each firm maximizes profits $p\cdot x_j^s - c_j(x_j^s)$
+      + the cost function, $c_j$, is measured in units of inputs, $y_j$
+      + each firm maximizes profits by setting $p=c'_j(x^s_j)$
+  * Define aggregate supply as: $x^s=\sum_j x^s_j$
+  * Define the aggregate cost function $c(x^s)$ as the solution to the optimization problem: $c(x^s) = \min_{(x_1,...,x_J)}\sum_j c_j(x^s_j)$ s.t. $\sum_j x^s_j\geq x^S$
+  * The supply side can be characterized by the aggregate cost function $c(x^s)$ and market supply is chosen to maximize its profits: $\max_{x^s} px^s - c(x^s)$
+  * The first order condition (FOC) generates an **aggregate inverse supply function** $p^s = c'(x^s)$
+  
+###Market Equilibrium
+  * Putting the two sides of the market together, we have at the equilibrium level of output $x^*$: $u'(x^*)=c'(x^*)$
+  * Note, that this equilibrium maximizes the typical utilitarian social welfare function that sums consumer and producer surplus:\newline $\max_x W(x)= CS(x) + PS(x) \Rightarrow \max_s W(x) = [u(x)-px]+[px-c(x)]$\newline and then we solve for the FOC to solve the market equilibrium
+
+###First Fundamental Theorem of Welfare Economics (in a partial equilibrium)
+In the case of quasilinear utility, a pareto optimal allocation satisfies
+
+  * $u'(x^*)=\mu^*$
+  * $c'(x^*)=\mu^*$
+  * $\sum_{i=1}^{\mathds{I}}x^{*d}_i=\sum_{i=j}^J x_j^{*s}$
+and we can see that the market equilibrium satisfies these conditions with $p^*=\mu^*$.
+  * It follows that the price $p^*$ and allocation $(x_1^{*d},...,x_{\mathds{I}}^{*d},x_1^{*s},...,x_J^{*s})$ constitute a competitive equilibrium, then this allocation is Pareto optimal.
+
+##Who Bears the Tax Burden
+The **statutory incidence** of a tax measures who legally pays the tax to the government.\newline The **economic incidence** of a tax measures who actually pays the tax, once changes in the price have been taken into account.\newline
+A **specific tax** is a tax $t$ per item sold. An ad-valorem tax is a proportional tax on consumers, $P=p(1+\tau)$
+*[Use the concept of semi-elasticity: $\frac{d \log p}{d \tau}=\frac{dp}{d\tau}{1}{p}$]*\newline
+Example: Measuring the burden of an ad-valorem tax  
+
+  * Start with the market equilibrium, plugging in the relevant prices for each side of the market: $Q^*=D(p(1+\tau))=S(p)$. Since this is an identity, differentiate both sides by $\tau$
+  * Get a change in producer price of $\frac{d \log p}{d \tau}=\frac{-\epsilon_d}{\epsilon_s+\epsilon_d}\in[0,1]$
+  * And a change in consumer price of $\frac{d \log P}{d \tau}=\frac{\epsilon_s}{\epsilon_s +\epsilon_d}\in[0,1]$
+
+##Monopoly
+###Set-Up
+Assume linear pricing to start. The main differentiator between monopolists and competitive markets is that monopolists have market power, the demand for its output is a function of the price it charges. The monopolist faces technological constraints ($c(y)$) and market constraints ($D(p)$).
+
+###Market Equilibrium
+The monopolist maximizes profits: $\max_{p,y} py-c(y)$ s.t. $D(p)=y$\newline We subsetitute in the demand function: $\max_p pD(p)-c(D(p))$.\newline Then, frame things in terms of a quantity decision using inverse demand $p(y)$: $\max_y p(y)y-c(y)$, and solve for first and second order conditions.\newline
+FOC: $p(y) + p'(y)y = c'(y)$  
+
+  * This is equivalent to the MR=MC that competitive firms do, but MR is different in this case - incorporating the change in price needed to sell more units.
+SOC: $2p'(y)+p''(y)y-c''(y)\leq 0$ 
+  * The second order condition states that the slope of the marginal cost curve must be greater than that of the marginal revenue curve.
+  * Rewrite the FOC in terms of elasticity of demand: $p(y)[1+\frac{1}{\epsilon(y)}]=c'(y)$
+  
+###Welfare Analysis
+Using the previous welfare function, $W(x)=u(x)-c(x)$, we know the welfare maximizing level of output satisfies $u'(x^*)=c'(x^*)-p(x^*)$. Now, evaluate the welfare function of the monopoly level of output, $x^m$: \newline $W'(x^m)=u'(x^m)-c'(x^m)\rightarrow >0 \Rightarrow$ increasing output increases social welfare
+
+###Who Bears the Tax Burden
+Assume we are dealing with a monopolist paying the ad valorem tax, the monopolist solves the maximization problem \newline $\max_p p(1-\tau)D(p)-C(D(p))$
+
+##Price Differentiation
+##First-Degree Price Discrimination
+The seller can charge a different price for each unit of the good (also referred to as perfect price discrimination).
+
+  * Perfect price discrimination allows the monopolist to internalize the added surplus to each additional unit sold $\rightarrow$ arrive at the socially efficient quantity (albeit with no consumer surplus).
+
+Assume the monopolist is facing a consumer with an inverse demand curve $p(x)$. The monopolist can capture more surplus by offering the consumer a two-part tariff $T(x)=\begin{cases} 0 & if \ \ x=0 \\ px+f & if \ \ x>0 \end{cases}$ with per unit price $p$ and entry fee $f$.\newline The monopolist maximizes profits: $\max_{p,f} f+pD(p)-c(D(p))$ with the following constraints:  
+
+  * Participation (individual rationality) constraint $f\leq \int_0^{D(p)}(p_d(t)-p)dt$
+      + We know this constraint will be binding, so we pluf this constraint into the objective function and solve for the optimal $p$ and $f$.
+Takeaways: the two-part tariff allows $x^m=x^*$ and, thus, maximizes total surplus. 
+  * Two instrument principle: the firm (or social planner) can weakly achieve greater efficiency the more tools that are available (i.e. with linear pricing we have one tool, $p$, and with this kind of price discrimination we have two tools, $p$ and $f$).
+The key to perfect price discrimination is the ability for the firm to capture total surplus (the marginal revenue curve becomes the inverse demand curve).
+
+###Second-Degree Price Discrimination
+The price differs depending on the number of units sold (also referred to as nonlinear pricing).\newline
+
+###Discrete Type Space
+Consider a case where there are two types of consumers, $\theta\in\{1,2\}$, such that the types occur equally in the population. Each consumer has quasilinear utility $v(x,\theta)-T$ where $T$ is payment for $x$. The single crossing condition is $\frac{\partial}{\partial \theta}(\frac{\partial v(x\theta)}{\partial x})>0$ (marginal utility is increasing in type). Assume that the utility of zero units is equal for the two types, $v(0,1)=v(0,2)$ and marginal costs are constant, $MC=c$. The monopolist will choose two packages: $(x_1,T-1)$ and $(x_2,T_2)$ targeted to each type. The monopolist's problem is $\max_{\{x_1,x_2,T_1,T_2\}}\frac{1}{2}(T_1-cx_1)+\frac{1}{2}(T_2-cx_2)$ subject to consumers being incentivized to enter the market,\newline IR constraints$=\begin{cases} v(x_1,1)-T_1\geq 0 \\ v(x_2,2)-T_2\geq 0\end{cases}$\newline And for each type to prefer their targeted bundle,\newline IC constraints$=\begin{cases} v(x_1,1)-T_1\geq v(x_2,1)-T_2 \\ v(x_2,2)-T_2\geq v(x_1,2)-T_1\end{cases}$\newline Rewrite the problem in terms of consumer surplus: $CS_\theta = v(x_\theta,\theta)-T_\theta$\newline And define the function: $I(x)=v(x,2)-v(x,1)=\int_1^2\frac{\partial v(x,t)}{\partial \theta}dt$ where $I$ can be thought of as the information rent.\newline We now rewrite the problem: $\max_{\{x_1,x_2,CS_1,CS_2\}}\frac{1}{2}(v(x_1,1)-CS_1-cx_1)+\frac{1}{2}(v(x_2,2)-CS_2-cx_2)$ subject to $CS_1\geq 0$, $CS_2\geq 0$, $CS_1\geq CS_2-I(x_2)$, $CS_2\geq CS_1+I(x_1)$.
+$\Rightarrow \max_{\{x_1,x_2\}} \frac{1}{2}(v(x_1,1)-cx_1)+\frac{1}{2}(v(x_2,2)-I(x_1)-cx_2)$
+Takeaways:    
+
+  * Distortion at the bottom, in order to keep the high type honest. (No distortion at the top, since no one else that we need to keep honest). 
+  * The high type has some surplus (information rent). 
+  * May not supply to the low type at all (if $MC(0)>MR(0)$). 
+  * We are still setting $MR=MC$.
+  
+###Continuous Type Space
+  * Continuum of types: $\theta\in [\underline{\theta},\bar{\theta}]$
+      + CDF of $\theta$ is $F(\cdot)$, pdf is $f(\cdot)$
+  * quasilinear utility: $u(q,\theta)+y$, where $q$ is either quality or quantity
+      + single crossing property: $\frac{\partial^2 u(q,\theta)}{\partial \theta \partial q}>0$
+      + $u(0,\theta)=u(0,\theta')$
+  * Firms technology: $c(q)$ is the cost per bundle of size or quality $q$
+  * Firms problem: choose functions $q(\theta)$ and $t(\theta)$ to maximize profits: $\max_{\langle q(\cdot),t(\cdot) \rangle} \int_{\underline{\theta}}^{\bar{\theta}} [t(\theta)-c(q(\theta))]f(\theta)d\theta$ s.t. $u(q(\theta),\theta)-t(\theta)\geq 0 \forall \theta$ \newline $u(q(\theta),\theta)-t(\theta)\geq u(q(\hat{\theta}),\theta)-t(\hat{\theta}) \forall \theta,\hat{\theta}$\newline First, define $v(\theta)=u(q(\theta),\theta)-t(\theta)$\newline
+
+Proof:
+
+1. First, we simplify the set of IC constraints from $u(q(\theta),\theta)-t(\theta)\geq u(q(\hat{\theta}),\theta)-t(\hat{\theta}),\forall \theta,\hat{\theta}$ to $q(\cdot)$ is nondecreasing and $t(\theta)=t_L+u(q(\theta),\theta)-\int_{\underline{\theta}}^{\theta}\frac{\partial u(q(z),z)}{\partial \theta}dz$ where $t_L=-v(\underline{\theta})$
+2. Next, rewrite the objective function in terms of "virtual surplus", $w(q(\theta),\theta)=u(q(\theta),\theta)-c(q(\theta))$
+3. Show that the only IR constraint we need to take care of is the one for $\underline{\theta}$
+4. Maximize the final obejctive function pointwise.
+
+##Third-Degree Price Discrimination
+Different consumers are charged different prices, but each pays a constant price.\newline
+
+Consider a case where there are different types of consumers, and the monopolist is able to charge a constant price to each type. Index consumers by type $m=1,...,M$. Aggregate demand and inverse demand for each type are $X_m(\cdot)$ and $P_m(\cdot)$, respectively.\newline The monopolist's problem is now $\max_{\{x_1,..,x_M\}}\sum_{m=1}^M x_mP_m(x_m) - c(\sum_{m=1}^Mx_m)$.\newline Solve for the FOC: $P_m+x_mP'_m(x_m)-c'(\sum_{m=1}^Mx_m)=0$ for $m=1,...,M$.\newline
+
+Social welfare considerations:\newline Suppose there are two types of consumers, $W(x_1,x_2)=\int_0^{x_1}P_1(t)dt + \int_0^{x_2}P_2(t)dt - c(\sum_{m=1}^2x_m)=v_1(x_1)+v_2(x_2)-c(\sum_{m=1}^2x_m)$\newline
+Compare the uniform monopoly price and quantities $(p_m^U;x_1^U,x_2^U)$ to the third-degree price discrimination prices and quantities $(p_1^*,p_2^*;x_1^*,x_2^*)$. Given that (1) aggregate benefit ($v_m(x_m)$) is concave (since demand is downward sloping), (2) costs are weakly convex, or (the stronger assumption) costs are constant ($c$), we find that **a necessary condition for welfare improvement is that aggregate output increases.**
+
+###Airline Example  
+  * Two types of travelers, $\theta\in \{b,t\}$, with $N_b$ business travelers and $N_t$ tourists.
+  * Two types of tickets indexed by $k\in \{r,u\}$, restricted ($r$) and unrestricted ($u$).
+  * Utility from purchasing a ticket is $v_\theta^k$
+      + $v_\theta^u\geq v_\theta^r$, strictly greater than for $\theta=0$
+      + $v_b^k>v_t^k$
+  * Assume that the marginal cost of producing a ticket is zero  
+[Side note: If the airline can only sell one ticket type, they would sell the unrestricted ticket (the price would be either $p=v_t^u$ or $p=v_b^u$). The choice of price depends on the distribution of types and preferences: $N_bv_b^u\gtrless (N_b+N_t)v_t^u\Rightarrow N_b\gtrless \frac{v_t^u}{v_b^u-v_t^u}N_t$]  
+  * Selling both types of tickets and engaging in price discrimination, we assume the unrestricted ticket will be targeted to business travelers.
+The airline chooses prices to maximize profits: $\max_{p^u,p^r} N_bp^u+N_tp^r$ subject to the following constraints:\newline (IR) $\begin{cases} v_b^u-p^u & \geq 0 \\ v_t^r-p^r & \geq 0\end{cases}$\newline (IC) $\begin{cases} v_b^u-p^u \geq v_b^r-p^r \\ v_t^r - p^r \geq v_t^u - p^u\end{cases}$\newline
+Note that the constraint set is empty if $v_t^u-v_t^r> v_b^u-v_b^r \Rightarrow$ so we will assume $v_b^u-v_b^r\geq v_t^u-v_t^r$: **Single-Crossing Condition**\newline
+The business type has a binding revelation constraint (IC1) and the tourist type has a binding IR constraint. Now, we have two binding constraints and two unknowns so we solve for $p^u$ and $p^r$.\newline $\Rightarrow p^r=v_t^r$ and $p^u=v_b^u-(v_b^r-v_t^r)$   
+  * This leaves the business type with some surplus and no surplus for the tourist (one with valuable information enjoys an information rent to keep them from pretending to be the low value consumer type)
+
+So, these price discrimination profits are $N_b(v_b^u-(v_b^r-v_t^r))+N_tv_t^r$  
+
+  * it is not guaranteed that price discrimination will dominate uniform pricing in profits
+  
+##Cournot
+Simultaneous competition of quantity adjustment.
+
+###Equilibrium with two firms and identical products
+$Y=y_1+y_2$ (Aggregate Output)\newline $p(Y)=p(y_1+y_2)$ (Inverse Demand)\newline $c_i(y_i)$ (Firm $i$'s cost function)
+
+  * Firm 1's maximization problem is $\max_{y_1} \pi_1(y_1,y_2)=p(y_1+y_2)y_1-c_1(y_1)$
+  * Firm 2 solves a similar problem
+  * FOC:
+      + $\frac{\partial \pi_1(y_1,y_2)}{\partial y_1}=p(y_1+y_2)+p'(y_1+y_2)y_1-c'_1(y_1)=0$
+      + $\frac{\partial \pi_1(y_1,y_2)}{\partial y_2}=p(y_1+y_2)+p'(y_1+y_2)y_2-c'_2(y_2)=0$
+  * SOC for firm $i$: $\frac{\partial^2\pi_i}{\partial y_i^2}=2p'(Y)+p''(Y)y_i-c''_i(y_i)\leq 0$
+  * $\Rightarrow$ FOC defines a best response function\newline $f_1(y_2): \frac{\partial \pi_1(f_1(y_2),y_2)}{\partial y_1}\equiv 0$
+  * And differentiate this best response function to see how the response changes as $y_2$ changes: $f'_1(y_2)=-\frac{\partial^2\pi_1/\partial y_1\partial y_2}{\partial^2\pi_1/\partial y_1^2}$
+      + Denominator is negative due to SOC
+      + Numerator is $\frac{\partial^2\pi_1}{\partial y_1\partial y_2}=p'(Y)+p''(Y)y_1$
+      
+####Comparative statics
+Consider a parameter $a$ that shifts profits for firm 1:\newline $\pi_1=\pi_1(y_1,y_2,a)$\newline $\pi_2=\pi_2(y_1,y_2)$
+  * Then, the first order conditions become:\newline $\frac{\partial \pi_1(y_1(a),y_2(a),a)}{\partial y_1}\equiv 0$\newline $\frac{\partial \pi_2(y_1(a),y_2(a),a)}{\partial y_2}\equiv 0$
+  * Using implicit function theorem and Cramer's rule, we find: ${sign}(\frac{\partial y_1}{\partial a})={sign}\frac{\partial^2\pi_1}{\partial y_1\partial a}$
+  
+Consider the example where $a$ is the constant marginal cost of firm 1: $\pi_1(y_1,y_2,a)=p(y_1+y_2)y_1-ay_1$
+  * In what direction does $y_1$ vary when $a$ increases?
+
+###Equilibrium with $n$ firms and identical products
+$Y=\sum_i y_i$ (Aggregate Output), $p(Y)$ (Inverse Demand), $c_i(y_i)$ (Firm $i$'s cost function)\newline
+FOC: $p(Y)+p'(Y)y_i=c'_i(y_i)$ which we rearrange to get $\Rightarrow p(Y)[1+\frac{dp}{dY}\frac{y_i}{p}]=c'_i(y_i)\Rightarrow p(Y)[1+\frac{s_i}{\epsilon}]=c'_i(y_i), s_i=\frac{y_i}{Y}$
+
+  * To compare to the competitive equilibrium when firms have symmetric marginal costs $c_i=c$, $p(Y)=[1+\frac{1}{n\epsilon}]=c$
+
+A Cournot solution is equivalent to a social planner maximizing the following: $W_C(Y)=[p(Y)-c]Y+(n-1)[\int_0^Yp(t)dt-cY]$
+  * Cournot maximizes a weighted average of profits and social welfare, with the weight on social welfare approaching 1 as $n$ approaches infinity.
+  
+###Equilibrium with differentiated products
+Assume two firms with zero marginal costs. Inverse demand for each firm's good is $$p_1=\alpha_1-\beta_1y_1-\gamma y_2$$ $$p_2=\alpha_2-\gamma y_1-\beta_2y_2$$
+
+Firm 1 maximizes: $\pi_1=(\alpha_1-\beta_1y_1-\gamma y_2)y_1$ and has response function $y_1=\frac{\alpha_1-\gamma y_2}{2\beta_1}$
+
+##Bertrand
+Simultaneous competition of price adjustment.
+
+###Equilibrium with $n$ firms and identical products
+
+  * firms that create identical products with constant marginal cost $c_i$ for $i=1,...,n \in I$
+  * The demand curve for firm i is $d(p_i,p_{-i})=\begin{cases} D(p_i) & if \ \ p_i<\min{p_{j}} \forall j\neq i, j\in I \\ \frac{D(p_i)}{n} & if \ \ p_i=p_j \forall j\neq i, j\in I \\ 0 & if \ \ p_i>\min{p_j} , j\in I \end{cases}$\newline
+$\Rightarrow$ If $c_i=c_j=c \forall j\neq i, j\in I$, we have a pure strategy equilibrium with $p=c$. If $c_i\neq c_j$, the price will equal whichever marginal cost is higher and the firm with the higher marginal cost will not produce (they will be indifferent, so we assume compliance with the strategy).
+
+###Equilibrium with $n$ firms, search costs, and identical products
+
+  * Assume there are $I$ informed consumers that will select the product with the lowest price and $2U$ uninformed consumers that will go to a website at random.
+  * All consumers have a reservation price $r$
+  * Firms have no marginal costs, but face a fixed cost $k$
+  * Firms choose a probability distribution over prices with cdf $F(p)$ and pdf $f(p)$\newline
+Expected profits for a price $p$ are $\pi(p)=(1-F(p))[p(I+U)]+F(p)[pU]-k$\newline
+$\Rightarrow$ Overall expected profits are $\bar{\pi}=\int_0^\infty\pi(p)f(p)dp$\newline
+We know $F(p)=\frac{p(I+U)-k-\bar{\pi}}{pI}$, so we just need to figure out $\bar{\pi}$. We can use the reservation price for this by solving for $F(r)$.\newline $\bar{\pi}=rU-k \Rightarrow F(p)=\frac{p(I+U)-rU}{pI}$
+
+###Equilibrium with differentiated products
+Assume two firms with zero marginal costs. Inverse demand for each firm's good is $$p_1=\alpha_1-\beta_1y_1-\gamma y_2$$ $$p_2=\alpha_2-\gamma y_1-\beta_2y_2$$ This yields linear demand systems of $$y_1=a_1-b_1p_1+cp_2$$ $$y_2=a_2+cp_1-b_2p_2$$
+
+Firm 1 maximizes: $\pi_1=(a_1-b_1p_1-cp_2)p_1$ and has response function $p_1=\frac{a_1+cp_2}{2b_1}$
+
+##Stackelberg
+###Quantity Leadership
+$Y=y_1+y_2$ (Aggregate Output)\newline $p(Y)=p(y_1+y_2)$ (Inverse Demand)\newline $c_i(y_i)$ (Firm $i$'s cost function)\newline
+Assume firm 2 is the follower. Their maximization problem is $\max_{y_2} p(y_1+y_2)y_2-c_2(y_2)$ and their FOC defines their implicit response function, $f_2(y_1)$.\newline Firm 1 is the leader. Their maximization problem is $\max_{y_1} p(y_1+f_2(y_1))y_1-c_1(y_1)$, so they take firm 2's response function into account. 
+
+  * Firm 1 will experience higher profits in Stackelberg than in simultaneous Cournot
+  * If products are substitutes ($\frac{\partial p_i}{\partial y_j}<0$) and best response curves (demand) is downward sloping ($\frac{\partial f_i}{\partial y_j}<0$), the leader experiences higher profits than the follower (leadership is preferred)
+
+Proof: Let $(y^*_1,y^*_2)=(y^*_1,f_2(y^*_1))$ be the Stackelberg equilibrium. First, we need to show that $f_1(y^*_2)\leq y^*_1$. Then,
+$$f_1(y^*_2)\leq y^*_1\Rightarrow \max_{y_2}\pi_2(f_1(y_2),y_2)\geq \pi_2(f_1(y^*_2),y^*_2)\geq \pi_2(y^*_1,y^*_2)$$
+$\Rightarrow$ Firm 2's profits when it is the leader are no less than its profits as a follower $\Rightarrow$ leadership is preferred.
+
+##Price Leadership
+$Y=y_1+y_2$ (Aggregate Output)\newline $p(Y)=p(y_1+y_2)$ (Inverse Demand)\newline $c_i(y_i)$ (Firm $i$'s cost function)\newline
+Assume firm 2 is the follower. Their maximization problem is $\max_{p_2} p_2x_2(p_1,p_2)-c_2(x_2(p_1,p_2))$ which implicitly defines firm 2's response function, $p_2=g_2(p_1)$.
+
+Firm 1 is the leader. Their maximization problem is $\max_{p_1} p_1x_1(p_1,g_2(p_1))-c_1(x_1(p_1,g_2(p_1)))$.\newline
+Suppose we have homogeneous products and symmetric cost functions. Firm 1 sets the price, firm 2 is a price taker. In this case,
+  * The output firm 2 chooses will maximize their profits at the price $p_1$, so firm 2's supply curve is their marginal cost curve (response function), $g_2(p_1)$
+  * Firm 1 will choose $p_1$ to maximize profits over the residual demand curve, $r(p_1)=x_1(p_1)-g_2(p_1) \Rightarrow \max_{p_1} p_1r(p_1)-c_1(r(p_1))$\newline [Equivalent to a monopolist maximizing profits when facing this new residual demand curve.]
+  
+**Consensus result**:If both firms have upward sloping reaction functions, then if one prefers to be a leader the other will prefer to be a follower.
+  * Proof: To show this, we first observe,
+      + If $x_1>0$ & $x_2>0$, then $\max (\frac{\partial \pi_1}{\partial p_1},\frac{\partial \pi_1}{\partial p_2})>0$
+      + Along firm 1's reaction curve, $p_1>c'_1(x_1)\rightarrow \frac{d\pi_1(g_!(p_2),p_2)}{d p_2}>0$
+      + And if $g'_2(p_1)>0$, then $g_1(p^*_2)<p^*_1$
+  * Let $p^L_1$ and $p^L_2$ be the leading price choice for firms 1 and 2, respectively. We have assumed that $\pi_1(p^L_1,g_2(p^L_1))>\pi_1(g_1(p^L_2),p^L_2)\Rightarrow p^L_2<g_2(p^L_1)\Rightarrow$ firm 2 will prefer to follow, whereas firm 1 will prefer to lead.
+
+Next, we show $\pi_2(g_1(p^L_2),p^L_2)<\pi_2(g_1(p^L_2),g_2(g_1(p^L_2)))<\pi_2(p^L_1,g_2(p^L_1))$\newline
+So, if both firms have *identical costs, and demand and response functions are upward sloping*, then each must *prefer to follow*.
+
+#Practice Midterm
+##1. I Put My Thing Down, Flip It, & Inverse It (10 Points)
+Consider a central authority who operates $J$ firms with differentiable, strictly convex cost functions $c_j(q_j)$ for producing a good $q$ using a numeraire good. Define $C(q)$ to be the central authority’s minimized cost level for producing aggregate quantity $q$. That is:
+$$C(q)=\min_{(q_1,...,q_J)} \sum_{j=1}^J c_j(q_j) s.t. \ \ \sum_{j=1}^Jq_j\geq q, \ \ q_j\geq 0 \forall j$$
+    (a) Derive the Kuhn-Tucker first-order conditions for this cost-minimization problem.\newline
+    Each firm chooses $q^*_j$ such that $c'(q_j)=0, q_j\geq 0$
+    (b) If each firm is operating at the 

@@ -1,0 +1,130 @@
+---
+title: "PPHA 44100 PS 8"
+author: "Morgan Conklin Spangler"
+date: "12/1/2018"
+output: pdf_document
+header-includes: 
+- \usepackage{setspace}\onehalfspacing
+- \usepackage{ mathrsfs }
+- \usepackage{ wasysym }
+- \usepackage{tikz}
+- \usepackage{pgfplots}
+- \usepackage{float}
+- \floatplacement{figure}{H}
+---
+\setlength\parindent{24pt}
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+### Exercise 3.9
+**(Five Easy Pieces: The Marriage Problem).**   Each question below is concerned with a different marriage problem.  
+
+1. There are two men, $m$ and $m'$, and two women, $w$ and $w'$. All partners of the opposite sex are acceptable to each agent. Let $w \succ^m w', w' \succ^{m'} w, m' \succ^w m$ and $m \succ^{w'} m'$. Show that, in the main-proposing DA, no man can benefit from lying about his preferences.
+
+  When the men follow the DA structure and do not lie, they each first propose to their first choice woman. Then, as they have heteogenous preferences over the women, the game ends there and they both are left with their most desired match. Therefore, there is no benefit they can realize from lying (proposing to a woman who is not their most preferred).
+
+2. Prove that if the man-proposing DA and the woman-proposing DA select the same match, then the stable match is unique.
+
+A stable match is a match to which there does not exist a blocking pair. Suppose that the vector of men, $M$, and the vector of women, $W$, which propose to each other in the man-proposing and woman-proposing DA produce identical matches ${(m_1,w_1), (m_2,w_2), ..., (m_n,w_n)}$. Further, suppose there exists a blocking pair which are not matched, some arbitrary $(m',w)$ which they currently are in the pairs $(m',w')$ and $(m,w)$. There are two possible cases to explain why this pair is not matched.  
+  
+Case 1: The proposing agent, $m'$ or $w$, never proposed to the other party.  
+  If $m'$ was the proposing agent, it must be the fact that he prefers $w'$ to $w$ as, in the DA structure, the men propose in descending order of preferences and are never barred from proposing to a woman who already holds a man.
+Symmetrically, if $w$ was the proposing agent, it must be the fact that she prefers $m$ to $m'$.
+Therefore, in either scenario it cannot be the case that this consitutes a blocking pair.
+
+Case 2: The proposing agent, $m'$ or $w$, did propose to the other party.
+If $m'$ was the proposing agent, it must be the fact that $w$ prefers $m$ to $m'$ as, in the DA structure, the women are never barred from accepting an offer from a man that they prefer to the one they already hold.
+Symmetrically, if $w$ was the proposing agent, it must be the fact that $m'$ prefers $w'$ to $w$.
+Therefore, in either scenario it cannot be the case that this consitutes a blocking pair.
+
+  Further, given that we assume preferences are strict (a person cannot be indifferent to two individuals of the opposite sex), it must be the case that this stable match is unique.
+
+3. Assume that all women rank all men the same, whereas men's preferences can be arbitrary. Prove that the unique stable match coincides with the unique SD outcome in the related economy in which women are objectified and the men's power ordering coincides with the women's common ranking of men.
+
+  In the economy where women rank all men the same and men's preferences are arbitrary, all women will first propose to $m_1$, the most desirable man. He will then accept the proposal from his first preferance of woman and not be proposed to again. Then the remaining women will propose to $m_2$, the second most desired, he will accept the proposal from his most desired of the remaining women and not be proposed to again. This cycle will continue until all pairs are matched.
+
+  In the SD economy where men's power ordering coincides with the women's ranking, $m_1$ chooses his match first. He will select his most desired woman. Obviously, this scenario exactly coincides with that in the previous economy. Then, $m_2$ chooses his match. He selects his most desired woman of those remaining (meaning, all of those except for the match of $m_1$). Obviously, this also perfectly coincides with that in the previous economy. This cycle will continue exactly matching that in the first scenario until all pairs are matched.
+
+4. This question  illustrates that a small change in the gender balance may lead to a stark change in the agent's welfare. To begin with, there are three men, $m, m',$ and $m''$, and three women, $w, w',$ and $w''$. All partners of the opposite sex are acceptable. Consider the cycle $m \rightarrow w'' \rightarrow m' \rightarrow w \rightarrow m'' \rightarrow w' \rightarrow m$. Each agent ranks the agents of the opposite sex in the descending order as he travels the cycle once, starting from his own position. For instance, the preferences of man $m'$ are $w \succ^{m'} w' \succ^{m'} w''$. Show that if an arbitrary agent drops out (thereby causing gender imbalance), then the unique stable match in the marriage problem with the remaining five agents corresponds to the unique SD outcome in the related economy in which the (three) agents on the long side of the markets are objectified and those (two) on the short side are endowed with an arbitrary power ordering.
+
+  Suppose $w''$ drops out. Then, the unique stable matches are ${(m,w'),(m'',w)}$ with $m'$ as a singleton. So, each woman is left with her most preferred man. 
+
+
+  In the alternate economy, given that $w''$ dropped out, we assume the men are objectified and the women hold the power with some arbitrary ordering.
+There are two cases, one in which $w$ goes first and the other in which $w'$ goes first.
+Case 1: $w$ matches with $m''$, her most preferred. Then $w'$ matches with $m$, her most preferred. $m'$ is left as a singleton.
+Case 2: $w'$ matches with $m$, her most preferred. $w$ matches with $m''$, her most preferred. $m'$ is left as a singleton.
+
+  Obviously, in all of these scenarios the matched pairs remain the same and we say that in the presence of gender imbalance, the unique stable match in the marriage problem with the remaining five agents corresponds to the unique SD outcome in the related economy in which the agents on the long side of the markets are objectified and those on the short side are endowed with an arbitrary power ordering.
+
+5. The number of men and women is the same and is denoted by $n$. Give an upper bound on the number of proposal rounds in which DA must terminate.
+
+  Given that the genders are balanced, we know that stable matches must exist. The worst case scenario for any proposer, suppose that is a man, is that they get their last choice partner, meaning that they have been rejected $n-1$ times. With this happening, the game continues accordingly.
+
+  One round of the initial proposal (no rejection).
+$n-1$ rounds of rejection for $n$ men ($n(n-1)$ total rounds).
+One final round where the matches are stabilized.
+
+  Therefore, the largest number of possible rounds before DA termination are $1 + n(n-1) +1$, or $n^2 - n + 2$.
+    
+### Exercise 4.1
+  Recall the production economy studied in section 4.2. This economy has been discovered in a Hitherto Unheard-of Latin American Country (Hulac, for short) by a group of Princeton Effective Altruists (PEAs, for short). In Hulac, the capitalist's amount of capital is $K$, and the measure of workers is $W$, where $W/b > K/a$. In Princeton, the measure of PEAs is $P$. In their quest to accomplish "most good", PEAs consider four scenarios.
+
+  * _Scenario A_: Stay away from Hulac
+  * _Scenario B_: Go to Hulac, join the workers (so the measure of wokers in Hulac becomes $W+P$), and donate any consumption above $\gamma$ to the proletariat (i.e. the workers employed by the capitalist) of Hulac.
+  * _Scenario C_: Promise to send each member of the Hulac proletariat $\gamma$ of stuff.
+  * _Scenario D_: Go to Hulac to buy and operate a unit of capital each (so that the amount of capital in Hulac becomes $K+P$), operate it in the same manner as the native Hulac capitalist does, and donate all profit (which amounts to share $P/(K+P)$ of all profit earned back from capital) to the proletariat. 
+  
+  1. Suppose that PEAs proceed with Scenario A. What is the equilibrium utility of Hulac workers?
+    
+  In this scenario, Hulac is in the equilibrium outlined in 4.1.1. Workers maximize their consumption given some endowment of hours available to work, the capitalist maximizes his utility given some endowment of capital, and markets must clear.
+  $$W: \max x^i s.t. \gamma h^i=x^i$$
+  $$\max_h f(k,h)-wh-K, f(k,h)=\min{\frac{k}{a},\frac{h}{b}}, h=\lambda =\frac{b}{1-a}, k=\frac{a}{1-a}$$
+  $$\sum h^i=h=\frac{bK}{a}$$
+  $$\sum x^i=x$$
+  $$x=K-k$$
+  From this, the collective equilibrium utility of workers is $\gamma\sum^W_i{h^i}=\gamma h=\gamma\frac{bK}{a}$.
+    
+  2. Suppose that PEAs proceed with Scenario B. What is the equilibrium utility of Hulac native workers?
+    
+  In this scenario, by adding to the measure of workers the PEAs are not adding any additional amount of the consumption good being produced, as in the previous scenario there was already an excess of available workers. Therefore, $h$ remains the same, $h=bK/a$. Then, the collective utility is $\gamma\sum^W_i{h^i}$ plus the amount donated by the PEAs. In other words, $\gamma\sum^W_i{h^i} + \sum^P_i{\gamma (h^i-1)}=\gamma h+\sum^P_i{\gamma (h^i-1)}=\gamma\frac{bK}{a}+\sum^P_i{\gamma (h^i-1)}$.
+    
+  3. Suppose that PEAs proceed with Scenario C. What is the equilibrium utility of Hulac workers?
+    
+  In this scenario, the workers simply receive a transfer of $gamma$. This leaves their individual utility as $\gamma(h^i+1)$ and their collective utility as $\sum_i^W{\gamma(h^i+1)}=\gamma h + W\gamma = \gamma(\frac{bK}{a}+W)$
+    
+  4. Suppose that PEAs proceed with Scenario D, and $W/b > (K+P)/a$. What is the equilibrium utility of Hulac workers?
+    
+  In this equilibrium, there is still an excess of available workers. Therefore, the wage remains $w=\gamma$ and $b(K+P)/a$ workers are employed. Then, the collective utility is $\sum_i^W{\gamma h^i} + \frac{P}{K+P}(min{\frac{k}{a},\frac{K+P}{a}}-w\frac{b(K+P)}{a}-k)$ which can be simplified to, $$\gamma\frac{b(K+P)}{a}+\min{\frac{kP}{a(K+P)},{P}{a}}-\frac{\gamma bP}{a}-\frac{kP}{K+P}$$
+    
+  5. Suppose that PEAs proceed with Scenario D, and $W/b < (K+P)/a$. What is the equilibrium utility of Hulac workers?
+    
+  In this scenario, wages increase to $w=1/\lambda$. However, given that none of the workers are able to be exploited, it is also the case that the capitalist firms do not enjoy any profits. Therefore, the PEAs do not transfer any wealth back to the proletariat and their utility is only improved from higher wages and full employment.
+  So, individually, workers enjoy utility of $\frac{1}{\lambda}h^i$ and collectively the utility is ${\frac{W}{\lambda}}$
+    
+  6. Suppose that PEAs define "most good" as achieving the highest utility for Hulac native workers. Which of the scenarios A, B, C, and D would you recommend to PEAs?
+    
+  Given the number of unknowns in all of these scenarios (especially scenario D which could affect the labor market in two different ways), I would recommend scenario C. In this scenario, it is a guarantee that the native peoples will enjoy a higher level of utility with no possible adverse affects to their labor market.
+  
+### Exercise 4.6
+Prove theorem 4.2. (_Hint_: The proof follows closely the proof of the FWT.)
+
+Theorem 4.2
+Let $x$ be a Walrasian equilibrium allocation of the exchange economy $\sigma$. If u-monotonicity holds, then $x$ is in the core of $\sigma$.
+
+Proof: 
+  By way of contradiction, suppose that the equilibrium allocation $x$ is Pareto dominated by some feasible allocation $\hat{x}$. That is, $\hat{x}$ is feasible and satisfies $u^i(\hat{x}^i)\geq u^i(x^i)$ for some coalition $i\in \mathscr{I}$, with the inequality being strict for some $i\in \mathscr{I}$. In other words, suppose $x$ is not within the core of $\sigma$. 
+  Take an agent $j$ within some arbitrary coalition of $I$ for whom $u^j(\hat{x}^j)>u^j(x^j)$. Conclude $p\cdot\hat{x}^j>p\cdot e^j$ by revealed preference; that is, the fact that agent $j$ prefers $\hat{x}^j$ to $x^j$ reveals that $\hat{x}^j$ were unaffordable when $x^j$ was chosen.
+  Moreover, for any individual within the arbitrary coalition, $i\in\mathscr{I}, p\cdot\hat{x}^i\geq p\cdot e^i.$ Indeed, suppose, by contradiction, that $p\cdot\hat{x}^i< p\cdot e^i$ for some $i\in\mathscr{I}$. Construct a new bundle, $\tilde{x}^i \equiv \hat{x}^i+(\sigma, 0, ..., 0)$ with $\sigma >0$ such that $p\cdot\tilde{x}^i<p\cdot e^i$, which one can always do by picking a sufficiently small $\sigma$. Then, by $u$-monotonicity, $u^i(\tilde{x}^i)>u^i(\hat{x}^i)\geq u^i(x^i)$. Thus, even though $\tilde{x}^i$ is affordable and is preferred to, $x^i$, agent $i$ chooses $x^i$ over $\tilde{x}^i$, thereby failing to optimate and contradicting equiilibrium. Therefore, the contradiction hypothesis $p\cdot \hat{x}^i < p\cdot e^i$ cannot be true and it must be that $x$ is within the core of $\sigma$
+  Finally, adding up the inequalities established above gives the following for some arbitrary coalition of agents $\mathscr{I}$. $\sum_{i\in \mathscr{I}}p\cdot \hat{x}^i>\sum_{i\in\mathscr{I}} p\cdot e^i$, or, equivalently, $$\sum_{l\in\mathscr{L}}p_l(\sum_{i\in\mathscr{I}}\hat{x}^i_l - \bar{e}_l)>0.$$ At equilibrium, $p_l>0$ for all $l\in\mathscr{L}$, by $u$-monotonicity. (Indeed, if $p_l\leq 0$ for some $l$, then, each agent within the coalition will demand an infinite amount of good $l$, thereby violating market clearing for this good.) Then, the display above implies that, for at least one $l$, $\sum_{i\in\mathscr{I}}>\bar{e}_l$. That is, $\hat{x}$ is not feasible and, so, cannot Pareto dominate the equilibrium allocation $x$. Meaning, $\hat{x}$ cannot be within the core of $\sigma$.
+  
+### Exercise 4.7
+Consider a house allocation problem of section 3.3 with three agents, $\mathscr{I}={1, 2, 3}$, and three houses, $\mathscr{L}={A, B, C}$. The agents' preferences are $$A \succ^1 B \succ^1 C$$ $$B \succ^2 A \succ^2 C$$ $$A \succ^3 C \succ^3 B$$. 
+
+  1. Assume that no agent is initially endowed with a house. List all Pareto efficient allocations. Can you think of a systematic way to do so?
+  
+  There are two possible Pareto efficient allocations in this scenario, allocations defined as $\{$Person 1's allocation, Person 2's, Person 3's$\}$. These two allocations are $\{A, B, C\}$ and $\{C, B, A\}$. These is found through a serial dictatorship with an arbitrary power ranking.
+    
+  2. Assume that agent 1 is endowed with house C, agent 2 is endowed with house A, and agent 3 is endowed with house B. List all core allocations. Can you think of a systematic way to do so?
+  
+  All core allocations in this scenario of individual endowments are the same as the prior equilibrium allocations, $\{A, B, C\}$ and $\{C, B, A\}$ defined as $\{$Person 1's allocation, Person 2's, Person 3's$\}$. These are found using the Top Trading Cycles algorithm.

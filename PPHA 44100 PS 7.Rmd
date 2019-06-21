@@ -1,0 +1,215 @@
+---
+title: "PPHA 44100 PS 7"
+author: "Morgan Conklin Spangler"
+date: "11/14/2018"
+header-includes:
+    - \usepackage{setspace}\onehalfspacing
+    - \usepackage{tcolorbox}
+output: pdf_document
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+**Exercise 6.2.** Consider the problem of allocating consumptions of two goods across two consumers. The two goods are called tillip and quillip, and the two consumers are called 1 and 2. Consumer 1 has utility function $u^1(t,q)=6+.4\log t+.6\log q$ (where $t$ is the amount of tillip 1 consumes and $q$ is the amount of quillip). Consumer 2 has utilty function $u^2(t,q)=8+\log t + \log q$. The social endowment consists of 15 units of tillip and 20 units of quillip.  
+
+ 1. Suppose that, relative to these utility representations, your preferences over allocations are represented by a social welfare functional of the following form: Social welfare, as a function of ($u^1,u^2$), is a weighted sum with weight 2 on the lesser of $u^1$ and $u^2$ and weight 1 on the greater of the two. What is your optimal allocation?     
+ 
+ $$U=w_1\max\{u_1,u_2\}+w_2\min\{u_1,u_2\}$$
+ such that $t_1+t_2=t=15$ and $q_1+q_2=q=20$.    
+ $$\Rightarrow U=w_1\max\{6+.4\log t_1+.6\log q_1,8+\log t_2 + \log q_2\}+w_2\min\{6+.4\log t_1+.6\log q_1,8+\log t_2 + \log q_2\}$$
+ Case 1: \hfill $6+.4\log t_1+.6\log q_1 \geq 8+\log t_2 + \log q_2$
+ $$\Rightarrow U=w_1(6+.4\log t_1+.6\log q_1)+w_2(8+\log t_2 + \log q_2)$$
+ $$\Rightarrow U=6w_1+.4w_1\log t_1+.6w_1\log q_1 + 8w_2+w_2\log t_2+w_2 \log q_2$$
+ FOCs:  
+ $$\frac{\partial U}{\partial t_1 }: \frac{.4w_1}{t_1}=\lambda_1$$
+ $$\frac{\partial U}{\partial t_2}: \frac{w_2}{t_2}=\lambda_1$$
+ $$\frac{\partial U}{\partial q_1}:\frac{.6w_1}{q_1}=\lambda_2$$
+ $$\frac{\partial U}{\partial q_2}: \frac{w_2}{q_2}=\lambda_2$$
+ $$t_1+t_2=15$$
+ $$q_1+q_2=20$$
+$$\Rightarrow \frac{.4w_1}{t_1}=\frac{w_2}{t_2}$$
+$$\Rightarrow .4\frac{w_1}{w_2}=\frac{t_1}{t_2}$$
+$$\Rightarrow .4\frac{w_1}{w_2}=\frac{t_1}{15-t_1}$$
+$$\Rightarrow 6w_1-.4w_1t_1=t_1 w_2$$
+$$\Rightarrow 6w_1=t_1(w_2-.4w_1)$$
+\begin{tcolorbox}
+$$\Rightarrow {\frac{6w_1}{w_2-4w_1}=t_1^*}$$
+\end{tcolorbox}
+$$\Rightarrow .4\frac{w_1}{w_2}=\frac{15-t_2}{t_2}$$
+$$\Rightarrow .4w_1t_2=15w_2-w_2t_2$$
+\begin{tcolorbox}
+$$\Rightarrow t_2^*=\frac{15w_2}{.4w_1+w_2}$$
+\end{tcolorbox}
+$$\Rightarrow \frac{.6w_1}{q_1}=\frac{w_2}{q_2}$$
+$$\Rightarrow .6w_1q_2=w_2q_1$$
+$$\Rightarrow .6w_1(20-q_1)=w_2q_1$$
+$$\Rightarrow 12w_1-.6w_1q_1=w_2q_1$$
+$$\Rightarrow 12w_1=q_1(w_2+.6w_1)$$
+\begin{tcolorbox}
+$$\Rightarrow q_1^*=\frac{12w_1}{w_2+.6w_1}$$
+\end{tcolorbox}
+$$\Rightarrow .6w_1q_2=w_2(20-q_2)$$
+$$\Rightarrow .6w_1q_2=20w_2-w_2q_2$$
+$$\Rightarrow q_2(.6w_1+w_2)=20w_2$$
+\begin{tcolorbox}
+$$\Rightarrow q_2^*=\frac{20w_2}{.6w_1+w_2}$$
+\end{tcolorbox}
+ 
+ Case 2:  \hfill $6+.4\log t+.6\log q \leq 8+\log t + \log q$
+ $$\Rightarrow U=w_2(6+.4\log t+.6\log q)+w_1(8+\log t + \log q)$$
+  $$\Rightarrow U=6w_2+.4w_2\log t_1+.6w_2\log q_1 + 8w_1+w_1\log t_2+w_1 \log q_2$$
+ FOCs:  
+ $$\frac{\partial U}{\partial t_1 }: \frac{.4w_2}{t_1}=\lambda_1$$
+ $$\frac{\partial U}{\partial t_2}: \frac{w_1}{t_2}=\lambda_1$$
+ $$\frac{\partial U}{\partial q_1}:\frac{.6w_2}{q_1}=\lambda_2$$
+ $$\frac{\partial U}{\partial q_2}: \frac{w_1}{q_2}=\lambda_2$$
+ $$t_1+t_2=15$$
+ $$q_1+q_2=20$$
+ $$\Rightarrow \frac{.4w_2}{t_1}=\frac{w_1}{t_2}$$
+ $$\Rightarrow .4w_2t_1=w_1t_2$$
+ $$\Rightarrow .4w_2t_1=w_1(15-t_1)$$
+ $$\Rightarrow .4w_2t_1+w_1t_1=15w_1$$
+ $$\Rightarrow t_1(.4w_2+w_1)=15w_1$$
+ \begin{tcolorbox}
+ $$\Rightarrow t_1^*=\frac{15w_1}{.4w_2+w_1}$$
+ \end{tcolorbox}
+ $$\Rightarrow \frac{.4w_2}{15-t_2}=\frac{w_1}{t_2}$$
+ $$\Rightarrow .4w_2t_2=15w_1-w_1t_2$$
+ $$\Rightarrow t_2(.4w_2-w_1)=15w_1$$
+ \begin{tcolorbox}
+ $$\Rightarrow t_2^*=\frac{15w_1}{.4w_2-w_1}$$
+ \end{tcolorbox}
+ $$\Rightarrow \frac{.6w_2}{q_1}=\frac{w_1}{q_2}$$
+ $$\Rightarrow \frac{w_1}{q_2}=\frac{.6w_2}{q_1}$$
+ $$\Rightarrow \frac{w_1}{20-q_1}=\frac{.6w_2}{q_1}$$
+ $$\Rightarrow w_1q_1=12w_2-.6w_2q_1$$
+ \begin{tcolorbox}
+ $$\Rightarrow q_1^*=\frac{12w_2}{w_1+.6w_2}$$
+ \end{tcolorbox}
+ $$\Rightarrow w_1(20-q_2)=.6w_2q_2$$
+ $$\Rightarrow 20w_1-w_1q_2=.6w_2q_2$$
+\begin{tcolorbox}
+$$\Rightarrow \frac{20w_1}{.6w_2+w_1}=q_2^*$$
+\end{tcolorbox}
+ 
+ 2. What is the set of all Pareto optimal allocations for this economy?   
+ 
+ For case 1, $6+.4\log t_1+.6\log q_1 \geq 8+\log t_2 + \log q_2$, the set of all Pareto optimal allocations for this economy, given this social welfare function, are all of the possible allocations which satisfy $\frac{6w_1}{w_2-4w_1}=t_1^*$, $t_2^*=\frac{15w_2}{.4w_1+w_2}$, $q_1^*=\frac{12w_2}{w_1+.6w_2}$, and $q_2^*=\frac{20w_2}{.6w_1+w_2}$ for the weights $w_1,w_2$.  
+ 
+ We know this is the case because these are the optimal allocations from the maximized weighted utility function. So, any transfer of endowments which would move us to an allocation point **different** from one that these satisfy would necessarily move the economy to a lower level of well-being.   
+ 
+ The same can be said for case 2, $6+.4\log t_1+.6\log q_1 \leq 8+\log t_2 + \log q_2$. In this case, the set of all Pareto optimal allocations for this economy are all of the possible allocations which satisfy $t_1^*=\frac{15w_1}{.4w_2+w_1}$, $t_2^*=\frac{15w_1}{.4w_2-w_1}$, $q_1^*=\frac{12w_2}{w_1+.6w_2}$, and $q_1^*=\frac{12w_2}{w_1+.6w_2}$ for weights $w_1,w_2$.  
+ 
+ 3. Assume that the social endowment is divided between the consumers, with consumer 1 getting 10 units of each good, and consumer 2 getting 5 units of tillip and 10 units of quillip. What is the Walrasian equilibrium of this economy?  
+ 
+ Consumer 1 solves their utility maximizarion problem:    
+ $$\max_{t_1,q_1} u^1(t,q)=\max_{t_1,q_1} (6+.4\log t_1+.6\log q_1)$$
+ subject to $10p_t+10p_q=p_tt_1+p_qq_1$.  
+ 
+ FOCs:  
+ $$\frac{\partial u^1}{\partial t_1}: \frac{.4}{p_tt_1}=\lambda_1$$
+ $$\frac{\partial u^1}{\partial q_1}: \frac{.6}{p_qq_1}=\lambda_1$$
+ $$\Rightarrow \frac{.6}{p_qq_1}=\frac{.4}{p_tt_1}$$
+ $$\Rightarrow 1.5=\frac{p_qq_1}{p_tt_1}$$
+ $$10p_t+10p_q=p_tt_1+p_qq_1$$
+ $$\Rightarrow 1.5=\frac{p_qq_1}{10p_t+10p_q-p_qq_1}$$
+ $$\Rightarrow 15p_t+15p_q-1.5p_qq_1=p_qq_1$$
+ $$\Rightarrow \frac{6(p_t+p_q)}{p_q}=q_1^*$$
+ $$\Rightarrow 1.5=\frac{10p_t+10p_q-p_tt_1}{p_tt_1}$$
+ $$\Rightarrow t_1^*=\frac{4(p_t+p_q)}{p_t}$$
+ 
+Consumer 2 solves their utility maximization problem:    
+ $$\max_{t_2,q_2}u^2(t_2,q_2)=8+\log t_2 + \log q_2$$
+ subject to $5p_t+10p_q=p_tt_2+p_qq_2$.  
+ FOCs:  
+ $$\frac{\partial u^2}{\partial t_2}: \frac{1}{p_tt_2}=\lambda_2$$
+ $$\frac{\partial u^2}{\partial q_2}: \frac{1}{p_qq_2}=\lambda_2$$
+ $$\Rightarrow \frac{1}{p_qq_2}=\frac{1}{p_tt_2}$$
+ $$\Rightarrow 1=\frac{p_qq_2}{p_tt_2}$$
+ $$5p_t+10p_q=p_tt_2+p_qq_2$$
+ $$\Rightarrow t_2^*=\frac{5p_t+10p_q}{2p_t}$$
+ $$\Rightarrow \frac{5p_t+10p_q}{2p_q}=q_2^*$$
+ Then we add the market clearing conditions,
+ $$t_1+t_2=15$$
+ $$q_1+q_2=20$$
+ And solve for the ratio of prices,
+ $$12p_t+12p_q+5p_t+10p_q=20p_q$$
+ $$17p_t=18p_q$$
+ $$p_t=\frac{18}{17}p_q$$
+ Then, using this price ratio with the previous optimal quantities for each consumer, we solve for the Walrasian equilibrium in this market.
+ \begin{tcolorbox}
+$$\frac{70}{9}=t_1^* \approx 7.778$$
+$$\frac{65}{9}=t_2^* \approx 7.222$$
+$$\frac{210}{17}=q_1^* \approx 12.353$$
+$$\frac{130}{17}=q_2^* \approx 7.647$$
+\end{tcolorbox}
+
+ 
+ 
+**Exercise 6.7** A particular policy maker I know is very big on mellow consumers. Specifically, she hopes to prevent consumers from envying each other. To this end, she defines an *envy-free* allocation as one in which no consumer would rather have the consumption bundle assigned to another consumer rather than his or her own. She also wishes the allocation to be efficient.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This policy maker is also lazy. She isn't willing to figure out the utility functions of the consumers. (She does have a list of all of their endowments.) She is blessed with an economy that functions well as an exchange economy - however she rearranges endowments, the economy finds a Walrasian equilibrium.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Can you help out this policy maker? Specifically, describe how to reallocate endowments so that the resulting Walrasian equilibrium is guaranteed to be both efficient and envy-free. (Hint: the trick is to find some way to redistribute endowments so that, at every set of prices, consumers all begin with the same wealth to spend on consumption.)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; We know that Walrasian equilibrium guarantees that consumers optimize their own well-being subject to their level of wealth, $\max u$ subject to $w$, such that $u$ and $w$ represent an individuals utility and wealth, respectively. By solving this individual objective function, consumers find an optimal bundle, $x^*$ to consume. We also know, by duality, that by solving the consumer's budget function $p\cdot x$ with $x=x^*$ we get back to the consumer's level of income (assuming that all goods are normal goods) and by solving the consumer's utility function with $x^*$ we get back to the maximized level of utility. 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \begin{tcolorbox} So, assumming common prices, if everyone solves their utility function with the same level of wealth $w$, they will all find optimal bundles of goods $x^*$ such that they cannot be strictly better off with any other $x=x'$ unless they were to increase their wealth. In other words, if $u(x')>u(x^*)$, it must be the case that $p\cdot x'>p\cdot x^*$ given that $x^*$ is a Walrasian equilibrium. Therefore, no matter the specific arrangement of initial goods, as long as all consumers have a common level of wealth this economy will be able to achieve an envy-free equilibrium.
+\end{tcolorbox}
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Further, as each consumer will use all of their wealth, $p\cdot x^*=w$, we know that this equilibrium will also be efficient (there will be no excess/leftover goods).
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; It should be noted that, depending on the functional form of utility functions, it could be the case that differing levels of initial wealth still allow for an equilibrium in which consumers would not be "envious" of another's consumption bundle. However, without knowing the functional form of the utility function, or any other specifying details, this is the broadest way to guarantee the envy-free and efficient equilibrium.
+
+**Exercise 6.8** Imagine a three-consumer economy in which the first commodity is gardening services, consumption of which makes one's yard more beautiful, and the second good is food. Imagine that two of the consumers live in adjacent houses, while the third lives on the other side of a particularly large mountain. Consumption by the third consumer of gardening services generates no externality for the other consumers, but each of the others generates a positive externality for her neighbor through the consumption of gardening services. To be precise, imagine that consumers 1 and 2 have utility functions of the form $$u^h(x)=w(x^1_1)+w(x^2_1)+x^h_2,$$ where $w$ is a strictly increasing, strictly concave, and differentiable function. Note well that consumers 1 and 2 get as much utility out of their neighbor's yard as they do out of their own, and their utility for food is linear. Also imagine that consumer 3 has utility $$u^3(x)=w(x^3_1)+x^3_2.$$ There is a social endowment of gardening services and food.
+
+ 1. Suppose the social endowment is initially allocated evenly among the three consumers. What will be the corresponding Walrasian equilibrium?  
+ 
+ $x_1^1=$ gardening consumed by consumer 1, $x^2_1=$ gardening consumed by consumer 2, $x_1^3=$ gardening consumer by consumer 3  
+ $x^1_2=$ food consumed by consumer 1, $x^2_2=$ food consumed by consumer 2, $x^3_2=$ food consumer by consumer 3  
+ 
+ I will denote the equivalent endowments of gardening and food to all consumers as $g$, $g=$ gardening, and $f$, $f=$ food. Further, I will re-notate gardening consumed by consumer $h$ as $x^g_h$ and food consumed by consumer $h$ as $x_h^g$^[Note the change that type is superscripted and consumer is subscripted - this is done to avoid numbers in the superscript being confused as powers.]. 
+ 
+ Consumers 1 and 2 will maximize their utility as such, 
+ $$\max_{x^g_h,x^f_h} w(x^g_1)+w(x^g_2)+x^f_h$$ such that $p_ff+p_gg=p_fx^f_h+p_gx^g_h$
+ 
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  FOCs
+ $\frac{\partial u^h}{\partial x^g_h}:\frac{d w(x^g_h)}{d x^g_h}=w'(x^g_h)=p_g\lambda$  
+ $\frac{\partial u^h}{\partial x^f_h}:1=p_f\lambda$  
+ $\frac{\partial u^h}{\partial \lambda}:p_ff+p_gg=p_fx^f_h+p_gx^g_h$  
+ 
+ $$\Rightarrow \frac{p_g}{p_f}=w'(x^g_1)=w'(x^g_2)$$
+ $$\Rightarrow p_ff+p_gg=p_fx^f_1+p_gx^g_1$$
+ $$\Rightarrow p_ff+p_gg=p_fx^f_2+p_gx^g_2$$
+ 
+ Consumer 3 will maximize their utility as such,
+ $$\max_{x^g_3,x^f_3} w(x^g_3)+x^f_3$$ such that $p_ff+p_gg=p_fx^f_3+p_gx^g_3$
+ 
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FOCs
+ $\frac{\partial u^3}{\partial x^g_3}:\frac{d w(x^g_3)}{d x^g_3}=w'(x^g_3)=p_g\lambda$    
+ $\frac{\partial u^3}{\partial x^f_3}:1=p_f\lambda$    
+ $\frac{\partial u^3}{\partial \lambda}:p_ff+p_gg=p_fx^f_3+p_gx^g_3$   
+ 
+ $$\Rightarrow \frac{p_g}{p_f}=w'(x^g_3)$$
+ $$\Rightarrow p_ff+p_gg=p_fx^f_3+p_gx^g_3$$  
+ 
+ And we ensure that markets will clear,  
+ $$x^f_1+x^f_2+x^f_3=f, \ x_1^g+x_2^g+x_3^g=g$$
+ 
+ 
+ 2. Characterize the set of Pareto optimal allocations of the social endowment. Is the equilibrium allocation in part (a) Pareto optimal?  
+ 
+ The set of Pareto optimal allocations of the social endowment are characterized as such,
+ 
+ $$\max_{x^g_h,x^f_h, \forall h=\{1,2,3\}} 2w(x^g_1)+2w(x^g_2)+x^f_1+x^f_2+w(x^g_3)+x^f_3$$ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; subject to the market clearing conditions,  $$x^f_1+x^f_2+x^f_3=f,$$ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; and
+ $$x_1^g+x_2^g+x_3^g=g.$$
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FOCs^[$U \equiv$ total social utility]
+ $$\frac{\partial U}{\partial x^g_1}: 2w'(x^g_1)=\lambda_g$$
+ $$\frac{\partial U}{\partial x^g_2}: 2w'(x^g_2)=\lambda_g$$
+ $$\frac{\partial U}{\partial x^g_3}: w'(x_3^g)=\lambda_g$$
+ $$\frac{\partial U}{\partial x^f_1}: 1=\lambda_f$$
+ $$\frac{\partial U}{\partial x^f_2}: 1=\lambda_f$$
+ $$\frac{\partial U}{\partial x^f_3}: 1=\lambda_f$$ 
+ $$\frac{\partial U}{\partial \lambda_g}: g=x_1^g+x_2^g+x_3^g$$
+ $$\frac{\partial U}{\partial \lambda_f}: f=x^f_1+x^f_2+x^f_3$$
+ 
+ Clearly, the outcome in part (a) is not the Pareto optimal outcome achieved here. The positive externality of consumers 1 and 2 employing gardening services is not taken into account when solving their individual optimal consumptions, so they are not properly incentivized to invest more into gardening to achieve the level social utility achieved in (b).

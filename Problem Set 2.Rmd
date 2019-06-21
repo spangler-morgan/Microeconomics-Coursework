@@ -1,0 +1,175 @@
+---
+title: "Problem Set 2"
+author: "Morgan Conklin Spangler"
+date: "1/23/2019"
+output: pdf_document
+header-includes:
+  - \usepackage{setspace}\onehalfspacing
+  - \usepackage{ amssymb }
+  - \usepackage{amsmath}
+  - \usepackage{tikz}
+  - \usepackage{pgfplots}
+  - \usepackage{float}
+  - \floatplacement{figure}{H}
+  - \usepackage{ dsfont }
+  - \usepackage{ mathrsfs }
+  - \usepackage{ wasysym }
+  - \usepackage{mathtools}
+  - \usepackage{tcolorbox}
+---
+
+1. Recall from lecture the example of the airline deciding which type of tickets to sell at which price. Using the same example and assumptions, solve for the profit-maximizing price and ticket combintion when the parameters of the model are as follows:
+    From solving the IR and IC constraints of the firm's profit maximizing function, we know that $p^r=v_t^r$, $p^u=v_b^u-(v_b^r-v_t^r)$, and profits are $\pi^{PD}=N_b(v_b^u-(v_b^r-v_t^r))+N_tv_t^r$. We use this information to solve for the equilibrium in the following scenarios.
+    (a) $v_b^u=500, v_b^r=200, v_t^u=200, v_t^r=100, N_b=60, N_t=70$\newline
+    $p^r=v_t^r=\$100$\newline
+    $p^u=v_b^u-(v_b^r-v_t^r)=500-(200-100)=\$400$\newline
+    $\pi^{PD}=N_b(v_b^u-(v_b^r-v_t^r))+N_tv_t^r=60(500-(200-100))+70\cdot 100=\$31,000$\newline
+    To check if the firm will be incentivized to not use price discrimination, we check to two possible profits under uniform pricing schemes, $\pi^b$ and $pi^t$, where prices are equal to $v_b^u$ and $v_t^u$, respectively. \newline
+    $\pi^b=v_b^u\cdot N_b=500\cdot 60=\$30,000$\newline
+    $\pi^t=v_t^u\cdot (N_b+N_t)=200\cdot(60+70)=\$26,000$\newline
+    In this scenario, the firm will maximize profits by employing the second-degree price discrimination pricing scheme set as in $pi^{PD}$. With this, the equilibrium will be characterized as
+    \begin{tcolorbox}$p=\{p^r,p^u\}=\{100,400\}, q=\{q_b,q_t\}=\{60,70\}, \pi=\$31,000$.\end{tcolorbox}
+    (b) $v_b^u=700, v_b^r=400, v_t^u=300, v_t^r=200, N_b=120, N_t=70$\newline
+    $p^r=v_t^r=\$200$\newline
+    $p^u=v_b^u-(v_b^r-v_t^r)=700-(400-200)=\$500$\newline
+    $\pi^{PD}=N_b(v_b^u-(v_b^r-v_t^r))+N_tv_t^r=120(700-(400-200))+70\cdot 200=\$74,000$\newline
+    To check if the firm will be incentivized to not use price discrimination, we check to two possible profits under uniform pricing schemes, $\pi^b$ and $pi^t$, where prices are equal to $v_b^u$ and $v_t^u$, respectively. \newline
+    $\pi^b=v_b^u\cdot N_b=700\cdot 120=\$84,000$\newline
+    $\pi^t=v_t^u\cdot (N_b+N_t)=300\cdot (120+70)=\$57,000$\newline
+    In this scenario, the firm will maximize profits by employing a uniform pricing scheme set as in $pi^b$. With this, the equilibrium will be characterized as 
+    \begin{tcolorbox}$p=700, q=120, \pi=\$84,000$.\end{tcolorbox}
+    (c) $v_b^u=800, v_b^r=400, v_t^u=400, v_t^r=400, N_b=60, N_t=120$\newline
+    $p^r=v_t^r=\$400$\newline
+    $p^u=v_b^u-(v_b^r-v_t^r)=800-(400-400)=\$800$\newline
+    $\pi^{PD}=N_b(v_b^u-(v_b^r-v_t^r))+N_tv_t^r=60(800-(400-400))+120\cdot 400=\$96,000$\newline
+    To check if the firm will be incentivized to not use price discrimination, we check to two possible profits under uniform pricing schemes, $\pi^b$ and $pi^t$, where prices are equal to $v_b^u$ and $v_t^u$, respectively. \newline
+    $\pi^b=v_b^u\cdot N_b=800\cdot 60=\$48,000$\newline
+    $\pi^t=v_t^u\cdot (N_b+N_t)=400\cdot (60+120)=\$72,000$\newline
+    In this scenario, the firm will maximize profits by employing the second-degree price discrimination pricing scheme set as in $pi^{PD}$. With this, the equilibrium will be characterized as 
+    \begin{tcolorbox}$p=\{p^r,p^u\}=\{400,800\}, q=\{q_b,q_t\}=\{60,120\}, \pi=\$31,000$.\end{tcolorbox}
+    Comment on the distortion, if any, in each case.\newline
+    In the perfectly competitive environment, the price of a ticket would be equal to the marginal cost. Therefore, the price would be $p^*=\$0$ and everyone would purchase a ticket. Obviously, any consumer surplus which exists in the  price discriminatory, or simple monopoly with uniform pricing, scheme would be strictly less than that in the perfectly competitive environment, because $v^k_\theta - p^k < v^k_\theta - p^*$ since $p^*=\$0$ and $p^k > \$0$. The producer surplus is simply profit. Obviously, since firms in a perfectly competitive environment enjoy no profit, the producer surplus in each scenario (a)-(c) will result in larger producer surplus than in a market with perfect competition. In scenarios (a) and (c) $N_t$ is sufficiently large enough compared to $N_b$ to incentivize the producer to price in order to capture the tourist's demand, rather than focusing on the high-value business traveler alone. So, in these examples, there is no loss in equilibrium quantity compared to perfect competition. However, in scenario (b), there is not a large enough pool of tourists in comparison to the pool of business travelers so the firm chooses to ignore those consumers. In this scenario, there is a clear loss of quantity pointing to the existence of a deadweight loss in total surplus (social welfare).
+2. Now consider the same airline. They are set to debut a new kind of aircraft that has three sections: coach, executive class and first class. That is, we will index ticket types by $k \in \{c, e, f \}$. Also, assume that the new aircraft will potentially attract three types of travelers: tourists, business travelers and royalty. That is, we will index traveler types by $\theta \in \{t, b, r\}$. Tickets are in ascending order of quality:
+$$v_\theta^f >v_\theta^e >v_\theta^c, \ \forall \ \theta.$$
+Also, types are increasing in value of travel. That is, we have that for any ticket class k:
+$$v_r^k > v_b^k > v_t^k.$$
+Finally, we have our single-crossing conditions. The difference in value between any two ticket types is increasing in traveler type.
+$$v_r^k - v_r^{k'} >v_b^k - v_b^{k'}>v_t^k - v_t^{k'}$$ where ticket $k$ is of higher quality than ticket $k'$. As before, assume that the marginal cost of a ticket is zero to the airline.
+    (a) Show that the single-crossing condition implies that the difference in value between any higher and lower type traveler is increasing in ticket quality.
+    $$v_k - v_k' >v_b^k - v_b^{k'}>v_r^k - v_r^{k'}$$
+    $$\Rightarrow v_b^k -v_r^k > v_b^{k'} - v_r^{k'}$$
+    From this, we see that the difference in ticket value for higher and lower type traveler, $b$ and $r$, is increasing in ticket value, $k$ and $k'$, as $b>r$ and $k>k'$. 
+    (b) Assume there are $N_r$ travelers of royalty, $N_b$ business travelers and $N_t$ tourists. Set up the second- degree price discrimination profit maximization problem of the airline, in terms of traveler types and ticket prices. Assume the airline will charge a different price to each type of traveler, and label that price $p^{k(\theta)}$, where $k(\theta)$ denotes the type of ticket $k$ targeted to the traveler type $\theta$. For example, if $k (r) = c$, then that means that royalty will be sold the coach ticket. In other words, do not assume yet which type of ticket will be targeted to which traveler. We will leave that unspecified for now. Include the individual rationality constraints and the incentive compatability constraints.
+    The airline maximizes their profits, $$\max_{\{p^{k(r)},p^{k(b)},p^{k(t)}\}} N_r\cdot p^{k(r)}+N_b\cdot p^{k(b)} + N_t\cdot p^{k(t)} \geq 0$$ with IR constraints, $$v_r^k-p^{k(r)}\geq 0$$ $$v_b^k-p^{k(b)}\geq 0$$ $$v_t^k-p^{k(t)}\geq 0$$ and IC constraints,
+    $$v_r^k-p^{k(r)}\geq v_r^k-p^{k(b)}$$ 
+    $$v_r^k-p^{k(r)}\geq v_r^k-p^{k(t)}$$ 
+    $$v_b^k-p^{k(b)}\geq v_b^k-p^{k(r)}$$ 
+    $$v_b^k-p^{k(b)}\geq v_b^k-p^{k(t)}$$ 
+    $$v_t^k-p^{k(t)}\geq v_t^k-p^{k(r)}$$ 
+    $$v_t^k-p^{k(t)}\geq v_t^k-p^{k(b)}$$ 
+    (c) Denote the consumer surplus of a type as $CS_\theta = v_\theta^{k(\theta)} -  p^{k(\theta)}$. Also, denote the difference in $\theta$ ticket value between two types $\theta$ (higher type) and $\theta '$ (lower type) for a ticket of value $k$ as $I (k, \theta, \theta ') = v_\theta^k - v_{\theta '}^k$ . Show the following:
+       * $I (k,\theta,\theta ') > I (k',\theta,\theta ')$, where $k$ is a higher quality than $k'$.\newline
+        From the single-crossing condition, $v_r^k - v_r^{k'} >v_b^k - v_b^{k'}>v_t^k - v_t^{k'}$, we have $v_\theta^k - v_\theta^{k'} >v_{\theta '}^k - v_{\theta '}^{k'}>v_{\theta ''}^k - v_{\theta ''}^{k'}$
+        $$\Rightarrow v_\theta^k - v_\theta^{k'} >v_{\theta '}^k - v_{\theta '}^{k'}$$
+        $$\Rightarrow v_\theta^k - v_{\theta '}^k >v_\theta^{k'} - v_{\theta '}^{k'}$$
+        $$\Rightarrow I(k,\theta,\theta ')> I(k ',\theta, \theta ') \checkmark$$
+       * $I (k,\theta,\theta ') < I (k,\theta,\theta '')$, where $\theta$ is a higher type than $\theta '$, and $\theta '$ is a higher type than $\theta ''$.\newline
+        From the problem set up, we know that consumer types are differentiated based on their valuation of tickets. Meaning, royalty values the ticket at a higher price than business travelers, and business travelers higher than tourists. Or, $v_\theta^k > v_{\theta '}^k > v_{\theta ''}^k$. Then, we solve as follows:\newline
+        $$v_{\theta ''}^k< v_{\theta '}^k$$
+        $$\Rightarrow 0< v_{\theta '}^k - v_{\theta ''}^k$$
+        $$\Rightarrow v_\theta^k - v_{\theta ''}^k < v_\theta^k - v{\theta ''}^k + v_{\theta '}^k - v_{\theta ''}^k$$
+        $$\Rightarrow v_\theta^k - v_{\theta '}^k + v_{\theta '}^k - v_{\theta ''}^k < v_\theta^k - v_{\theta ''}^k + v_{\theta '}^k - v_{\theta ''}^k$$
+        $$\Rightarrow I(k,\theta, \theta ')+I(k,\theta ',\theta '')< I(k,\theta, \theta '') + I(k,\theta ',\theta '')$$
+        $$\Rightarrow I(k,\theta,\theta ')<I(k,\theta,\theta '') \checkmark$$
+       * $I(k,\theta,\theta '') - I(k,\theta,\theta ')=I(k,\theta ',\theta '')$
+       $$\Rightarrow v_\theta^k - v_{\theta ''}^k-v_{\theta '}^k+v_{\theta '}^k=v_{\theta '}^k-v_{\theta ''}^k$$
+       $$v_{\theta '}^k - v_{\theta ''}^k = v_{\theta '}^k - v_{\theta ''}^k$$
+       $$\Rightarrow v_{\theta '}^k = v_{\theta '}^k \checkmark$$
+    (d) Rewrite the profit maximization problem in terms of the $CS_\theta$ and the $I (k (\theta) , \theta, \theta ')$ (note here with $I (\cdot)$ that $\theta, \theta '$, and $\theta ''$ are any arbitrary type here, or in other words, the $\theta$ can differ or be the same depending on context.). That is, the choice variables are now the $CS_\theta$ as well as the $k (\theta)$ function. Furthermore, the prices $p^{k(\theta)}$ should no longer appear in the problem explicitly.\newline
+    The profit maximization problem becomes $$\max_{CS_{\theta},k(\theta)} = \sum_{\theta} N_\theta [v^{k(\theta)}_\theta-CS_\theta]$$ subject to \newline $$CS_\theta \geq 0$$ and $$CS_\theta -CS_{\theta '}\geq I(k,\theta,\theta ')$$ for all $\theta, \theta ' \in \theta$, $\theta =\{r,b,t\}$\newline ($v^k_r$ being higher than $v^k_b$ and $v^k_b$ being higher than $v^k_t$, for any ticket type $k$).
+    (e) In class we assumed that the higher quality tickets would be targeted to the higher type travelers. Now we will show it explicitly. The incentive compatability constraints imply that:
+$$\bar{K}_{b,t} \geq CS_b - CS_t \geq \underline{K}_{b,t}.$$
+Solve for $\bar{K}_{b,t}$ and $\underline{K}_{b,t}$ in terms of the $I (\cdot)$ function. Using the relationship between $\bar{K}_{b,t}$ and $\underline{K}_{b,t}$, show that type $b$ will have a (weakly) higher quality ticket than type $t$. Using the same logic, show that type $r$ will have a (weakly) higher quality ticket than type $b$. If this is true, then we will assume $k (r) = f, k (b) = e$, and $k (t) = c$.\newline
+$\bar{K}_{b,t} \geq CS_b - CS_t \geq \underline{K}_{b,t} \Rightarrow \bar{K}_{\theta ',\theta ''} \geq CS_{\theta '} - CS_{\theta ''} \geq \underline{K}_{\theta ',\theta ''}$\newline
+$\Rightarrow \bar{K}_{\theta ',\theta ''} \geq v_{\theta '}^k - p^k -v_{\theta ''}^k + p^k \geq \underline{K}_{\theta ',\theta ''}$\newline
+$\Rightarrow \bar{K}_{\theta ',\theta ''} \geq v_{\theta '}^k -v_{\theta ''}^k \geq \underline{K}_{\theta ',\theta ''}$\newline
+\begin{tcolorbox}
+$$\bar{K}_{\theta ',\theta ''} \geq I(k(\theta '),\theta ', \theta '') \geq \underline{K}_{\theta ',\theta ''}$$
+\end{tcolorbox}
+$$\bar{K}_{b,t} \geq CS_b - CS_t \geq \underline{K}_{b,t}$$
+$$\Rightarrow \bar{K}_{b,t} -\underline{K}_{b,t} \geq CS_b - CS_t - \underline{K}_{b,t}\geq 0$$
+$$\Rightarrow \bar{K}_{b,t}\geq CS_b - CS_t \geq 0$$
+$$\Rightarrow \bar{K}_{b,t} \geq v^{k(b)}_b - v^{k(t)}_t \geq 0$$
+$$\Rightarrow v^{k(b)}_b \geq v^{k(t)}_t$$
+    So the business traveler will have a (weakly) higher quality ticket than the tourist. Without loss of generality, we can broaden this to $v^{k(\theta)}_\theta \geq v^{k(\theta ')}_{\theta '}$ for some $\theta, \theta '$ such that $\theta$ is of a higher class/value than $\theta '$. By the same logic, this can be extended to $v^{k(\theta)}_\theta \geq v^{k(\theta ')}_{\theta '} \geq v^{k(\theta '')}_{\theta ''}$ for some $\theta, \theta ', \theta ''$ such that $\theta$ is of a higher class/value than $\theta '$ and $\theta '$ is of a higher class/value than $\theta ''$.\newline
+    Now, we have that $v^{k(r)}_r \geq v^{k(b)}_{b} \geq v^{k(t)}_{t}$ given that $r$ is of a higher class/value than $b$ and $b$ is of a higher class/value than $t$.\newline Now, we assume $k(r)=f, k(b)=e,$ and $k(t)=c$ and see that $v^{f}_r \geq v^{e}_{b} \geq v^{c}_{t}$.
+    (f) Now that we know the ticket types, we need to chop away at the constraints. That is, we have to figure which ones are binding and which ones are slack. We will go step-by-step, eliminating constraints from the problem (i.e. showing that they are either slack or binding). Explain why at least one of the (IR) constraints have to be binding.\newline
+    If the monopolist did not set $v^c_t=p^t$, they would not be profit maximizing. If this constraint is not binding, $\hat{p}^t < v^c_t$, they would generate profit from that market segment of $\hat{p}^t\cdot N_t$, since all of the tourists would purchase at this price below their demand curve. Then, if they raised the price to $p^t = v^c_t$, they would generate profit from that market segment of $p^t\cdot N_t$, since all of the tourists would purchase at this price on their demand curve. Clearly, $p^t\cdot N_t > \hat{p}^t\cdot N_t$ so the monopolist would choose to price ticket $c$ at $p^c = v^c_t$ and have one IR constraint, specifically $v_t^c - p^c\geq 0$, be binding.
+    (g) Again, the (IC) constraints imply that:
+$$CS_b - CS_t \geq \underline{K}_{b,t}.$$
+Explain why this implies that $CS_b > 0$. Similarly, explain why $CS_r > 0$. Finally, what does this imply about $CS_t$? \newline
+    We know that $I(\cdot)$ will be non-negative and, from the rewritten constraints,\newline $$CS_b > CS_t + I(k,b,t).$$ We also know that $CS_t = 0$, so this can be simplified to 
+    \begin{tcolorbox}
+    $$CS_b > I(k,b,t) \Rightarrow CS_b > I(k,b,t) \geq 0 \Rightarrow CS_b > 0$$
+    \end{tcolorbox}
+    Similarly, since $I(\cdot) \geq 0$,
+    \begin{tcolorbox}
+    $$CS_r > CS_b + I(k,r,b) \Rightarrow CS_r > CS_b > 0$$
+    \end{tcolorbox}
+**The following questions of problem 2 are only optional, in case you are interested in completely solving the problem. You can go to problems 3 and 4.**
+    (h) Using what we know about $CS_t$, simplify the (IR) and (IC) constraints. Of the remaining constraints that we have not set to either slack or binding, some include only $CS_b$ and others only include $CS_r$, and others include both. In particular, one is of the form: $$\bar{K}_{b,t} \geq CS_b$$ Explain why this constraint will be slack. Likewise, explain why a similar constraint on $CS_r$ will be slack.
+    (i) We now have four remaining constraints on $CS_b$ and $CS_r$ for which we are still unsure of whether or not they are binding or slack. Of the four remaining constraints, two are lower bounds on $CS_b$. Explain why at least one of these has to bind. Likewise, make the same argument for the other two constraints, which are lower bounds on $CS_r$.
+    (j) Furthermore, of the four remaining constraints, one of them only involves $CS_r$ and another only involves $CS_b$. Label these constraints $A$ and $B$ respectively. Explain why both of these two constraints cannot be simultaneously slack. That is one or both of them have to be binding.
+    (k) Now, since one of these two, $A$ and $B$, have to be binding, assume that the constraint only involving $CS_r$ is binding, i.e. constraint $A$. Use this assumption to simplify the other lower-bound constraint on $CS_r$ and show that this now becomes an upper bound constraint on $CS_b$. Now, show that this upper-bound on $CS_b$ is lower than the lower bound on $CS_b$ in constraint $B$. Finally, explain why this is a contradiction, and that constraint $A$ cannot be binding. (Hint: Use your results from part (2c))
+    (l) If constraint $A$ is not binding, what does this imply about constraint $B$? Also, what does this imply about the other two remaining constraints?
+    (m) We now have three binding constraints and three unknowns. Solve for the $p^{k(\theta)}$, and relate them our class discussion of the solution to a second-degree price discrimination problem.\newline
+
+3. Recall our example from lecture of second degree price discrimination with a continuum of types. Consider a scheme that satisfies the following:
+$$t(\theta)=t_L +u(q(\theta),\theta)-\int_{\underline{\theta}}^\theta \frac{\partial u(q(z),z)}{\partial \theta} dz$$
+ where $t_L = -\underline {v} (\theta)$. Also, assume that the scheme is such that $q (\cdot)$ is nondecreasing. In class, we argued that these conditions are sufficient for satisfying the incentive compatability constraints. That is, we need to show that this scheme induces a type-$\theta$ consumer to prefer to purchase $q (\theta)$ at $t (\theta)$ than to purchase some other $q(\theta ')$ at $t(\theta ')$. In lecture we showed this was true in the case where $\theta ' > \theta$. Show this is true in the case where $\theta > \theta '$.\newline
+ In this scenario, there are a continuum of types, $\theta \in [\underline{\theta},\bar{\theta}]$, such that the CDF and pdf of $\theta$ are $F(\cdot)$ and $f(\cdot)$, respectivels. The utility function is some quasilinear utility, $u(q,\theta)+y$, $y=I-t\cdot q$ ($I\equiv$ income, $t \equiv$ price of $q$). $I$ is not changing in any parameter, so without loss of generality we can redefine utility to be $u(q,\theta) - t\cdot q$. The single-crossing property is $\frac{\partial^2 u(q,\theta)}{\partial \theta \partial q}>0$ and the marginal cost of producing is some $c(q)$. The consumer population is of measure 1.\newline
+ Firm's maximize profit, $$\max_{\{q(\cdot),t(\cdot)\}} \int_{\underline{\theta}}^{\bar{\theta}} [t(\theta) - c(q(\theta))]f(\theta)d(\theta)$$
+ subject to constraints $$u(q(\theta),\theta)-t(\theta)\geq 0$$ $$u(q(\theta),\theta)-t(\theta)\geq u(q(\hat{\theta}),\theta)-t(\hat{\theta}).$$
+ Which are equivalent to consumer surplus being greater than or equal to zero and each consumer of type $\theta$ preferring their own bundle to another type's, respectively.\newline
+ Further, we define $v(\theta)=u(q(\theta),\theta)-t(\theta)$ as the surplus (consumer surplus). Therefore, the IR constraint is equivalent to $v(\theta)\geq 0$.\newline
+ Suppose there is some arbitrary $\theta_1,\theta_2$ such that $\theta_1<\theta_2$. Then, the IC constraint is rewritten as $v(\theta_1)\geq v(\theta_2)-u(q(\theta_2),\theta_2)+u(q(\theta_2),\theta_1)$. Symmetrically, we get $v(\theta_2)\geq v(\theta_1)-u(q(\theta_1),\theta_1)+u(q(\theta_1),\theta_2)$. Then, we solve as follows:
+ $$u(q(\theta_2),\theta_2)-u(q(\theta_2),\theta_1)\geq v(\theta_2)-v(\theta_1)\geq u(q(\theta_1),\theta_2)-u(q(\theta_1),\theta_1)$$
+ $$\Rightarrow \int_{\theta_1}^{\theta_2}\frac{\partial u(q(\theta_2),z)}{\partial \theta_2} \partial z \geq v(\theta_2)-v(\theta_1)\geq \int_{\theta_1}^{\theta^2}\frac{\partial u(q(\theta_1),z)}{\partial \theta_1}\partial z$$
+ $$\Rightarrow \int_{\theta_1}^{\theta_2}\frac{\partial u(q(\theta_2),z)}{\partial \theta_2} \partial z \geq \int_{\theta_1}^{\theta^2}\frac{\partial u(q(\theta_1),z)}{\partial \theta_1}\partial z$$
+ $$\Rightarrow \int_{\theta_1}^{\theta_2}\frac{\partial u(q(\theta_2),z)}{\partial \theta_2} \partial z - \int_{\theta_1}^{\theta^2}\frac{\partial u(q(\theta_1),z)}{\partial \theta_1}\partial z \geq 0$$
+ $$\Rightarrow \int_{\theta_1}^{\theta_2}\int_{q(\theta_1)}^{q(\theta_2)}\frac{\partial^2u(q,z)}{\partial q\partial \theta}\partial q \partial z\geq 0$$
+From the single-crossing property, we know $\frac{\partial^2u(q,z)}{\partial q\partial \theta}>0$, and we have assumed that $\theta_2>\theta_1$, so the outer integral is moving in a positive direction. So, the inner integral must also be moving in a non-negative direction, since the entire equation is non-negative. So, it must be that $q$ is non-decreasing (for $\theta_2>\theta_1$, it must follow that $q(\theta_2)\geq q(\theta_1)$).\newline
+Now, as $\theta_2$ converges to $\theta_1$ we solve the following, $$\int_{\theta_1}^{\theta_2}\frac{\partial u(q(\theta_2),z)}{\partial \theta_2} \partial z \geq v(\theta_2)-v(\theta_1)\geq \int_{\theta_1}^{\theta^2}\frac{\partial u(q(\theta_1),z)}{\partial \theta_1}\partial z$$
+$$\Rightarrow \frac{\int_{\theta_1}^{\theta_2}\frac{\partial u(q(\theta_2),z)}{\partial \theta_2} \partial z}{\theta_2-\theta_1} \geq \frac{v(\theta_2)-v(\theta_1)}{\theta_2-\theta_1}\geq \frac{\int_{\theta_1}^{\theta^2}\frac{\partial u(q(\theta_1),z)}{\partial \theta_1}\partial z}{\theta_2-\theta_1}$$
+$$\Rightarrow \frac{\frac{\partial u(q(z),z)}{\partial \theta}}{1}\geq \frac{\partial v(\theta)}{\partial \theta}\geq\frac{\frac{\partial u(q(z),z)}{\partial \theta}}{1}$$
+$$\Rightarrow \frac{\partial v(\theta)}{\partial \theta}=\frac{\partial u(q(z),z)}{\partial \theta}$$
+Which is the change in utility resulting from a change in $\theta$.
+$$\int_{\underline{\theta}}^{\theta}\frac{\partial v(z)}{\partial \theta}=\int_{\underline{\theta}}^{\theta}\frac{\partial u(q(z),z)}{\partial \theta}$$
+which is evaluated to find $$\Rightarrow v(\theta)-v(\underline{\theta})=\int_{\underline{\theta}}^{\theta}\frac{\partial u(q(z),z)}{\partial \theta}\partial z$$
+$$\Rightarrow v(\theta)=v(\underline{\theta})+\int_{\underline{\theta}}^{\theta}\frac{\partial u(q(z),z)}{\partial \theta}\partial z$$
+In words, the surplus for a given type $\theta$ is equal to the surplus for the lowest type $\underline{\theta}$ plus some amount. Then, we can define $v(\theta)$ as $v(\theta)=u(q(\theta),\theta)-t(\theta)$ and rearrange terms.
+$$\Rightarrow t(\theta)=t_L+u(q(\theta),\theta)-\int_{\underline{\theta}}^{\theta}\frac{\partial u(q(z),z)}{\partial \theta}\partial z$$
+With this, we've shown that the IC constraint simplifies to $q(\cdot)$ being non-decreasing and $t(\cdot)$ takes the form given above ($t(\theta)$).\newline
+Now, assume $\theta >\theta'$. $$\Rightarrow u(q(\theta),\theta')-t(\theta)=CS_{\theta }$$ We want to verify that the lower type, $\theta '$ will not prefer the high type, $\theta$, bundle to their own.
+$$\Rightarrow u(q(\theta),\theta')-t(\theta)=-t_L+u(q(\theta),\theta')-u(q(\theta),\theta)+\int_{\underline{\theta}}^{\theta}\frac{\partial u(q(z),z)}{\partial \theta'}\partial z$$
+$$\Rightarrow =-t_L+u(q(\theta),\theta')-u(q(\theta),\theta)+\int_{\underline{\theta}}^{\theta'}\frac{\partial u(q(z),z)}{\partial \theta'}\partial z+\int_{\theta'}^{\theta }\frac{\partial u(q(z),z)}{\partial \theta'}\partial z$$
+$$\Rightarrow =-t_L+u(q(\theta),\theta')-u(q(\theta),\theta)+\int_{\underline{\theta}}^{\theta'}\frac{\partial u(q(z),z)}{\partial \theta'}\partial z+\int_{\theta'}^{\theta }\frac{\partial u(q(z),z)}{\partial \theta'}\partial z + u(q(\theta'),\theta')-u(q(\theta'),\theta')$$
+$$\Rightarrow =u(q(\theta),\theta')-u(q(\theta),\theta)+u(q(\theta'),\theta')-t_L-u(q(\theta'),\theta')+\int_{\underline{\theta}}^{\theta'}\frac{\partial u(q(z),z)}{\partial \theta'}\partial z+\int_{\theta'}^{\theta}\frac{\partial u(q(z),z)}{\partial \theta'}\partial z$$
+$$\Rightarrow -t(\theta')=-t_L-u(q(\theta'),\theta')+\int_{\underline{\theta}}^{\theta'}\frac{\partial u(q(z),z)}{\partial \theta'}\partial z$$
+$$\Rightarrow =u(q(\theta),\theta')-u(q(\theta),\theta)+u(q(\theta'),\theta')-t(\theta')+\int_{\theta'}^{\theta}\frac{\partial u(q(z),z)}{\partial \theta'}\partial z$$
+$u(q(\theta'),\theta')-t(\theta')=v(\theta')$,$$\Rightarrow =v(\theta')-\int_{\theta'}^{\theta}\int_{q(z)}^{q(\theta)}\frac{\partial^2u(q,\epsilon)}{\partial q\partial \theta'}\partial q\partial z$$ $\frac{\partial^2u(q,\epsilon)}{\partial q\partial \theta'}>0$ by the single crossing property, and our bounds are all non-negative, therefore $v(\theta')-\int_{\theta'}^{\theta}\int_{q(z)}^{q(\theta)}\frac{\partial^2u(q,\epsilon)}{\partial q\partial \theta'}\partial q\partial z\leq v(\theta')$.\newline
+Therefore, the utility that type $\theta'$ is receiving by selecting bundle $\theta$ is less than what they would have received by selecting $\theta'$, their own bundle. So, we have found that the type-$\theta$ consumer will not prefer to purchase some alternative bundle $q(\theta')$ at price $t(\theta')$ (or, symmetrically, some type-$\theta'$ consumer will not prefer to purchase some alternative bundle $(q(\theta),t(\theta)$) for $\theta>\theta'$.\newline This, coupled with what we derived in class (showing this holds for $\theta'>\theta$), proves that the IC constraint is satisfied and that the conditions (nondecreasing $q(\cdot)$ and $t_L=-\underline{v}(\theta)$, are sufficient to say the IC constraint is satisfied.\newline
+4. Consider our example from lecture of third-degree price discrimination with two types of consumers and the transition from uniform linear pricing to third-degree price discrimination. Show that when the cost function is weakly convex and demand curves slope downward, a necessary condition for a welfare improvement is an increase in total output. (Hint: Properties of concave functions were used in lecture, and if $f (x)$ is convex, then $-f (x)$ is concave.)
+  The monopolist's problem when engaging in third-degree price discrimination with heterogeneous consumers is, $$\max_{\{x_1,x_2\}} x_1P_1(x_1)+x_2P_2(x_2)-c(x_1+x_2)$$
+  FOC: \newline $P_1+x_1P_1'(x_1)-c_1(x_1+x_2)=0$ \newline $P_2+x_2P_2'(x_2)-c_2(x_1+x_2)=0$ \newline
+  Additionally, the societal welfare is defined as follows, $$W(x_1,x_2)=v_1(x_1)+v_2(x_2)-c(x_1+x_2)$$
+  Without loss of generality, these can be redefined as follows,
+  $$W(x_1,x_2)=W(X), v(x_1)+v(x_2)=v(X), c(x_1+x_2)=c(X).$$
+  So, we have that $W(X)=v(X)-c(X)$. We know that demand is some downward sloping function, so $v'(X)<0$. From this, we can further say that, given the assumption that demand is continuous and differentiable over $X$, $v(X)$ is a concave function. Additionally, we know that cost is some weakly convex function, so $-c(X)$ is some concave function. Then, we have that the welfare function is a sum of concave functions, so the welfare function in itself is a concave function. Then, since $W(X)$ must be concave, it must be that $W'(X)$ is monotonically decreasing.
+  $$\Rightarrow \forall \ x,y \in X, \ \ x\leq y \rightarrow W'(x)\geq W'(y) \ \ \ \ \ (*)$$
+  By optimization, we know that the maximium of the welfare function is found by setting $W'(X)=0$. So, from $(*)$, we know that as the output has moved from $x$ to $y$, the welfare function has moved towards the maximum point. So, $W(x)\leq W(y)$. Further, since we were assumming that $x\leq y$, we have shown that an increase in quantity (from $x$ to $y$) is associated with an increase in welfare ($W(x)<W(y)$). \newline
+  Further, from the function for welfare, we know that $W(\cdot)$ is only a function of $X$. Therefore, for some $W=W(X)$ and $W'=W(X')$, if $W\neq W'$ it must be that $X\neq X'$. \newline
+  \begin{tcolorbox}
+  Therefore, since we have shown that an increase in quantity (from $x$ to $y$) is associated with an increase in welfare ($W(x)<W(y)$) and that welfare in this scenario is only a function of output, we have shown that when the cost function is weakly convex and demand curves slope downward, a necessary condition for a welfare improvement is an increase in total output.
+  \end{tcolorbox}
+  

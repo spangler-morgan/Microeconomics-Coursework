@@ -1,0 +1,1261 @@
+---
+title: "PPHA 44100 Final Exam Notes"
+author: "Morgan Conklin Spangler"
+output: pdf_document
+header-includes:
+  - \usepackage{setspace}\onehalfspacing
+  - \usepackage{ amssymb }
+  - \usepackage{amsmath}
+  - \usepackage{tikz}
+  - \usepackage{pgfplots}
+  - \usepackage{float}
+  - \floatplacement{figure}{H}
+  - \usepackage{ dsfont }
+  - \usepackage{ mathrsfs }
+  - \usepackage{ wasysym }
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+#Notes
+
+A preference is **rational** if it satisfies **completeness** and **transitivity**.
+Completeness: $\forall a,b \in A, a\succsim b$ or $b\succsim a$, or both.
+Transitivity: $\forall a,b,c \in A, a\succsim b \ \ \& \ \ b\succsim c \Rightarrow a\succsim c$.  
+
+  * If $\succsim$ is transitive, then $\succ$ and $\sim$ are both transitive.
+  * Suppose $B$ is finite and $\succsim$ is rational. Then the set of preference-maximizing choices, $C^*(B,\succsim)$, is nonempty.
+  
+  * Preferences are **monotonic** if $x\geq y$ implies $x\succsim y$.
+  * Preferences are **locally non-satiated** if, for any $x\in X$ and any $\epsilon>0$, there is a $y\in X$ with $||x-y||<\epsilon$ and $y\succ x$.
+  * Preferences are **convex** if $\forall y\in X$, the set $\{x\in X|x\succsim y\}$ is convex.
+      + Preferences are convex if and only if every utility representation $U$ has the property that, for each $y$, the set $\{x|U(x)\geq U(y)\}$ is convex. In that case, we say that the function is **quasiconcave**.
+          + An alternative characterization of quasiconcavity is: for any $x$ and $x'$ and any $\lambda \in [0,1]$,  
+          $U(x)\geq U(y)$ implies $U(\lambda x + (1-\lambda)x')\geq U(x')$
+  
+A resolute choice rule $C$ is **contraction consistent** if whenever $B$ and $D$ are subsets with $D\subset B$ we have $C(B)=C(D)$ (removing unchosen alternatives does not affect the preference-maximizing choice).
+
+  * Suppose $B$ is a contraction consistent, resolute choice rule. Then there is a rational preference $\succsim_C$ such that $C$ and $C^*(\cdot,\succsim_C)$ agree for finite $B$.
+
+A function $u:A\rightarrow \mathds{R}$ represents $\succsim$ if $\forall a,b \in A, u(a)\geq u(b)$ if and only if $a\succsim b$.
+
+  * Suppose $\succsim$ is represented by the function $u$. Then $\succsim$ is rational.
+  * Suppose $A$ is finite. A preference relation $\succsim$ can be represented by a utility function if $\succsim$ is rational.
+  
+**Lexicographic preferences** on $A$ are defined as \((x_1,x_2)\succsim (y_1,y_2)\Leftrightarrow \begin{cases} x_1>y_1 \\ or \\ x_1=y_1 \ \ and \ \ x_2\geq y_2\end{cases}\)
+  
+  * These preferences are rational, but there does not exist any utility representation of lexicographic preferences.
+  
+Preferences are **continuous** if, for any sequences of bundles $x^n\rightarrow x$ and $y^n \rightarrow y$, if $x^n\succsim y^n \forall n$, then $x\succsim y$.
+
+  * Preferences are complete, transitive, and continuous if and only if they are represented by a continuous utility function.
+  
+Let $f$ be differentiable. Then $f$ is **concave** if and only if $$f(y)\leq f(x) + \mathbf{D}f(x)\cdot (y-x),$$ and $f$ is **strictly concave** if and only if $$f(y)<f(x)+\mathbf{D}f(x)\cdot (y-x).$$
+
+Suppose $X$ is convex and $f$ is differentiable and concave. Then $x^0$ solves $$\max_x f(x) \ \ s.t. \ \ x\in \mathds{R}^n_+$$ if and only if $\mathbf{D}f(x^))\leq 0$ and $\mathbf{D}f(x^0)\cdot x^0=0$.
+
+The **Lagrangian** is the function $\mathscr{L}:\mathds{R}^n\times \mathds{R}$ given by $$\mathscr{L}(x,\lambda)=f(x)+\lambda\cdot h(x)$$ The FOCs for simultaneously maximizing with respect to $x$ and minimizing with respect to $\lambda$, assuming all of those variables must be non-negative, are
+$$\frac{\partial \mathscr{L}}{\partial x_j}=\frac{\partial f}{\partial x_j}(\bar{x}) + \sum_{i=1}^m\lambda_i\frac{\partial h_i}{\partial x_j}(\bar{x})\leq 0$$ with equality if $\bar{x}_j>0$ $$\frac{\partial \mathscr{L}}{\partial \lambda_i}=h_i(\bar{x})\geq 0$$ $$\lambda_i\geq 0$$ $$\lambda_ih_i(\bar{x})=0$$
+
+**Kuhn Tucker**: Suppose $f$ and each $h_i$ are quasiconcave. If 
+1. the FOCs hold at $\bar{x}_i$,
+2. $\mathbf{D}f(\bar{x})\neq 0$, and
+3. $\mathbf{D}h_i(\bar{x})\neq 0$ for each binding constraint $i$,  
+then $\bar{x}$ solves the maximization problem.
+
+The solution to the consumer's utility maximization problem is $x^*(p,I)$, the **demand correspondance**.
+
+The consumer's utility maximization problem is $$\max_{x\in \mathds{R}_+^n} U(x) \ \ s.t. \ \ px\leq I$$ The solution is the demand function $x^*(p,I)$, and the value function is $$V(p,I)=U(x^*(p,I)).$$ In this context, the value function is the **indirect utility function**.
+
+Suppose $U$ is continuous with representation of locally non-satiated preferences on $\mathds{R}_+^n$ and that the price vector is $p>>0$.
+  1. If $x^*$ solves the utility maximization problem with income $I$, then $x^*$ solves the expenditure minimization problem when $\bar{U}=U(x^*)$, and the minimized value of expenditure is $I$.
+  2. If $x^*$ solves the expenditure minimization problem with $\bar{U}>U(0)$, then $x^*$ solves the utility maximization problem with income $px^*$, and the maximized value of utility is $\bar{U}$.
+  
+**Roy's Identity**: $x^*_j(p,I)=-\frac{\frac{\partial V}{\partial p_j}(p,I)}{{\partial V}{\partial I}(p,I)}$
+
+**Slutsky equation**: $\frac{\partial x^*_j}{\partial p_j}=\frac{\partial x^c_j}{\partial p_j}-x_j\frac{\partial x^*_j}{\partial I}$
+  * The price effect is decomposed in the substitution effect (price effect on compensated demand) and the income effect.
+
+The **support** of a probability measure is the smallest event that has probability 1.
+
+The **Bernoulli utility function** is a representation of the expected utility, $u: X\rightarrow \mathds{R}$ such that $p\succsim q$ if and only if $\sum_x p(x)u(x)\geq q(x)u(x)$$. 
+
+  * We can write $U(p)=\sum_x p(x)u(x)$. The key assumption here is the **independence axiom**  
+  $p\succsim q$ if and only if, $\forall \alpha\in [0,1]$ and all $r\in \mathscr{L}(X), \alpha p \oplus (1-\alpha)r\succsim (1-\alpha)r$.
+      + Suppose $\succsim$ is a preference on $\mathscr{L}(X)$ that satisfies the independence axiom, and suppose $x$ and $y$ are consequences with $\delta_x\succ \delta_y$. Then, for $1\geq \alpha > \beta \geq 0$, we have $$\alpha \delta_x \oplus (1-\alpha)\delta_y \succ \beta\delta_x\oplus(1-\beta)\delta_y.$$
+      
+The **Cobb-Doublas utility function** is $$U(x_1,...,x_n)=\Pi_i x_i^{\alpha_i}$$ for coefficients $\alpha_i>0$. We apply a log transformation to the utility function to analyze, $u(x_1,...,x_n)=\sum_i \alpha_i\log x_i$. Once we do this, we divide by a constant to get $\sum_i \alpha_i=1$. This gives us a strictly concave objective, and the marginal utility of $x_i$ is $\frac{\alpha_i}{x_i}$, which diverges to infinity as $x_i\rightarrow 0$. Thus, we know that any solution will be interior, and that the FOCs are sufficient. The FOCs simplify to $$\frac{\alpha_i}{x^*_i}=\lambda p_i$$ $$px^*=I.$$
+Continue solving to find the demand for $x_i$, $x_i^*=\frac{\alpha_i I}{p_i}$. 
+
+  * The key implication of Cobb-Douglas demand is that the expenditure share on good $i$ is constant, $\alpha_i$.
+  
+The utility is **quasi-linear** in the first good if it has the form $$U(x_1,...,x_n)=x_1+v(x_2,...,x_n)$$ for some function $v$. 
+
+The **Inada conditions** are $\lim_{x\rightarrow 0}v'(x)=\infty$ and $\lim_{x\rightarrow \infty}v'(x)=0$.
+
+Suppose there is a finite set of demand observation of the form: $x^1$ is chosen at $(p^1,I^1)$, $x^2$ is chosen at $(p^2,I^2)$, and so on.
+  1. If $p^ix^j\leq I^i$, then $x^i$ is directly revealed preferred to $x^j$, written $x^i\succsim^D x^j$. If $p^ix^j < I^i$, then $x^i$ is directly revealed strictly preferred to $x^j$, written $x^i\succ^D x^j$.
+  2. $x^i$ is revealed preferred to $x^j$, written $x^i\succsim^R x^j$, if either $x^i \succsim^D x^j$ or there is a sequence $(x^k)^K_{k=1}$ such that $$x^i\succsim^D x^1\succsim^D...\succsim^Dx^K\succsim^Dx^j$$
+If, furthermore, at least one of the directly revealed preferences is strict, then $x^i$ is revealed strictly preferred to $x^j$, written $x^i\succ^N x^j$.
+  3. The set of observations satisfy the **generalized axiom of revealed preference (GARP)** if there are no cycles in the revealed strictly preferred to relation, that is, if there is no $i$ such that $x^i\succ^R x^i$.
+  
+  * If a finite set of demand data violate GARP, then the data are inconsistent with the maximization of a complete, transitive, and locally non-satiated preference relation.
+  * Conversely, if a finite set of demand data satisfy GARP, then the data are consistent with maximization of a preference relation that is complete, transitive, strictly increasing, continuous, and convex.
+  
+Suppose $Y$ has constant returns to scale. Then either maximized profit is zero or there is no solution to the profit maximization problem.
+
+Suppose each $Y^j$ is convex, then the aggregated $Y^{agg}$ is convex.
+
+Given technology $Y$, the production plan $y^0$ is **production efficient** if there is no $y\in Y$ such that $y>y^0$. In other words, if $y^0$ is production efficient, then there is no other feasible plan that yields at least as much of everything and strictly more of something.
+
+  * Prices $p$ **support** the production plan $y^0$ if
+    1. $py^0\geq py \forall y\in Y$, and
+    2. $py^0 > py \forall y\in int(Y)$
+  * If $y^0$ is supported by strictly positive prices $p$, then $y^0$ is production efficient.
+  
+Suppose $Y$ is a nonempty, convex subset of $\mathds{R}^n$, and that $y^0$ is on the boundary of $Y$. Then there is a $p\neq 0$ such that:
+1. $\forall y\in Y$, we have $p\cdot\leq p\cdot y^0$ and\
+2. $\forall y\in int(Y)$, we have $p\cdot y< p\cdot y^0$.
+
+An allocation $x$ **Pareto dominates** $y$ if $x\succsim^h y \forall h$ and $x\succ^k y$ for some $k$. Allocation $x$ is **Pareto optimal** if there is no feasible $y$ which Pareto dominates $x$.
+
+We say that $f$ satisfies the **Independence of Irrelevant Alternatives (IIA)** if  
+$x\succsim_i y$ if and only if $x\succsim'_i y$ implies $xf(\succsim)y$ if and only if $xf(\succsim')y$.
+
+  * The collective preference between $x$ and $y$ depends only on the individual preferences between $x$ and $y$ - comparisons to third alternatives are irrelevant.
+
+Suppose $A$ contains at least three alternatives. If $f$ is a social welfare function satisfying universal domain, weak Pareto and IIA, then $f$ has a dictator.
+
+  * Let $\mathscr{R}$ be the set of all rational preferences on $A$. A social welfare function is a map $f:\mathscr{R}^n\rightarrow \mathscr{R}$. Notice,
+    1. Any profile of rational preferences is allowed.
+    2. The collective preference must also be rational.
+Then we say this combination of assumptions is called the **universal domain**.
+
+  * We say that $f$ satisfies the **Independence of Irrelevant Alternatives (IIA)** if  
+$x\succsim_i y$ if and only if $x\succsim'_i y$ implies $xf(\succsim)y$ if and only if $xf(\succsim')y$.
+    + The collective preference between $x$ and $y$ depends only on the individual preferences between $x$ and $y$ - comparisons to third alternatives are irrelevant.
+  
+Suppose $\succsim$ is a preference on $mathscr{L}(X)$ that satisfies rationality, continuity, and independence. Then there exists a function $u:X\rightarrow \mathds{R}$ such that $p\succsim q$ if and only if $\sum_xp(x)u(x)\geq \sum_x q(x)u(x)$.
+
+Say that a DM is **risk averse** if, for all lotteries $p$, we have $\delta_{\mathds{E}p}\succsim p$.
+
+  * Let $u$ be a concave function on $\mathds{R}$, and let $p$ be a lottery with finite expected value $\mathds{E}(p)\geq \sum_{x}u(x)p(x)$, so DM is risk averse. To see this, let $y=\mathds{E}(p)$ in the inequality characterizing concavity to get   
+  $u(x)\leq u(\mathds{E}p)+u'(\mathds{E}p)(x-\mathds{E}p).$ (**Jensen's Inequality**)
+  * $\lambda(x)=-\frac{u''(x)}{u'(x)}$ is called the **coefficient of absolute risk aversion** at $x$.
+  
+$F$ **first-order stochastically dominates** $G$ if and only if $F(x)\leq G(x) \forall x$.
+
+**Walras' Law**: $p\sum_h x^h=p\sum \omega^h$
+
+**First Fundamental Theorem of Welfare Economics**: Suppose all consumers have locally-nonsatiated preferences and that $(p,x)$ be a Walrasian equilibria. Then the allocation $x$ is a Pareto optimal.
+
+**Second Fundamental Theorem of Welfare Economics**: Let $x^*$ be a Pareto optimal allocation, and assume that there is a Walrasian equilibrium when endowments are $\omega^h=x^{*h}$. Then there is a price system $p^*$ such that $(p^*,x^*)$ is a Walrasian equilibrium.
+
+**Envelope theorem**: Suppose $X$ is compact, $\Theta$ is open, $f$ is continuous in $x$ and $\theta$ and is continuously differentiable in $\theta$, and the derivative $\frac{\partial f}{\partial \theta}$ is continuous in $x$ and $\theta$. Then, at any $\theta$ for which $x^*(\theta)$ is a singleton, the value function is differentiable with  $V'(\theta)=\frac{\partial f}{\partial \theta}(x^*(\theta),\theta)$. 
+
+The expenditure function is a concave function of prices.
+
+Let $x^c(p,\bar{U})$ be the solution to the expenditure minimization problem. This is the **compensated demand**.
+
+  * **Shepard's lemma**: Suppose that the consumer's expenditure minimization problem has a unique solution at prices $p$ and utility level $\bar{U}$. Then the expenditure function is differentiable in $p$ at $(p,\bar{U})$ with $\mathbf{D}M(p,\bar{U})=x^c(p,\bar{U})$.
+  
+#Problem Sets
+##1.1
+Consider a DM with preferences $a\sim b \succ c \succ d \succ e \sim f$.
+  1. What is $C^*(\{a,b,c\},\succsim)$?
+  $$C^*(\{a,b,c\},\succsim)=\{a,b\}$$
+  2. What is $C^*(\{d,e,f\},\succsim)$?
+  $$C^*(\{d,e,f\},\succsim)=\{d\}$$
+  3. Construct two different utility representations for these preferences.
+  Any two different functions which assign real numbers to the alternatives such that $u(a)=u(b)>u(c)>u(d)>u(e)=u(f)$.
+  
+$$u_1(x)= \begin{cases} 
+      3, & if \ \ x=a,b \\
+      2, & if \ \ x=c \\
+      1, & if \ \ x=d \\
+      0, & if \ \ x=e,f \\
+   \end{cases}$$
+   
+$$u_2(x)= \begin{cases} 
+      10, & if \ \ x=a \\
+      10, & if \ \ x=b \\
+      5, & if \ \ x=c \\
+      2, & if \ \ x=d \\
+      1, & if \ \ x=e \\
+      1, & if \ \ x=f \\
+   \end{cases}$$
+   
+##1.2   
+Prove Theorem 1.1.: If $\succsim$ is transitive, then $succ$ and $sim$ are both transitive.
+1. Want to show that $succsim$ being transitive implies that $succ$ is transitive.
+Proof:
+Suppose we have $a,b,c\in A$ such that $a\succsim b$, $b\succsim c$, and $a\succsim c$. We want to show that $a\succ b$ and $b\succ c$ implies $a\succ c$. So, we want to show that if $a\succ c$ and $b\succ c$ then $a \succsim c$ but not $c\succsim a$.
+  i. By definition of $\succ$, $a\succ b \Leftrightarrow a\succsim b$ and not $b\succsim a$. Similarly, $b\succ c \Leftrightarrow b\succsim c$ and not $c\succsim b$. 
+  ii. By transitivity of $\succsim$, $a\succsim b$ and $b \succsim c \Rightarrow a\succsim c$.
+  iii. Now suppose $c\succsim a$ is also true. By transitivity of $\succsim$, $c\succsim a$ and $a\succsim b \Rightarrow c\succsim b$, which contradicts with $b\succ c$ by definition of $\succ$. So $c\nsucceq a$.
+  
+2. Want to show that $succsim$ being transitive implies that $sim$ is transitive.
+Proof:
+Suppose we have $a,b,c\in A$ such that $a\sim b$, $b\sim c$. We want to show that $a\sim c$.
+  i. By definition of $\sim$, $a\sim b \Leftrightarrow a\succsim b$ and $b \succsim a$. Similarly, $b\sim c \Leftrightarrow b\succsim c$ and $c \succsim b$.
+  ii. By transitivity of $\succsim$, $a\succsim b$ and $b\succsim c\Rightarrow a\succsim c$. Similarly, $b\succsim a$ and $c\succsim b\Rightarrow c\succsim a$.
+  iii. We have that $a\succsim c$ and $c\succsim a$ so, by definition of $\sim$, we have that $a\sim c$. 
+  
+##1.3
+Prove Theorem 1.4: Suppose $\succsim$ is represented by the function $u$. Then $\succsim$ is rational. 
+We want to show that $\succsim$ is rational, meaning complete and transitive.
+1. Want to show that if $\succsim$ can be represented by $u$ then $\forall a,b\in A$, either $a\succsim b$ or $b\succsim a$.
+Proof:  
+Suppose we have preferences $\succsim$ represented by a utility function $u:A\rightarrow \mathds{R}$. 
+    i. $\forall a, b \in A, u(a),u(b)\in \mathds{R}$
+    ii. $\geq$ is complete in $\mathds{R}$, either $u(a)\geq u(b)$ or $u(b)\geq u(a)$
+    iii. By definition of utility representation, $u(a)\geq u(b) \Leftrightarrow a\succsim b; u(b)\geq u(a) \Leftrightarrow b\succsim a$.
+    iv. So, $\forall a,b\in A$, either $a\succsim b$ or $b\succsim a$ and, thus, we have shown completeness.
+2. Want to show that if $\succsim$ can be represented by $u$ then $\forall a,b,c\in A$, $a\succsim b$ and $b\succsim c\Rightarrow a\succsim c$.
+Proof:  
+Suppose $\succsim$ is represented by a utility function $u:A\rightarrow \mathds{R}$ and $a,b,c\in A$ such that $a\succsim b$ and $b\succsim c$.
+    i. By definition of utility representation, $a\succsim b\Leftrightarrow u(a)\geq u(b); b\succsim c \Leftrightarrow u(b)\geq u(c)$.
+    ii. Since $\geq$ is transitive in $\mathds{R}$, $u(a)\geq u(b)$ and $u(b)\geq u(c) \Rightarrow u(a)\geq u(c)$.
+    iii. By definition of utility representation, $u(a)\geq u(c) \Rightarrow a\succsim c$.
+  
+##2.1
+One way to construct preferences over monetary lotteries is to evaluate a lottery $L$ by the mean $\mathds{E}L$ and the variance $var(L)$. This may or may not be consistent with von Neumann-Morgenstern axioms.
+###2.1.1 
+Show that preferences represented by $U(L)=\mathds{E}L-\frac{1}{4}var(L)$ do not satisfy the vN-M axioms.
+
+Let's denote the lotteries suggested in the problem as $L_1=(1;1), L_2=(\frac{1}{2},\frac{1}{2},0,4),$ and $L_3=(\frac{1}{2},\frac{1}{2},0,2)$. Then the utilities associated with each lottery are $U(L_1)=U(L_2)=1$ and $U(L_3)=\frac{3}{4}$. From this we can see that $L_1\sim L_2 \succ L_3$.
+In order to show that the vN-M conditions do not hold, it suffices to show that one of them does not hold. If the preferences satisfy independence it must be true that: $$L_A=\alpha L_1+(1-\alpha)L_3)\equiv L_B = \alpha L_2 + (1-\alpha)L_3$$
+Note that the compounded lotteries are given by: $L_A=(\frac{1-\alpha}{2},\alpha, \frac{1-\alpha}{2};0,1,2)$
+$L_B=(\frac{1}{2},\frac{1-\alpha}{2},\frac{\alpha}{2};0,2,4)$
+So, the utility of the compound lotteries will be $U(L_A)=\frac{3+\alpha}{4}$ and $U(L_B)=\frac{3+\alpha^2}{4}$. As $U(L_A)\neq U(L_B)$ we have shown that the independence axiom does not hold. 
+
+###2.2.2
+Show that the preferences represented by $U(L)=\mathds{E}L-(\mathds{E}L)^2-var(L)$ do satisfy the axioms.
+
+$$U(L)=\mathds{E}L-(\mathds{E}L)^2-var(L)$$
+$$=\mathds{E}L-(\mathds{E}L)^2-[\mathds{E}(L^2)-\mathds{E}L]$$
+$$=\mathds{E}L-\mathds{E}(L^2)$$
+$$=\sum_{x_i\in supp(L)} p(x_i)x_i - p(x_i)x_i^2$$
+$$=\sum_{x_i\in supp(L)}p(x_i)(x_i-x_i^2)$$
+Therefore, we have that this utility function can be expressed as an expected utility of a Bernoulli utility function, $U(x)=(x_i-x_i^2)$. Moreover, from theorem 3.1 we know that there exists a utility function with this expected utility property if and only if the preferences satisfy the vN-M axioms, so this preference relation must satisfy these axioms.
+
+##2.2
+An investor has wealth $W$ and has to decide how much of it to invest in a risky project that returns $\theta$ per dollar invested, where the expected value of $\theta$ is greater than 0. The balance is invested in a riskless asset that returns $r$ per dollar invested, where $\mathds{E}\theta >r >0$. Show that if the investor's utility function is $u(m)=\log(m)$, then the investor will invest a constant fraction of wealth in the risky project.
+
+##2.3
+Let lottery $p=(\frac{2}{3},\frac{1}{3};10,20)$ and lottery $p'=(\frac{1}{3},\frac{5}{9},\frac{1}{9}; 5, 15,30)$.
+
+From the lecture notes we know that the DM will maximize their expected utility, given by: $$\max_\alpha \mathds{E}[U((\alpha\theta+(1-\alpha)r)W)]$$
+The solution to the problem will be determined by the following FOC:
+$$\frac{\partial L}{\partial \alpha}=\mathds{E}[U'((\alpha \theta + (1-\alpha)r)W)\cdot (\theta - r)W]=0$$
+$$\mathds{E}[\frac{1}{(\alpha\theta + (1-\alpha)r)W}\cdot (\theta-r)W]=0$$
+$$\mathds{E}[\frac{1}{\alpha\theta+(1-\alpha)r}\cdot(\theta-r)]=0$$
+From here, use that $\frac{\partial \mathds{E}[U]}{\partial \alpha}\frac{\partial \alpha}{\partial W}=\frac{\partial L}{\partial W}=0$, so $\frac{\partial \alpha}{\partial W}=0$ because we know that $\frac{\partial \mathds{E}[U]}{\partial \alpha}\neq 0$ (or we can simply use implicit function derivatives).
+
+###2.3.1
+Show that $p'$ corresponds to a random variable that is the sum of the random variable corresponding to $p$ and a conditional-mean-zero random variable.
+
+First, define the following lotteries given in the problem:
+$$p=(\frac{2}{3},\frac{1}{3};10,20)$$
+$$p'=(\frac{1}{3},\frac{5}{9},\frac{1}{9};5,15,30)$$
+And now consider the following zero-mean lotteries:
+$$q=(\frac{2}{3},\frac{1}{3};-5,10)$$
+$$q'=(\frac{1}{2},\frac{1}{2};-5,5)$$
+And define the game as "whenever the lottery $p$ is played and the outcome is 20, you then play lottery $q$. Otherwise, if the result is 10, play lottery $q'$". Note that:
+
+  * The compound lottery will give a prize of 30 if and only if in the first lottery you get 20 ($p[2]$) and then in the second you get 10 ($q[2]$). This happens with probability $\frac{1}{3}\cdot \frac{1}{3}=\frac{1}{9}$.
+  * Similarly, you get 5 ($p[1]$ then $[q'[2]$) with probability $\frac{2}{3}\cdot\frac{1}{2}=\frac{1}{3}$.
+  * Last, you get 15 (either $p[2],q[1]$ or $p[1],q'[2]$) with probability ($\frac{1}{3}\cdot\frac{2}{3}=)\frac{2}{9} + (\frac{2}{3}\cdot\frac{1}{2}=)\frac{1}{3}$.
+
+Obviously, we end up finding that $p'$ can be interpreted as a random variable which is the compound lottery of $p$ and some zero-mean $q, q'$.
+
+###2.3.2
+Show that any risk-averse expected utility maximizer prefers $p$ to $p'$.
+
+Given that the individual is risk averse, it would be that between two lotteries with equivalent expected payoffs, they would prefer the one with the smaller variance. So, given that 
+$$\mathds{E}p=\frac{2}{3}10 + \frac{1}{3}20=\frac{40}{3}$$
+$$\mathds{E}p'=\frac{1}{3}5+\frac{5}{9}15+\frac{1}{9}30=\frac{40}{3}$$
+Obviously, the expected payoff is equal for $p$ and $p'$, and the variance is smaller in $p$. Therefore, it is clear that the risk averse individual would prefer $p$ to $p'$.
+
+##3.1
+Consider an expected utility maximizer with quadratic Bernoulli utility for wealth: $u(w)=a+bw+cw^2$
+
+###3.1.1 
+What restrictions (if any) must be placed on the parameters $a$,$b$, and $c$ for this decision maker to be risk averse?
+
+We want to show that for any lottery $p$, $\delta_{\mathds{E}p}\succsim_u p$.
+$$\Leftrightarrow U(\delta_{\mathds{E}p})\geq U(p)$$
+$$u(\mathds{E}p)p(\mathds{E}p)\geq \sum_x u(x)p(x)$$
+$$(a+b\mathds{E}p+c(\mathds{E}p)^2)p(\mathds{E}p)\geq\sum_x(a+bx+cx^2)p(x)$$
+$$\Rightarrow p(\mathds{E}p)=1$$
+$$a+b\mathds{E}p+c(\mathds{E}p)^2\geq a\sum_x p(x)+b\sum_x xp(x) + c\sum_x x^2p(x)$$
+$$\Rightarrow \sum_x xp(x)=\mathds{E}p$$
+$$\Rightarrow \sum_x x^2p(x)=\mathds{E}p^2$$
+$$a+b\mathds{E}p+c(\mathds{E}p)^2\geq a + b\mathds{E}p + c\mathds{E}p^2$$
+$$c(\mathds{E}p)^2\geq c\mathds{E}p^2$$
+$$c[(\mathds{E}p)^2-\mathds{E}p^2]\geq 0$$
+$$\Rightarrow var(p)=\mathds{E}p^2-(\mathds{E}p)^2\geq 0 \Rightarrow (\mathds{E}p)^2-\mathds{E}p^2\leq 0$$
+$$\Rightarrow c\leq 0$$
+
+So, for this decision maker to be risk averse, it must be that $$c\leq 0$$.
+
+###3.1.2
+Over what domain of wealth can this Bernoulli utility represent the preferences of a decision maker who prefers more to less?  
+
+This is equivalent to asking over what domain the utility function is increasing. $u(w)=a+bw+cw^2$ is increasing when $u'(w)\geq0$.
+$$u'(w)=b+2cw\geq 0$$
+$$2cw \geq -b$$
+Case 1: If $c>0$, $w\geq -\frac{b}{2c}$.
+Case 2: If $c<0$, $w\leq -\frac{b}{2c}$.
+Case 3: If $c=0$, $b\geq 0$ and $w$ can take any form.
+
+We assume $w\neq 0$.
+
+$$w\in [\max(0,\frac{b}{2c}),\infty]$$
+Then, if $c>0; w\in[0,-\frac{b}{2c}]$, if $c<0$ and $b\geq 0; \nexists w$, if $c<0$ and $b<0$. $w\in [0,\infty]$ if $c=0$ and $b\geq 0$. (If the DM weakly prefers more to less, $b$ can be 0 whenever $c=0$; whereas if the DM strictly prefers more to less $b$ cannot attain 0 when $c=0$). 
+
+###3.1.3
+Show that if this function satisfies the restrictions from parts (a) and (b), then the function cannot represent the preferences of a decision maker with decreasing absolute risk aversion. 
+
+Assume the domain where the DM prefers more to less is nonempty. Then, we have the restrictions that $c<0, b\geq 0$ or $c=0, b\geq 0$.
+
+Case 1: $c<0, b\geq 0$  
+Absolute risk aversion: $\lambda(w)=-\frac{u''(w)}{u'(w)}=-\frac{2c}{b+2cw}$  
+$\lambda'(w)=-(-1)\frac{2c}{(b+2cw)^2}(2c)=(\frac{2c}{b+2cw})^2>0$  
+$\Rightarrow$ For any $w, \lambda'(w)$ will always be greater than or equal to 0, which means the absolute risk aversion $\lambda(w)$ will always be non-decreasing in $w$. 
+
+So, if the absolute risk aversion will always be non-decreasing, that is equivalent to saying the absolute risk aversion will never be decreasing.
+
+##3.2
+###3.2.1
+Show that, if \(F\) first-order stochastically dominates \(G\), then the mean of \(x\) under \(F\) is at least as large of the mean of \(x\) under \(G\). That is, that \(\int xf(x)dx \geq \int xg(x)dx\). 
+
+By definition of first-order stochastic dominance, $F\succsim_{FOSD} G$ if every DM with increasing Bernoulli utility function $u$ prefers $F$ to $G$, that is, $\int u(x)f(x)dx\geq \int u(x)g(x)d(x)$ for all increasing $u(\cdot)$.  
+$u(x)=x\Rightarrow u'(x)=1>0\Rightarrow u(x)=x$ is increasing in $x$.  
+Since $u(x)=x$ is an increasing Bernoulli utility function, if $F\succsim_{FOSD} G, \int xf(x)dx\geq xg(x)dx$ must be true, which means the mean of $x$ udner $F$ must be at least as large of the mean of $x$ under $G$.
+
+###3.2.2
+Give an example where \(\int xf(x)dx > \int xg(x)dx\) but $F$ does not first-order stochastically dominate \(G\).
+
+We want to show an example where the mean of $x$ under $F$ is at least as large as the mean of $x$ under $G$ but $F$ does not first-order stochastically dominate $G$. 
+
+Let $F$ be a lottery which corresponds to a random variable following unifrom distribution from 0 to 1, $f(x)\sim$ _Uniform_(0,1) and $G$ be a lottery which corresponds to a random variable following standard normal distribution, $g(x)\sim$ _Normal_(0,1). Denote the density and CDF of the random variable corresponding to lottery $F$ as $f(x)$ and $F(x)$, respectively; and the density and CDF of the random variable of the lottery $G$ as $g(x)$ and $G(x)$, respectively. Then,
+$$\int xf(x)dx=\mathds{E}f=0.5$$
+$$\int xg(x)dx=\mathds{E}g=0$$
+$$\Rightarrow 0.5>0$$
+However, $F(1)=1$ and $G(1)\approx 0.8413$, so $F(1)>G(1)$. So, according to theorem 3.4, $F$ does not first-order stochastically dominte $G$.
+
+##3.3
+Suppose $u$ is a utility representation of preferences \(\succsim\). Show that, if there is a strictly increasing function \(f\) such that\(f \circ u(x) = \sum_{j=1} ^m v_j (x)\) where each \(v_j\) is concave, then preferences are convex. 
+
+We want to show that preferences are convex, given $f\circ u(x)=\sum^m_{j=1}v_j(x)$, where $f$ is a strictly increasing function adn each $v_j$ is concave.
+
+Suppose $x_1\succsim y, x_2\succsim y$, so we want to show $\lambda x_1+(1-\lambda)x_2\succsim y$ for $\lambda\in[0,1]$.
+Given $u$ is a utility representation of preference relation $\succsim$, we know that $x_1\succsim y, x_2\succsim y\Leftrightarrow u(x_1)\geq u(y), u(x_2)\geq u(y)$.
+Then, given $f$ is strictly increasing, $f\circ u(x_1)\geq f\circ u(y), f\circ u(x_2)\geq u(y) \Leftrightarrow \sum_{j=1}^m v_j(x_1)\geq \sum_{j=1}^m v_j(y),\sum_{j=1}^m v_j(x_2)\geq \sum_{j=1}^mv_j(y)$ for $\lambda \in [0,1]$.
+
+By the concavity of $v_j$, $v_j(\lambda x_1+(1-\lambda)x_2)\geq\lambda v_j(x_1)+(1-\lambda)v_j(x_2),\forall j$.
+$$\Rightarrow \sum_{j=1}^m v_j(\lambda x_1 + (1-\lambda)x_2)\geq \sum_{j=1}^m(\lambda v_j(x_1)+(1-\lambda)v_j(x_2))$$
+By the linearity of summation,
+$$\Rightarrow \sum_{j=1}^m v_j(\lambda x_1 + (1-\lambda)x_2)\geq\lambda\sum_{j=1}^m v_j(x_1)+(1-\lambda)\sum_{j=1}^m v_j(x_2)$$
+$$\Rightarrow \sum_{j=1}^m v_j(x_1)\geq \sum_{j=1}^m v_j(y)$$
+$$\sum_{j=1}^m v_j(y)\geq \lambda\sum_{j=1}^m v_j(y)+(1-\lambda)\sum_{j=1}^m v_j(y)$$
+$$\Rightarrow \lambda\sum_{j=1}^m v_j(y)+(1-\lambda)\sum_{j=1}^m v_j(y)=\sum_{j=1}^m v_j(y)$$
+$$\Rightarrow f\circ u(\lambda x_1 + (1-\lambda) x_2)\geq f\circ u(y)$$
+$$\Rightarrow \lambda x_1 + (1-\lambda)x_2 \succsim y$$
+
+These preferences are convex, given $f\circ u(x)=\sum_{j=1}^m v_j(x)$, where $f$ is a strictly increasing function and each $v_j$ is concave.
+
+##3.4
+Consider the preference relations on the interval \([0,1]\) that are continuous. What can you say about those preferences which are also strictly convex?
+
+The preferences that are compact (on the interval $[0,1]$), continuous, and strictly convex have a unique optimizer.  
+Suppose this is not the case. Suppose there are two different optimizers $x,x'\in [0,1]$. Then, for some $\lambda\in(0,1),\lambda x+(1-\lambda)x'$ is strictly preferred to $x$ and $x'$, which contradicts the optimality of $x, x'$. Therefore, it must be the case that the optimizer is unique.
+
+##4.1
+Consider the following three utility functions (in each case, \(\alpha_1, \alpha_2 > 0\)):  
+1. \(U(x_1,x_2)=\alpha_1 \sqrt{x_1} +\alpha_2 \sqrt{x_2}\)  
+2. \(U(x_1, x_2)= \alpha_1 x_1 + \alpha_2 x_2\)  
+3. \(U(x_1, x_2)= \min(\alpha_1x_1,\alpha_2x_2)\)  
+For each, answer the following:  
+(a) Are the preferences monotone? Strictly monotone?  
+(b) Are the preferences convex? Strictly convex?  
+(c) For each, calculate the demands for strictly positive prices $(p_1,p_2) >> 0$ and income $I$. (For utility functions (1) and (2), use the Kuhn-Tucker conditions. For part (3), explain why the Kuhn-Tucker Theorem does not apply, and then find the demands anyway.)  
+
+###4.1.1
+\(U(x_1,x_2)=\alpha_1 \sqrt{x_1} +\alpha_2 \sqrt{x_2}\)  
+
+  (a) This utility function represents strictly monotone preferences.
+  Suppose there are bundles $x'=(x_1',x_2')$ and $x=(x_1,x_2)$. Without loss of generality, we can define $x'>x (x_1'>x_1, x_2'>x_2)$, then we have 
+  $$U(x_1',x_2')=\alpha_1\sqrt x_1'+\alpha_2\sqrt x_2'>\alpha_1\sqrt x_1+\alpha_2\sqrt x_2=U(x_1,x_2)$$
+  (b) This utility function represents strictly convex preferences.
+   Consider that for both $x'$ and $x$ ($x'\neq x$), it is true that $U(x')\geq U(y)$ and $U(x)\geq U(y)$, where $y$ is defined as the bundle $(y_1,y_2)$. We can show that for $\lambda\in (0,1)$ it should be that:
+  $$U(\lambda(x')+(1-\lambda)(x))=\alpha_1\sqrt {\lambda(x_1')+(1-\lambda)(x_1)} +\alpha_2\sqrt{\lambda(x'_2)+(1-\lambda)(x_2)}>\alpha_1\sqrt{y_1}+\alpha_2\sqrt{y_2}=U(y)$$
+  (c) Notice that $U(x_1,x_2)=\alpha_1\sqrt{x_1}+\alpha_2\sqrt{x_2}$ is the sum of two concave functions, so we know that $U(x_1,x_2)$ is also concave. With our previous results that $U$ is strictly monotone, strictly convex, and already knowing that $U$ is continuously differentiable and increasing (it means that $\triangledown U(\cdot)>0$), we can use the Kuhn Tucker Approximation to find the interior solution:
+  
+  $$\mathscr{L} = \alpha_1 \sqrt x_1 + \alpha_2 \sqrt x_2 + \lambda (I - p_1 x_1 - p_2 x_2)$$
+  
+  FOCs:  
+  $\frac{\partial \mathscr{L}}{\partial x_1}=\frac{1}{2}\alpha_1x_1^{-\frac{1}{2}}-\lambda p_1\leq0$
+  $\frac{\partial \mathscr{L}}{\partial x_2}=\frac{1}{2}\alpha_2x_2^{-\frac{1}{2}}-\lambda p_2\leq0$
+  $\frac{\partial \mathscr{L}}{\partial \lambda}=I-p_1x_1-p_2x_2\geq 0$
+  $x_1\geq 0,x_2\geq 0,\lambda \geq 0$
+  $(\frac{\partial u}{\partial x_1}-\lambda p_1)\cdot x_1=0, (\frac{\partial u}{\partial x_2}-\lambda p_2)\cdot x_2 =0, \lambda\cdot(I-p_1x_1-p_2x_2)=0$
+  
+  Assumming $x_1,x_2>0$, then:
+  $\frac{1}{2}\alpha_1x_1^{-\frac{1}{2}}=\lambda p_1, \frac{1}{2}\alpha_2x_2^{-\frac{1}{2}}=\lambda p_2$
+  $$\Rightarrow \frac{\alpha_1x_2^{\frac{1}{2}}}{\alpha_2x_1^{\frac{1}{2}}}=\frac{p_1}{p_2}$$
+  And put this back into the budget constraint (assumming the budget constraint is binding, $\lambda>0$) to obtain the individual demands.
+  $$x_1^*=\frac{Ia_1^2p_2}{a^2_1p_1p_2+a_2^2p_1^2}, x_2^*=\frac{Ia^2_2p_1}{a_2^2p_1p_2+a_1^2p_2^2}$$
+
+###4.1.2
+\(U(x_1, x_2)= \alpha_1 x_1 + \alpha_2 x_2\)  
+
+  (a) This utility function represents strictly monotone preferences.
+  Suppose there are bundles $x'=(x_1',x_2')$ and $x=(x_1,x_2)$. Without loss of generality, we can define $x'>x (x_1'>x_1, x_2'>x_2)$, then we have $$U(x_1',x_2')=\alpha_1x_1'+\alpha_2x_2'>\alpha_1x_1+\alpha_2x_2=U(x_1,x_2)$$
+  (b) This utility function represents convex preferences.
+   Consider that for both $x'$ and $x$ ($x'\neq x$), it is true that $U(x')\geq U(y)$ and $U(x)\geq U(y)$, where $y$ is defined as the bundle $(y_1,y_2)$. We can show that for $\lambda\in (0,1)$ it should be that:
+  $$U(\lambda(x')+(1-\lambda)(x))=\alpha_1[\lambda(x_1')+(1-\lambda)(x_1)]+\alpha_2[\lambda(x'_2)+(1-\lambda)(x_2)]\geq\alpha_1y_1+\alpha_2y_2=U(y)$$
+  So, we have shown that preferences are convex. However, preferences are not strictly convex as this utility is not strictly quasiconcave. Notice that $U(\lambda x+(1-\lambda)x')\geq U(y)$ won't be strict when the inequality is weak ($\lambda x'_i+(1-\lambda)x_i\geq y_i \forall i$).
+  
+  (c) Notice that $U(x_1,x_2)=\alpha_1x_1+\alpha_2x_2$ is the sum of two linear functions, so we know that $U(x_1,x_2)$ is also linear. With our previous results that $U$ is strictly monotone, convex, and already knowing that $U$ is differentiable and increasing (it means that $\triangledown U(\cdot)>0$), we can use the Kuhn Tucker Approximation to find the interior solution:
+  $$\mathscr{L}=\alpha_1x_1+\alpha_2x_2+\lambda[I-p_1x_1-p_2x_2]$$
+  FOCs:  
+  $\frac{\partial \mathscr{L}}{\partial x_1}=\alpha_1-\lambda p_1\leq0$
+  $\frac{\partial \mathscr{L}}{\partial x_2}=\alpha_2-\lambda p_2\leq0$
+  $\frac{\partial \mathscr{L}}{\partial \lambda}=I-p_1x_1-p_2x_2\geq 0$
+  $x_1\geq 0,x_2\geq 0,\lambda \geq 0$
+  $(\frac{\partial u}{\partial x_1}-\lambda p_1)\cdot x_1=0, (\frac{\partial u}{\partial x_2}-\lambda p_2)\cdot x_2 =0, \lambda\cdot(I-p_1x_1-p_2x_2)=0$
+  
+Now, we consider a number of cases:
+Case 1: $x_1>0,x_2=0$  
+This results in a corner solution. The FOCs become $\alpha_1=\lambda p_1$ and $\alpha_2\leq \lambda p_2$, which also implies that $\lambda >0$ and the budget constraint is binding ($p_1x_1=I$). From this, we find that $\frac{\alpha_1}{\alpha_2}\geq\frac{p_1}{p_2}$ and, with the budget constraint, $x_1^*=\frac{I}{p_1}, x^*_2=0$.
+
+Case 2: $x_1=0, x_2>0$
+This results in a corner solution. The FOCs become $\alpha_1<\lambda p_1$ and $\alpha_2= \lambda p_2$, which also implies that $\lambda >0$ and the budget constraint is binding ($p_2x_2=I$). From this, we find that $\frac{\alpha_1}{\alpha_2}\leq\frac{p_1}{p_2}$ and, with the budget constraint, $x_2^*=\frac{I}{p_1}, x^*_1=0$.
+
+Case 3: $x_1>0, x_2>0$
+This results in an interior solution. The FOCs hold with equality, $\alpha_1=\lambda p_1$ and $\alpha_2=\lambda p_2$. From this, we have that $\frac{\alpha_1}{\alpha_2}=\frac{p_1}{p_2}$. As the whole budget will be spent, we can combine this with the budget constraint to find $x_1^*=\frac{I-p_2x_2^*}{p_1}=\frac{I}{p_1}-\frac{\alpha_2x_2^*}{\alpha_1}$ and $x_2^*=\frac{I-p_1x_1^*}{p_2}=\frac{I}{p_2}-\frac{\alpha_1x_1^*}{\alpha_2}$.
+
+In general we have: 
+$$x^*=\begin{cases} 
+      (\frac{I}{p_1},0), & if \frac{\alpha_1}{\alpha_2}>\frac{p_1}{p_2} \\
+      (x_1,x_2)\in \{(x_1,x_2)|p_1x_1+p_2x_2=I\}, & if \frac{\alpha_1}{\alpha_2}=\frac{p_1}{p_2} \\
+      (0,\frac{I}{p_2}), & if \frac{\alpha_1}{\alpha_2}<\frac{p_1}{p_2}
+   \end{cases}$$
+
+###4.1.3
+\(U(x_1, x_2)= \min(\alpha_1x_1,\alpha_2x_2)\) 
+
+  (a)
+  Define the bundle $x':(x_1',x_2')$ and the bundle $x:(x_1,x_2)$ such as $x'\geq x$ (i.e. $x'_1\geq x_1$ and $x_2'\geq x_2$). From the utility function, we can show that:
+  $$U(x_1',x_2')=\min(\alpha_1x_1',\alpha_2x_2')\geq\min(\alpha_1x_1,\alpha_2x_2)=U(x_1,x_2),$$
+  because each element of bundle $x'$ is higher or equal to it's counterpart in $x$. Thus, it should be that $x'\succsim x$ and the preferences induced by this function are monotone. However, notice that this utility function does not induce strictly monotonic preferences, since there is a case in which $x_2'=x_2$ is the smallest factor in the minimum function where $x'\geq x$ so that $U(x')=U(x)$.
+  
+  (b)
+  Consider that for both $x'$ and $x (x'\neq x)$, it is true that $U(x')\geq U(y)$ and $U(x)\geq U(y)$, where $y$ is defined as the bundle $(y_1,y_2)$. We can show that for $\lambda \in (0,1)$ it should be that: $$U(\lambda(x')+(1-\lambda)(x))=\min[\alpha_1(\lambda(x_1')+(1-\lambda)(x_2')+(1-\lambda)(x_2))]\geq \min[\alpha_1y_1,\alpha_2y_2]=U(y)$$
+  since $\min(\alpha_1x_1,\alpha_2x_2)\geq\min(\alpha_1y_1,\alpha_2y_2)$. Thus, preferences are convex.
+  However, preferences are not strictly convex. Notice that the case in which one element is equal across vector $x'$ and vector $x$ and at the same time this element is the minimum element in the function, we will have that our preferences won't be strictly convex.
+  Suppose $y_2=x_2=x'_2(\lambda x_2+(1-\lambda)x'_2=y_2)$, and $y_1>y_2$. Consider $x_1<x_1'$ then we guarantee that $x'\neq x$. If $y_2=x_2=x_2'<x_1<x_1'$ thus $$\min[(\lambda x_1 + (1-\lambda)x'_1),(\lambda x_2 + (1-\lambda)x_2')]=\min[y_1,y_2]$$
+  Hence, there is a case in which $U(\lambda(x')+(1-\lambda)(x))=U(y)$. Therefore the function is not strictly convex.
+  
+  (c)
+  The utility function is not differentiable, so we cannot use the Kuhn Tucker Conditions. But, we know that all maximizing points satisfy the condition $\alpha_1x_1=\alpha_2x_2$. We found that preferences are monotone and then locally non-satiated, and we have that in the optimum demands are reached when the budget constraint is binding (we assume $x >0$). We have two equations and two unknowns, $\alpha_1x_1=\alpha_2x_2$ and $I=p_1x_1-p_2x_2$, then we can solve for optimal demands. The resulting demands are $x_2^*=\frac{I}{p_1(\frac{\alpha_2}{\alpha_1})+p_2}=\frac{\alpha_1I}{\alpha_1p_2+\alpha_2p_1}$, and $x_1^*=\frac{\alpha_2I}{\alpha_1p_2+\alpha_2p_1}$
+
+##4.2
+An infinitely lived consumer owns 1 unit of cake that she consumes over her lifetime. The cake is perfectly storable and she will receive no more than she has now. Consumption of cake in period $t$ is denoted $x_t$, and her lifetime utility function is given by
+\(U(x_0,x_1,...)=\sum_{t=0}^\infty \delta^t \log x_t\),
+where \(0< \delta <1\).
+  Calculate her optimal level of cake consumption in each period.
+  (Note: The statement of the Kuhn-Tucker theorem in class was for finite dimensional problems. But it also applies to this problem, even though there are infinitely many choice variables.)
+
+Notice that the budget constrains for this problem can be defined as $\sum_{t=0}^\infty x_t\leq 1$. Hence, we can write the consumer's problem as: $$\mathscr{L}=\sum^\infty_{t=0}[\delta^t\log x_t]+\lambda[1-\sum_{t=0}^\infty x_t]$$
+$$\frac{\partial \mathscr{L}}{\partial x_t}: \delta^t\frac{1}{x_t}-\lambda \leq 0$$
+$$\frac{\partial \mathscr{L}}{\partial x_{t+1}}: \delta^{t+1}\frac{1}{x_{t+1}}-\lambda \leq 0$$
+$$\frac{\partial \mathscr{L}}{\partial \lambda}: 1-\sum_{t=0}^\infty x_t\geq 0$$
+$$x_t\geq 0 \forall t, \lambda\geq 0$$
+$$(\frac{\partial u}{\partial x_t}-\lambda)\cdot x_t=0$$
+$$(\frac{\partial u}{\partial x_{t+1}}-\lambda)\cdot x_{t+1}=0$$
+$$\lambda\cdot(1-\sum_{t=0}^\infty x_t)=0$$
+
+Also, notice that the utility function $U(x_0,x_1,...)$ is the sum of strictly concave functions, so it is strictly concave. Then we know that preferences are strictly convex. Additionally, we know that preferences are also monotone, so we know that $x^*_t>0 \forall t$ and that the budget constraint will be binding.  
+Using the FOCs expressed above we can find the following relation: $x^*_{t+1}=x^*_t\delta$. Iterating for different periods we also can find that $x^*_t=\frac{x^*_{t+1}}{\delta}=\frac{x^*_{t+2}}{\delta^2}=...=\frac{x^*_{t+n}}{\delta^n}$, which implies that $\delta^nx_t^*=x^*_{t+n}$. Using this in the budget constraint, $\sum_{t=0}^\infty x_t=1$ we find that $x^*_t=\delta^t(1-\delta)$.  
+We can verify that this allocation satisfies the budget constraint.
+$$\sum_{t=0}^\infty x_t=1$$
+$$x_0^*+x_1^*+x_2^*+...+x^*_n+...=1$$
+$$x^*_0+\delta x^*_0 + \delta^2 x^*_0+...+\delta^nx^*_0+...=1$$
+$$x^*_0(1+\delta+\delta^2+...+\delta^n+...)=1$$
+$$\frac{x_0^*}{1-\delta}=1$$
+$$x^*_0=1-\delta$$
+
+##4.3
+A consumer consumes 2 commodities, wheat and candy. His utility from
+consuming w units of wheat and c units of candy is $3 \log w + 2 \log c$.
+He faces 4 constraints: 
+
+  * Consumption of each good must be nonnegative.  
+  * The consumer has \(\$10\) to spend, and the price of each good is \(\$1\).  
+  * The consumer is on a diet, and cannot consume more than 1550 calories. A unit of wheat has 150 calories, and a unit of candy has 200 calories.
+  
+Follow the following steps to solve this consumer’s problem:
+
+###4.3.1
+
+Derive the Kuhn-Tucker optimality conditions for this consumer’s problem.
+
+The consumer's problem in this caswe will include the usual constraints plus his dietary restrictions, $150s+200c<1550$. So, the Kuhn-Tucker conditions then will be:
+$$\mathscr{L}=3\log(w)+2\log(c)+\lambda_1(10-w-c)+\lambda_2(1550-150w+200c)$$
+$$\frac{\partial \mathscr{L}}{\partial w}=\frac{3}{w}-\lambda_1-150\lambda_2\leq 0$$
+$$\frac{\partial \mathscr{L}}{\partial c}=\frac{2}{c}-\lambda_1-200\lambda_2\leq0$$
+$$\frac{\partial \mathscr{L}}{\partial \lambda_1}=10-w-c\geq 0$$
+$$\frac{\partial \mathscr{L}}{\partial \lambda_2}=1550-150w+200c\geq0$$
+$$w\geq 0; c\geq 0; \lambda_1\geq 0, \lambda_2 \geq 0; w\frac{\partial \mathscr{L}}{\partial w}=0; c\frac{\partial \mathscr{L}}{\partial c}=0; \lambda_1{\partial \mathscr{L}}{\partial \lambda_1}=0; \lambda_2\frac{\partial \mathscr{L}}{\partial \lambda_2}=0$$
+
+###4.3.2
+
+Are the conditions derived above sufficient for this problem? Why or why not?  
+
+These conditions are necessary and sufficient:
+
+  * $U$ is continuous and differentiable
+  * $\triangledown_(w,c)\neq 0$
+  * $U$ is strictly concave
+
+These sufficiently fulfill the Kuhn Tucker conditions.
+
+###4.3.3
+Explain why the conditions from part (1) imply consumption of both commodities must be positive.  
+
+$\lim_{x_i\rightarrow 0}=\infty$, so we know that the Inada conditions hold. This would imply in the first order conditions that there are no values which satisfy that the partial derivatives with respect to $w$ or $c$ are less than or equal to zero.
+
+###4.3.4
+Explain why the conditions from part (1) imply that at least one of the budget and calorie constraint must bind.  
+
+If none of the conditions hold, then $\lambda_1=\lambda_2=0$, but then the first order conditions would imply that $\frac{3}{w}\leq 0$ and $\frac{2}{c}\leq 0$. Since $w$ and $c$ are strictly positive, this leads to a contradiction.
+
+###4.3.5
+Look for a solution the the conditions from part (1) in which only the budget constraint binds.
+
+$$\begin{aligned}
+\lambda_2=0 \\
+\frac{3}{w^*}=\lambda_1\\
+\frac{2}{c^*}=\lambda_1\\
+w^*(\frac{3}{w^*}-\lambda_1)=0 \\
+c^*(\frac{2}{c^*}-\lambda_1)=0 \\
+w^* + c^* = 10 \\
+\Rightarrow 10=\frac{3}{2}c^*+c^* \\
+\Rightarrow 10= \frac{3c^*+2c^*}{2} \\
+\Rightarrow 20=5c^* \\
+c^* = 4 \\
+w^* = 6
+\end{aligned}$$
+Now, we need to check if this is a valid solution (if it is valid within the dietary constraint).
+$$150\cdot 6 + 200\cdot 4=1700 >1550$$
+We find that this is not a valid solution.
+
+###4.3.6
+Look for a solution the the conditions from part (1) in which only the calorie constraint binds.
+
+$$\begin{aligned}
+\lambda_1=0 \\
+\frac{3}{w^*}=150\lambda_2\\
+\frac{2}{c^*}=200\lambda_2\\
+w^*(\frac{3}{w^*}-150\lambda_2)=0 \\
+c^*(\frac{2}{c^*}-200\lambda_2)=0 \\
+150w^* + 200c^* = 1550 \\
+\Rightarrow \frac{3}{150w^*}=\lambda_2=\frac{2}{200c^*}\\
+\Rightarrow 2c^*=w^* \\
+\Rightarrow 150w^* + 100w^* = 1550 \\
+\Rightarrow w^* = 6.2 \\
+\Rightarrow c^* = 3.1 \\
+\end{aligned}$$
+Now, we need to check if this is a valid solution (if it is valid within the budget constraint).
+
+$$6.2 + 3.1 < 10$$
+We find that this is a valid solution.
+
+###4.3.7
+Look for a solution the the conditions from part (1) in which both constraints bind. 
+
+$$\begin{aligned}
+w^*=10-c^*\\
+w^*=\frac{1550-200c^*}{150}\\
+\Rightarrow 10-c^*=\frac{1550-200c^*}{150}\\
+\Rightarrow c^*=1\\
+\Rightarrow w^*=9
+\end{aligned}$$
+We now have two possible solutions. We compare them below, $$3\log(6.2)+2\log(3.1)\approx 3.36 < 2.86 \approx 3\log(9)+2\log(1)$$
+
+
+
+##4.4
+In a three good world, a consumer has demands given by Table 4.3.3. Are these choices consistent with the maximization of a complete, transitive, and locally non-satiated preference relation?
+
+```{r table6, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+tabl <- "
+| bundle | p1 | p2 | p3 | Y | x1 | x2 | x3 |
+|--------|:--:|:--:|:--:|:-:|:--:|:--:|:---|
+|   a    | 1  |  1 |  1 | 20| 10 |  5 |  5 | 
+|   b    | 3  |  1 |  1 | 20|  3 |  5 |  6 |
+|   c    | 1  |  2 |  2 | 25| 13 |  3 |  3 |
+|   d    | 1  |  1 |  2 | 20| 15 |  3 |  1 |
+"
+cat(tabl)
+```
+
+By Afriat's theorem, we know that if a finite set of demand data satisfy GARP, then the data are consistent with maximization of a preference relation that is complete, transitive, strictly increasing, continuous, and convex. It is, thus, sufficient to prove in this case that the allocations are consistent with GARP.
+
+```{r table, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+tabl <- "
+|     x    |    pA    |     pB   |    pC    |    pD    | I |
+|----------|:--------:|:--------:|:--------:|:--------:|:--|
+|(x1,x2,x3)|(p1,p2,p3)|(p1,p2,p3)|(p1,p2,p3)|(p1,p2,p3)|---|         
+|----------| (1,1,1)  | (3,1,1)  | (1,2,2)  | (1,1,2)  |---|
+|----------|:--------:|:--------:|:--------:|:--------:|:--|
+| (10,5,5) |  **20**  |    40    |    30    |   25     | 20|
+| (3,5,6)  |    14    |  **20**  |    25    |   20     | 20|
+| (13,3,3) |    19    |     45   |  **25**  |   22     | 25|
+| (15,3,1) |    19    |   49     |    23    |  **20**  | 20|
+"
+cat(tabl)
+```
+From this table, we can see that 
+$$(10,5,5)\succ (13,3,3)$$
+$$(10,5,5)\succ(15,3,1)$$
+$$(10,5,5)\succ(3,5,6)$$
+$$(13,3,3)\succ(15,3,1)$$
+$$(13,3,3)\succsim(3,5,6)$$
+$$(15,3,1)\succsim(3,5,6)$$
+This demand data satisfies GARP, so it must be consistent with the maximization of a preference relation that is complete, transitive, strictly increasing, continuous, and convex.
+
+##5.1
+A profit-maximizing firm must decide wgree to locate a retail outlet. The set of possible locations is the interval [0,1]. All locations cost the same; what distinguishes locations is how many consumers are nearby. Profit at location $x$ is given by a function $R(x- \theta)$, where $R$ is differentiable, strictly concave, and maximized at 0. Here, $\theta$ is a parameter related to the distribution of customers along the interval. It satisfies $0 < \theta < 1$.
+
+###5.1.1
+What is the firm's optimal location? Justify your answer with reference to the first order condition.
+
+To find the optimal location, we solve the profit maximization problem. $$\max_x R(x-\theta) s.t. x\in [0,1]$$
+FOC: $\frac{\partial R}{\partial x}(x-\theta)=0$
+Given $R(\cdot)$ is maximized at 0, we have that $\frac{\partial R}{\partial x}(x-\theta)=0$ at $x^*-\theta=0$.
+$$x^*=\max_x R(x-\theta)=\theta$$
+So, the firm's optimal location is $x^*=\theta$.
+
+###5.1.2
+Use the envelope theorem to deduce how the maximized profit varies with $\theta$.
+
+From (1), we have that $x^*(\theta)=\max_x R(x-\theta)=\theta$.
+$\mathds{X}=[0,1]$ is compact. $\Theta=(0,1)$ is open.
+$R(\cdot)$ is differentiable and concave.
+$$V(\theta)=\max_{x\in[0,1]} R(x-\theta)=R(x^*(\theta)-\theta)=R(\theta-\theta)=R(0)$$ 
+$$\Rightarrow V'(\theta)=0$$
+So, according to the Envelope Theorem, the maximized profits do not vary with $\theta$.
+
+###5.1.3
+Now suppose that the firm can only locate at one of the endpoints of the interval: $x \in {0, 1}$. What does the envelope theorem say in this case?
+
+$$x^*= \begin{cases}
+0 & if \ \ R(-\theta)>R(1-\theta) \\
+1 & if \ \ R(1-\theta)>R(\theta)
+\end{cases}
+$$
+
+$\Rightarrow V(\theta)=$
+
+$$\begin{cases}
+R(-\theta) & if \ \ x^*=0 \\
+R(1-\theta) & if \ \ x^*=1 
+\end{cases}
+$$
+
+$\Rightarrow V'(\theta)=$
+
+$$\begin{cases}
+-R'(-\theta) & if \ \ x^*=0 \\
+-R'(1-\theta) & f \ \ x^*=1 
+\end{cases}
+$$
+
+Since $R(\cdot)$ is concave $$\Rightarrow R''(\cdot) < 0 \Rightarrow \frac{dV'(\theta)}{d\theta}=\begin{cases}
+R''(-\theta) < 0 & if \ \ x^*=0 \\
+R''(1-\theta)<0 & if \ \ x^*=1 
+\end{cases}
+$$
+
+So, $V'(\theta)$ is decreasing in $\theta$. Further, for $x^*=0, V'(\theta)\leq -R'(0), \forall \theta\in(0,1)$. For $x^*=1, V'(\theta)\geq -R'(0),\forall \theta\in (0,1).$  
+Further, we know that $R(\cdot)$ is maximized at 0 $\Rightarrow R'(0)=0$. So, for $x^*=0, V'(\theta)\leq 0$. For $x^*=1, V'(\theta)\geq 0$. 
+
+We see that $R(1-\theta)$ is increasing from $R(1)$ to $R(0)$; $R(-\theta)$ is decreasing from $R(0)$ to $R(-1)$. And $R(\cdot)$ is differentiable. Therefore, $R(\cdot)$ is continuous. Further, $R(1-\theta)$ and $R(-\theta)$ must intersect somewhere in (0,1).  
+
+Let $\theta_0={arg}R(1-\theta)=R(-\theta)$.  
+
+$\Rightarrow V(\theta)=$
+
+$$\begin{cases}
+R(-\theta) & when \ \ x^*=0 \Leftrightarrow \theta\leq \theta_0 \\
+R(1-\theta) & when \ \ x^*=1 \Leftrightarrow \theta\geq \theta_0
+\end{cases}$$
+
+and $$V'(\theta)=\begin{cases} -R'(-\theta) & when \ \ \theta<\theta_0 \\ -R'(1-\theta) & when \ \ \theta > \theta_0 \end{cases}$$
+
+So, according to the Envelope Theorem, the maximized profit first decreases from $R(0)$ to $R(-\theta_0)$ when $\theta \in (0,\theta_0)$ and then increases to $R(0)$ when $\theta \in (\theta_0,1)$, where $\theta_0$ satisfies $R(1-\theta)=R(-\theta)$. 
+
+##5.2
+Alice consumes two goods, $x_1$ and $x_2$. Her expenditure function is $$M(p_1, p_2, \bar{u})=2\bar{u}\sqrt{p_1p_2}$$
+What are her compensated demands?
+
+By Shepard's Lemma, $x^c(p,\bar{u})=\mathbf{D}M(p,\bar{u})$
+$$x_1^c(p_1,p_2,\bar{u})=\frac{\partial M}{\partial p_1}(p_1,p_2,\bar{u})=2\bar{u}\sqrt p_2 \cdot \frac{1}{2}p_1^{-\frac{1}{2}}=\bar{u}\sqrt \frac{p_2}{p_1}$$
+$$x_2^c(p_1,p_2,\bar{u})=\frac{\partial M}{\partial p_2}(p_1,p_2,\bar{u})=2\bar{u}\sqrt p_1 \cdot \frac{1}{2}p_2^{-\frac{1}{2}}=\bar{u}\sqrt \frac{p_1}{p_2}$$
+So, we see that her compensated demands are $x^c_1(p_1,p_2,\bar{u})=\bar{u}\sqrt \frac{p_2}{p_1}$ and $x^c_2(p_1,p_2,\bar{u})=\bar{u}\sqrt \frac{p_1}{p_2}$.
+
+##5.3
+The $n$-good Cobb-Douglas utility function is $$u(x)=A\Pi^n_{j=1}x_j^{a_j},$$ where $A>1$ and $\sum_j a_j=1$.
+
+##5.3.1
+Derive the demand function.
+
+Derive the logarithmic transformation of the Cobb-Douglas utility function. $$\ln u(x)=\ln (A\Pi_{i=1}^n x_i^{\alpha_i})=\ln A + \sum_{i=1}^n \alpha_i \ln x_i$$
+Given that $\ln(\cdot)$ is a strictly monotone function, we can redefine $\max_x u(x)=\max_x \ln u(x)$. Then, for $x_i, \forall i, \frac{d \ln u(x)}{d x_i}=\frac{\alpha_i}{x_i}\rightarrow \infty$ as $x_i \rightarrow 0$. Therefore, we only need to consider the interior solution.
+
+$$\max_{x_i} \ln A + \sum_{i=1}^n\alpha_i \ln x_i$$
+$$s.t. \sum_{i=1}^n p_ix_i \leq I$$
+$$\mathscr{L}(x_1,...,x_n,\lambda)=\ln A+\sum\alpha_i\ln x_i + \lambda(I-\sum_{i=1}^np_ix_i)$$
+
+Then, given that $\ln A +\sum_{i=1}^n \alpha_i \ln x_i$ is increasing in $x_i$. Therefore, the constraint is binding.
+FOCs:
+$$\begin{cases}
+\frac{\alpha_i}{x^*_i}=\lambda p_i \\ 
+\sum_{i=1}^n p_ix_i=I
+\end{cases}$$
+$$\forall i \Rightarrow \begin{cases} \frac{\alpha_i}{\lambda}=p_ix_i^* \\ \sum_{i=1}^n p_ix_i=I \end{cases}$$ 
+$$\forall i \Rightarrow \sum_{i=1}^n \frac{\alpha_i}{\lambda}=\frac{1}{\lambda}\sum_{i=1}^n\alpha_i=I$$
+
+Given $\sum_{i=1}^n \alpha_i=I$, we see that $\lambda=\frac{1}{I}$. Then we have the demand function $x^*_i(p_i,I)=\frac{\alpha_i}{p_i\lambda}=\frac{\alpha_i I}{p_i}$.
+
+##5.3.2
+Derive the indirect utility function.
+
+By definition, the indirect utility function is $V(p,I)=u(x^*(p,I))=A\Pi_{i=1}^n(\frac{\alpha_i I}{p_i})^\alpha_i\cdot \Pi_{i=1}^n I^\alpha_i=A\Pi_{i=1}^n(\frac{\alpha_i}{p_i})^\alpha_i\cdot I^{\sum_{i=1}^n\alpha_i}=A\cdot I \cdot \Pi_{i=1}^n(\frac{\alpha_i}{p_i})\alpha_i$
+
+So, the indirect utility function is $V(p,I)=A\cdot I \cdot \Pi_{i=1}^n(\frac{\alpha_i}{p_i})^\alpha_i$
+
+##5.3.3
+Compute the expenditure function.
+
+By the duality lemma, if $x^*$ solves the utility maximization problem, it also solves the expenditure minimization problem with minimized value of expenditure $M(p,\bar{u})=I$.
+$$V(p,I)=u(x^c(p,M(p,\bar{u})))=\bar{u}$$
+$$A\cdot M(p,\bar{u})\cdot \Pi_{i=1}^n (\frac{\alpha_i}{p_i})^\alpha_i=\bar{u}$$
+$$M(p,\bar{u})=\frac{\bar{u}}{A\cdot \Pi_{i=1}^n(\frac{alpha_i}{p_i})^\alpha_i}$$
+So, the expenditure function is $M(p,\bar{u})=\frac{\bar{u}}{A\cdot \Pi_{i=1}^n(\frac{alpha_i}{p_i})^\alpha_i}$.
+
+###5.3.4
+Compute the compensated demand.
+
+By Shepard's Lemma, $x^c(p,\bar{u})=\mathbf{D}M(p,\bar{u})$
+$$\Rightarrow x_j^c(p,\bar{u})=\frac{\partial M(p,\bar{u})}{\partial p_j}=\frac{\bar{u}}{A}\cdot(\frac{1}{\alpha_j})^\alpha_j\cdot\alpha_j\cdotp_j^{\alpha_j-1}\cdot\Pi_{i\neq j}^n(\frac{p_i}{\alpha_i})^\alpha_i=\frac{\bar{u}}{A}\cdot\frac{\alpha_j}{p_j}\cdot\Pi^n_{i=1}(\frac{p_i}{\alpha_i})^\alpha_i$$
+So, the compensated demand is $x^c_j(p,\bar{u})=\frac{\bar{u}}{A}\cdot\frac{\alpha_j}{p_j}\cdot\Pi_{i=1}^n(\frac{p_i}{\alpha_i})^\alpha_i$ for each $j$.
+
+##5.4
+Consider the following discrete-choice problem. A consumer has endowment of $I$ units of good 1 ("money"). She can consume either 0 or 1 units of good 2 (a car). Write her consumption bundle as $(m,c)$, where $m \in \mathbb{R}$ is money and $c \in {0,1}$ is cars. Her utility is $$U(m,c)=m+vc$$ where $v>0$ is her willingness to pay for a car.
+
+###5.4.1
+Suppose the price of money is fixed at 1. What is the consumer's demand when the price of a car is $p$?
+
+Since $U(m,c)$ is increasing in $m$ and $c$, the consumer's budget is binding, $$\max_{m,c}U(m,c)=m+vc$$
+$$s.t. m+pc=I$$
+$$c\in\{0,1\}\Rightarrow (m,c)\in \{(I,0),(I-p,1)\}\Rightarrow U(m,c)=\begin{cases} I & when \ \ (m,c)=(I,0) \\ I-p+v & when \ \ (m,c)=(I-p,1) \end{cases}$$
+To maximize $U(m,c)$, we get demand $(m^*,c^*)=(I,0)$ when $I\geq I-p+v \Leftrightarrow p\geq v,(m^*,c^*)=(I-p,1)$ when $I<I-p+v \Leftrightarrow p<v$.
+So, the consumer's demand when the price of a car is $p$ is $(m^*,c^*)=\begin{cases} (I,0) & if \ \ p\geq v \\ (I-p,1) & if \ \ p<v \end{cases}$.
+
+###5.4.2
+What is the consumer's indirect utility function?
+
+Let $p_m$ be the price of money and $p_c$ be the price of the car. Solve the consumer's problem as follows,
+$$\max_{m,c}U(m,c)=m+vc \ \ s.t. \ \ p_mm+p_cc=I$$
+$(m,c)=\{(\frac{I}{p_m},0),(\frac{I}{p_m}-\frac{p_c}{p_m},1)\} \Rightarrow U(m,c)=\begin{cases} \frac{I}{p_m} & when \ \ (m,c)=(\frac{i}{p_m},0) \\ \frac{I}{p_m}-{p_c}{p_m}+v & when \ \ (m,c)=(\frac{I}{p_m}-\frac{p_c}{p_m},1) \end{cases}$
+
+So, the consumer's indirect utility function is $V(p,I)=U(m^*,c^*)-\begin{cases} \frac{I}{p_m} & if \ \ \frac{p_c}{p_m}\geq v \\ \frac{I}{p_m}-\frac{p_c}{p_m}+v & if \ \ \frac{p_c}{p_m}<v \end{cases}$
+
+###5.4.3
+Does Roy's identity hold for this consumer?
+
+When $\frac{p_c}{p_m}>v,(m^*,c^*)=(\frac{I}{p_m},0)$,
+$$-\frac{\frac{\partial V}{\partial p_m}(p,I)}{\frac{\partial V}{\partial I}(p,I)}=-\frac{\frac{I}{p^2_m}}{\frac{1}{p_m}}=\frac{I}{p_m}=m^*$$
+When $\frac{p_c}{p_m}<v,(m^*,c^*)=(\frac{I}{p_m}-\frac{p_c}{p_m},I)$,
+$$-\frac{\frac{\partial V}{\partial p_m}(p,I)}{\frac{\partial V}{\partial I}(p,I)}=-\frac{-\frac{I-p_c}{p^2_m}}{\frac{1}{p_m}}=\frac{I}{p_m}-\frac{p_c}{p_m}=m^*$$
+$$-\frac{\frac{\partial V}{\partial p_c}(p,I)}{\frac{\partial V}{\partial I}(p,I)}=-\frac{-\frac{I}{p_m}}{\frac{1}{p_m}}=1=c^*$$
+Here, we see that Roy's identity holds for this consumer. 
+
+(Note that Roy's identity is not defined here as $\frac{p_c}{p_m}=v$ because $V(p,I)$ is not differentiable at $\frac{p_c}{p_m}=v$ since the limit approaching from two sides does not meet.)
+
+##6.1
+Suppose a technology $Y$ is convex and has the property that, if $y^0$ and $y^1$ are both in $Y$ and $\alpha \in (0,1)$, then $\alpha y^0 +(1-\alpha)y^1$ is not production effcient in $Y$. Show that, if prices are strictly positive, there is at most one solution to the profit maximization problem.
+
+Suppose there is more than one solution to the maximization problem. In particular, suppose $y_1^*$ and $y_2^*$ are solutions to the problem. Then, it must be true that $p\cdot y_1^*\geq py$ and $p\cdot y_2^*\geq py \ \forall y\in Y$.   
+Now, consider $\alpha\in (0,1)$ and $\bar{y}=\alpha y_1^*+(1-\alpha)y_2^*$. Since $Y$ is convex we know that $\bar{y}\in Y$ and, because of the properties of the set, we know that this element will not be production efficient (it was given that $\alpha y^0 +(1-\alpha)y^1$ is not production effcient in $Y$). Then, $\exists \tilde{y} \in Y$ such that $\tilde{y}\geq y$.  
+Since $\bar{y}$ is a linear combination and $p>>0$, we can verify that $p\tilde{y}\geq p\bar{y}=py_1^*=py_2^*$. But then, this means that $y_1^*$ and $y_2^*$ cannot be profit maximizing, as $\tilde{y}\geq y_1^*\geq y_2^* \in Y$. Thus, we have a contradiction and conclude that this maximization problem cannot have more than one solution.
+
+##6.2
+Suppose commodity 1 can be used to produce commodity 2 according to the technology
+$$Y=\{(y_1,y_2)|y_1 \leq 0 \ and \ g(y)=-y_1-y_2-y_2^3 \geq0\}$$
+
+##6.2.1
+Show that $Y$ is a convex set.
+
+To do this, we will show that $Y$ represents the upper contour set of a quasiconcave function. Define $h(y)=[-y_1,-y_1-y_2-y_2^3]$ and check that
+ \[
+   \triangledown h(y)=
+  \left[ {\begin{array}{cc}
+   -1 \\
+   -1-3y_2^2 \\
+  \end{array} } \right]
+\]
+\[
+   \triangledown^2 h(y)=
+  \left[ {\begin{array}{cc}
+   0 & 0 \\
+   0 & -6y_2 \\
+  \end{array} } \right]
+\]
+Since the conditions of this set imply that $y_2\geq0$, then $\triangledown^2 h(y)$ will be negative semidefinite, and so $h(y)$ will be a concave function. Therefore, $Y$ must be a convex set.
+
+###6.2.2
+Show that the production plan $\bar{y}=(-10,2)$ is on the boundary of this set.
+
+A point which satisfies $y_1=0$ or $g(y)=-y_1-y_2-y_2^3=0$ will be a boundary point of $Y$. $\bar{y_1}=-10\neq =0$, so we evaluate $g(\bar{y})$. 
+$$g(\bar{y})=10-2-(2)^3=8-8=0$$
+So, $\bar{y}$ is a boundary point of $Y$.
+
+###6.2.3
+Calculate the supporting prices for the production plan $\bar{y}$.
+
+Using the Supporting Hyperplane Theorem, we know that the supporting prices for any boundary point will be given by the negative of the gradient evaluated at that point, $$p=-\triangledown g(\bar{y})=\left[\begin{array}{cc}1 \\ 13 \end{array}\right]$$
+
+###6.2.4
+Verify directly that $\bar{y}$ maximizes profits at the prices you calculated in the previous step.
+$$\max_{y\in Y}py=p_1y_1+p_2y_2 \ \ s.t. \ \ y_1 \leq 0, g(y)=-y_1-y_2-y_2^3\geq 0$$
+So, the FOCs are:
+$$\partial y_1: p_1-\lambda\geq 0$$
+$$\partial y_2: p_2+\lambda(-1-3y_2^2)=0$$
+$$\partial \lambda: -y_1-y_2-y_2^3\geq 0$$
+$$y_1\frac{\partial \mathscr{L}}{\partial y_1}=0; \lambda\frac{\partial \mathscr{L}}{\partial \lambda}=0; y_1\leq 0$$
+If $y_1=0$ then $y_2=0$ and the profits will be 0, so the FOC of $y_1$, $p_1-\lambda\geq 0$, must hold with equality. This implies that $\lambda=p_1$ so using this in the FOC for $y_2$ we get $y_2=2$. Moreover, since $\lambda=p_1>0$, we know that the FOC for $\lambda$ must also be binding, so we can solve it to obtain $y_1=10$.
+
+###6.2.5
+Depict the production set and the supporting line in a neat figure.
+
+\begin{tikzpicture}
+\draw[-] (0,0)--(2,0)--(2,3);
+\draw[red] (2,1.25)--(0.2,2.5);
+\draw[green] (2,0) .. controls (1.8,1) 
+and (1,2.27) .. (.2,2.28);
+\node[below] at (1,-1) {y1};
+\node[right] at (2,1.5) {y2};
+\node[right] at (2,2.5) {2.5};
+\node[right] at (2,1) {1};
+\node[below] at (0,0) {-20};
+\node[below] at (1,0) {-10};
+\end{tikzpicture}
+
+##6.3
+A firm has technology $Y$. It chooses production plan $y\in Y$ to maximize profits given prices $p$.
+Let $y^*(p)$ be the profit maximizing production plan, and let $\pi(p)$ be the *profit function* $p\cdot y^*(p)$. (Assume that $y^*$ is single-valued.)
+
+###6.3.1
+Show that $\pi$ is a convex function of $p$.
+
+We want to show that $\pi(p)$ is a convex function of $p$. Consider the prices $p$ and $p'$. Then for each set of prices we know that it must be true, since $\pi(p)$ are the maximized profits, that:
+$$\pi(p)=py^*(p)\geq py \forall y\in Y$$
+$$\pi(p')=p'y^*(p')\geq p'y \forall y\in Y$$
+Since this holds for any $y \in Y$, it will also be true for $y(\bar{p})$. Then, taking any $\alpha\in(0,1)$ we can check that $$\alpha py^*(p)+(1-\alpha)p'y^*(p')\geq \bar{p}y^*(\bar{p})$$
+$$\alpha \pi(p)+(1-\alpha)\pi(p')\geq \pi(\bar{p})$$
+So, we see that $\pi(p)$ is a convex function.
+
+###6.3.2
+Explain how to calculate $y^*$ given only knowledge of $\pi$.
+
+We can find $y^*$ by applying the envelope theorem, $y_i^*(p)=\frac{\partial \pi(p)}{\partial p_i}=\frac{\partial \sum_i p_i y_i}{\partial p_i}|_{y=y^*}$.
+
+###6.3.3
+Show that supply is upward-sloping: $\frac{\partial y^*_i}{\partial p_i}(p)\geq 0$
+
+From the definition, we know that $$\pi(p)=py^*(p)\geq py \forall y\in Y$$ $$\pi(p')=p'y^*(p')\geq \forall y\in Y$$
+Then, since this will hold for all $y\in Y$, it must be true that
+$$py^*(p)\geq py^*(p')$$ $$p'y^*(p')\geq p'y^*(p)$$
+So, adding both equations and reordering equations we can obtain the desired result.
+$$py^*(p)+p'y^*(p')\geq py^*(p') + p'y^*(p)$$
+$$py^*(p)- py^*(p')\geq p'y^*(p)-p'y^*(p')$$
+$$p(y^*(p)-y^*(p'))\geq p'(y^*(p)-y^*(p'))$$
+$$(p-p')(y^*(p)-y^*(p'))\geq 0$$
+
+##6.4
+Economists use the following model to think about labor supply. An individual values two goods, consumption $(c)$ and leisure ($\ell$), according to the strictly monotone, strictly concave utility function $U(c,\ell)$. She has $\bar L$ units of time that can be divided between leisure and work for wage $w>0$. Thus, her budget constraint is $c\leq w(\bar L-\ell)+I$, where $I$ is non-labor income. 
+Mimic, as much as you can, our development leading up to the Slutsky equation to study this problem. How can your analysis account for the empirical fact that (at least for "prime-aged" men) hours worked have remained roughly constant in the face of dramatic increases in real wages?
+
+We know that the consumers problems are $$\max_{c,l} U(c,l) \ \ s.t. \ \ I+w\bar{L}-wl-c\geq 0$$ $$\min_{c,l} c+wl-w\bar{L} \ \ s.t. \ \ U(c,l)\geq \bar{U}$$
+From the Duality Lemma, we know that $l^c(p,\bar{U})=l^*(w,M(w,\bar{U}))$. We can then take the derivative with respect to wages on both sides and rearrange the terms to obtain:
+$$\frac{\partial l^c}{\partial w}=\frac{\partial l^*}{\partial w}+\frac{\partial l^*}{\partial I}\frac{\partial M}{\partial w}$$ $$\frac{\partial l^*}{\partial w}=\frac{\partial l^c}{\partial w}-\frac{\partial l^*}{\partial I}\frac{\partial M}{\partial w}$$
+Now, let $(c,l)$ be the solution of the minimization problem when wage is $w$, and $c',l')$ the equivalent for when wage is $w'$. Then, by definition we must have that $$c+wl<c'+wl'\Longrightarrow wl<wl'$$ $$c+w'l'<c'+w'l \Longrightarrow w'l'<w'l$$
+Adding these inequalities to what we had previously, we obtain $$wl+w'l'<wl'+w'l$$ $$w[l-l']<w'[l-l']$$ $$[w-w'][l-l']<0$$ $$\Longrightarrow \frac{\partial l^c}{\partial w}<0$$
+Since the preferences are strictly monotone, we know that the decision maker will spend all of her income. So, $c=w(\bar{L}-l)+I$, or equivalently, $l=\bar{L}+\frac{l-c}{w}$, so $\frac{\partial l^*}{\partial I}=\frac{1}{w}>0$. 
+Finally, we apply the envelope theorem to get $$\frac{\partial M}{\partial w}=\frac{\partial(c^c(w)+wl^c(w)-w\bar{L})}{\partial w} = \frac{\partial(c+wl-w\bar{L})}{\partial w}|_{(c=c^c,l=l^c)}=l^c-\bar{L}<0$$
+So, we can see that it is possible for $\frac{\partial l^*}{\partial w}$ to be equal to zero when the effects of $\frac{\partial l^c}{\partial w}<0$ and $\-\frac{\partial l^*}{\partial I}\frac{\partial M}{\partial w}>0$ cancel each other.
+
+##7.1
+Consider the problem of allocating consumptions of two goods across two consumers. The two goods are called tillip and quillip, and the two consumers are called 1 and 2. Consumer 1 has utility function $u^1(t,q)=6+.4\log t+.6\log q$ (where $t$ is the amount of tillip 1 consumes and $q$ is the amount of quillip). Consumer 2 has utilty function $u^2(t,q)=8+\log t + \log q$. The social endowment consists of 15 units of tillip and 20 units of quillip.  
+
+###7.1.1
+Suppose that, relative to these utility representations, your preferences over allocations are represented by a social welfare functional of the following form: Social welfare, as a function of ($u^1,u^2$), is a weighted sum with weight 2 on the lesser of $u^1$ and $u^2$ and weight 1 on the greater of the two. What is your optimal allocation?   
+
+Case 1: $u^1\leq u^2 \Rightarrow$ The social welfare function is $W(u^1(t_1,q_1),u^2(t_2,q_2))=2u^1+u^2$. This is a monotonic social welfare function, so to find the optimal allocation, we need to maximize the social welfare function $W(u^1(t_1,q_1),u^2(t_2,q_2))$ subject to constraints. Because the utility functions are monotonically increasing, they are locally non-satiated. So, the consumers always want more. Thus, the endowment constraints will be binding. Since both consumers have log utility, it is not optimal to consume zero (corner solution). Thus, we only consider interior solutions and the problem is solved as follows.
+$$\max_{t_1,q_1,t_2,q_2} W(u^1(t_1,q_1),u^2(t_2,q_2))=20+0.8\log(t_1)+1.2\log(q_1)+\log(t_2)+\log(q_2) \ \ s.t. \ \ t_1+t_2\leq 15, q_1+q_2\leq 20$$
+$$6+0.4\log(t_1)+0.6\log(q_1)\leq 8+\log(t_2)+\log(q_2)$$
+This problem then becomes $$\max_{t_1,q_1} W(u^1,u^2)=20+0.8\log(t_1)+1.2\log(q_1)+\log(15-t_1)+\log(20-q_1)$$ $$s.t. 6+0.4\log(t_1)+0.6\log(q_1)\leq 8+\log(15-t_1)+\log(20-q_1)$$
+$$\mathscr{L}(t_1,q_1,\lambda)=20+0.8\log(t_1)+1.2\log(q_1)+\log(15-t_1)+\log(20-q_1)+\lambda(2+\log(15-t_1)+\log(20-q_1)-0.4\log(t_1)-0.6\log(q_1))$$
+The FOCs are  
+$\frac{0.8}{t_1}-\frac{1}{15-t_1}-\lambda{0.4}{t_1}=0$ since $t_1>0$  
+$\frac{1.2}{q_1}-\frac{1}{20-q_1}-\lambda{0.6}{q_1}=0$ since $q_1>0$    
+$2+\log(t_2)+\log(q_2)-0.4\log(t_1)-0.6\log(q_1)\geq 0$ with equality when $\lambda >0$    
+
+If the constraint $u^1\leq u^2$ is not binding, then $\lambda=0$. Then, the FOCs become
+$$\frac{0.8}{t_1}-\frac{1}{15-t_1}=0$$ $$\frac{1.2}{q_1}-\frac{1}{20-q_1}=0$$ $$2+\log(t_2)+\log(q_2)-0.4\log(t_1)-0.6\log(q_1)>0$$  
+From these constraints, we solve for the optimal allocation $(t_1^*,q_1^*,t_2^*,q_2^*)=(\frac{20}{3},\frac{120}{11},\frac{25}{3},\frac{100}{11})$.
+
+So, this is the solution to the maximization problem when the constraint $u^1\leq u^2$ is not binding. When $u^1\leq u^2$, the maximized social welfare is approximately 28.713.
+
+Case 2: $u^1\geq u^2 \Rightarrow$ The social welfare function is $W(u^1(t_1,q_1),u^2(t_2,q_2))=2u^2+u^1$. This is a monotonic social welfare function, so to find the optimal allocation, we need to maximize the social welfare function $W(u^1(t_1,q_1),u^2(t_2,q_2))$ subject to constraints. Because the utility functions are monotonically increasing, they are locally non-satiated. So, the consumers always want more. Thus, the endowment constraints will be binding. Since both consumers have log utility, it is not optimal to consume zero (corner solution). Thus, we only consider interior solutions and the social planning solves.
+$$\mathscr{L}(t_1,q_1,\mu)=22+2\log(15-t_1)+2\log(20-q_1)+0.4\log(t_1)+0.6\log(q_1)+\mu(-2+0.4\log(t_1)+0.6\log(q_1)-log(15-t_1)-log(20-q_1))$$
+FOCs
+$\frac{0.4}{t_1}-\frac{2}{15-t_1}+\mu\frac{0.4}{t_1}\leq 0$  since $t_1>0$
+$\frac{0.6}{q_1}-\frac{2}{20-q_1}-\mu_3\frac{0.6}{q_1}=0$  since $q_1>0$  
+$-2+0.4\log(t_1)+0.6\log(q_1)-\log(t_2)-\log(q_2)\geq 0$  with equality when $\mu >0$  
+
+If the constraint $u^1\leq u^2$ is not binding, then $\mu=0$. Then, the FOCs become
+$$\frac{0.4}{t_1}-\frac{2}{15-t_1}=0$$ $$\frac{0.6}{q_1}-\frac{2}{20-q_1}=0$$ $$-2+0.4\log(t_1)+0.6\log(q_1)-\log(t_2)-\log(q_2)>0$$  
+From the first two of these constraints, we solve for the optimal allocation $(t_1^*,q_1^*,t_2^*,q_2^*)=(\frac{5}{2},\frac{60}{13},\frac{25}{2},\frac{200}{13})$. However, this does not satisfy the last constraint, so this is not a valid solution to the maximization problem.
+
+If the constraint $u^1\geq u^2$ is binding, then $\mu>0$. Then, the FOCs become
+$$\frac{0.4}{t_1}-\frac{2}{15-t_1}+\mu\frac{0.4}{t_1}=0$$ $$\frac{0.6}{q_1}-\frac{2}{20-q_1}+\mu\frac{0.6}{q_1}=0$$
+$$-2+0.4\log(t_1)+0.6\log(q_1)-\log(t_2)-\log(q_2)=0$$
+Then, from these constraints, we find $(t_1^*,q_1^*,t_2^*,q_2^*)=(t^*_1,\frac{60t_1^*}{30+t_1^*},15-t_1^*,20-\frac{60t^*_1}{30+t_1^*})$.
+Plugging this into the very last constraint, $$2+\log(15-t_1^*)+\log(\frac{600-40t^*_1}{30+t_1^*}=0.4\log(t_1^*)+0.6\log(\frac{60t_1^*}{30+t_1^*})\Rightarrow t_1^* \approx 13.4508$$.
+
+So, when $u^1\geq u^2$, the optimal allocation is $(t_1^*,q_1^*,t_2^*,q_2^*)\approx (13.4508,18.5738,1.5492,14.262)$ and the maximized social welfare is approximately 26.378.
+
+Summarizing these two cases, we notice that 26.378<28.713, $(t_1^*,q_1^*,t_2^*,q_2^*)=(\frac{20}{3},\frac{120}{11},\frac{25}{3},\frac{100}{11})$.
+
+###7.1.2
+What is the set of all Pareto optimal allocations for this economy? 
+
+Pareto optimality requires that the marginal rate of substitutions to be equal ($MRS_1=MRS_2$).
+$$\frac{\frac{0.4}{t_1}}{\frac{0.6}{q_1}}=\frac{\frac{1}{15-t_1}}{\frac{1}{20-q_1}} \Rightarrow q_1=\frac{60t_1}{30+t_1}$$
+When $t_1^*=0$ the allocation is (0,0,15,20) (we cannot make consumer 1 better off without making consumer 2 worse off). When $t_1^*=15$ the allocation is (15,20,0,0) (we cannot make consumer 2 better off without making consumer 1 worse off). So, these two allocations are Pareto optimal.
+
+So, the set of all Pareto optimal allocations for this economy is $(t_1^*, q_1^*, t_2^*, q_2^*)=(t_1^*,\frac{60t_1^*}{30+t_1^*},15-t_1^*,20-\frac{60t_1^*}{30+t_1^*})$, where $0\leq t_1^*\leq 15$.
+
+###7.1.3
+Assume that the social endowment is divided between the consumers, with consumer 1 getting 10 units of each good, and consumer 2 getting 5 units of tillip and 10 units of quillip. What is the Walrasian equilibrium of this economy?
+
+ Consumer 1 solves their utility maximizarion problem:    
+ $$\max_{t_1,q_1} u^1(t,q)=\max_{t_1,q_1} (6+.4\log t_1+.6\log q_1)$$
+ subject to $10p_t+10p_q\geq p_tt_1+p_qq_1$.  
+ 
+ Because the utility function is monotonically increasing, the preferences are locally non-satiated, so we know that the endowment constraint, $\lambda$, is binding. Also, by the Inada conditions, $t_1^*>0,q_1^*>0.$ So, we get the first order conditions as such,
+ 
+$${\partial t_1}: \frac{.4}{p_tt_1}=\lambda$$
+$${\partial q_1}: \frac{.6}{p_qq_1}=\lambda$$
+ $$10p_t+10p_q=p_tt_1+p_qq_1$$
+ 
+ From the first two conditions, we find $q_1=\frac{3p_tt_1}{2p_q}$. Then, plug it into the budget constraint to find $p_tt_1+\frac{3}{2}p_tt_1=10(p_t+p_q)\Rightarrow t_1=\frac{4(p_t+p_q)}{p_t}\Rightarrow q_1=\frac{3p_t}{2p_q}\frac{4(p_t+p_q)}{p_t}=\frac{6(p_t+p_q)}{p_q}$. So, demand for consumer 1 is given by $(t_1,q_1)=(\frac{4(p_t+p_q)}{p_t},\frac{6(p_t+p_q)}{p_q})$. 
+ Now, we do the same for consumer 2.
+ 
+  $$\max_{t_2,q_2} u^2(t,q)=\max_{t_2,q_2} (8+\log t_2+\log q_2)$$
+ subject to $5p_t+10p_q\geq p_tt_2+p_qq_2$.  
+ 
+ Because the utility function is monotonically increasing, the preferences are locally non-satiated, so we know that the endowment constraint, $\lambda$, is binding. Also, by the Inada conditions, $t_2^*>0,q_2^*>0.$ So, we get the first order conditions as such,
+ 
+ $$\mathscr{L}=\max_{t_2,q_2,\lambda)} = 8+\log t_2+\log q_2 + \lambda(5p_t+10p_q- p_tt_2+p_qq_2)$$
+ 
+$${\partial t_2}: \frac{1}{p_tt_2}=\lambda$$
+$${\partial q_2}: \frac{1}{p_qq_2}=\lambda$$
+ $$5p_t+10p_q=p_tt_2+p_qq_2$$
+ 
+ From the first two conditions, we find $q_2=\frac{p_tt_2}{p_q}$. Then, plug it into the budget constraint to find $p_tt_2+p_tt_2=5p_t+10p_q\Rightarrow t_2=\frac{5p_t+10p_q}{2p_t}\Rightarrow q_2=\frac{p_t}{p_q}\frac{5p_t+10p_q}{2p_t}=\frac{5p_t+10p_q}{2p_q}$. So, demand for consumer 2 is given by $(t_2,q_2)=(\frac{5p_t+10p_q}{2p_t},\frac{5p_t+10p_q}{2p_q})$.
+
+Now, we check that the markets clear. By Walras' Law, we only need to clear one market. 
+
+$$t_1+t_2=15, q_1+q_2=20$$
+$$t_1+t_2=\frac{4(p_t+p_q)}{p_t}+\frac{5p_t+10p_q}{2p_t}=\frac{6.5p_t+9p_q}{p_t}=15 \Rightarrow \frac{p_q}{p_t}=\frac{17}{18}$$
+Check to see if this price ratio clears the market for $q$:
+$$q_1+q_2=\frac{6(p_t+p_q)}{p_q}+\frac{5p_t+10p_q}{2p_q}=\frac{8.5p_t+11\frac{p_q}{p_t}}{\frac{p_q}{p_t}}=\frac{8.5+11\frac{17}{18}}{\frac{17}{18}}=20$$
+Plugging this into the demands, we get $(t_1,q_1,t_2,q_2)=(\frac{70}{9},\frac{210}{17},\frac{65}{9},\frac{130}{17})$.
+
+So, the Walrasian equilibrium of this economy is $$(\frac{p_q}{p_t},t_1,q_1,t_2,q_2)=(\frac{17}{18},\frac{70}{9},\frac{210}{17},\frac{65}{9},\frac{130}{17})$$
+ 
+##7.2 
+A particular policy maker I know is very big on mellow consumers. Specifically, she hopes to prevent consumers from envying each other. To this end, she defines an *envy-free* allocation as one in which no consumer would rather have the consumption bundle assigned to another consumer rather than his or her own. She also wishes the allocation to be efficient.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This policy maker is also lazy. She isn't willing to figure out the utility functions of the consumers. (She does have a list of all of their endowments.) She is blessed with an economy that functions well as an exchange economy - however she rearranges endowments, the economy finds a Walrasian equilibrium.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Can you help out this policy maker? Specifically, describe how to reallocate endowments so that the resulting Walrasian equilibrium is guaranteed to be both efficient and envy-free. (Hint: the trick is to find some way to redistribute endowments so that, at every set of prices, consumers all begin with the same wealth to spend on consumption.)
+
+Let $k$ be the number of kinds of goods in this economy, indexed by $i$.  
+Let $n$ be the number of consumers in this economy, indexed by $j$.  
+Let $w_i$ be the endowment of goods in this economy, $i\in[1,k]\cap\mathds{N}^+$.
+
+If the endowment fo reach consumer is $w^j=(\frac{w_i}{n},...,\frac{w_i}{n},...,\frac{w_k}{n}) \forall j\in [i,n]\cap \mathds{N}^+$, then for any price system, all consumers begin with the same amount of wealth, $I=(p_1\frac{w_i}{n},...,p_i\frac{w_i}{n},...,p_k\frac{w_k}{n})$. Then, each consumer $j$ solves the same utiliy maximization problem $\max_{x^j}u^j(x_1^j,...,x^j_i,...,x^j_k)$. Then, we get demand functions for each consumer $j$, $x_1^{*j}(p_1,...,p_k),...,x_i^{*j}(p_1,...,p_k),...,x^{*j}_k(p_1,...,p_k)$. Then, we clear markets to find the pricing system. This market will always find a Walrasian equilibrium no matter the allocation of endowments, and we can denote this equilibrium as $(X^*,P^*)=(x^*_1,...,x^*_k;p_1^*,...,p^*_k)$ where $x_i^*$ is a $n\times 1$ vector that represents Pareto Optimal price allocations for each good $i$.  
+$(X^*,P^*)$ is efficient because it maximizes utility for each consumer under price system $P^*$. By the First Fundamental Theorem of Welfare, every Walrasian equilibrium of this economy will be a Pareto optimum. By Theorem 6.2, this means that we are maximizing some social welfare function and, thus, have an efficient allocation. 
+
+This allocation $(X^*,P^*)$ is envy-free because each consumer starts with the same amount of wealth $\Rightarrow$ Any bundle in $X^*$ is attainable by any consumer $\Rightarrow$ For consumer $j,x^{*j}$ maximized utility, which means that it is weakly the most preferred attainable bundle $\Rightarrow$ any consumer will not strictly prefer another's bundle to their own $\Rightarrow$ envy-free allocation.
+
+##7.3
+Imagine a three-consumer economy in which the first commodity is gardening services, consumption of which makes one's yard more beautiful, and the second good is food. Imagine that two of the consumers live in adjacent houses, while the third lives on the other side of a particularly large mountain. Consumption by the third consumer of gardening services generates no externality for the other consumers, but each of the others generates a positive externality for her neighbor through the consumption of gardening services. To be precise, imagine that consumers 1 and 2 have utility functions of the form $$u^h(x)=w(x^1_1)+w(x^2_1)+x^h_2,$$ where $w$ is a strictly increasing, strictly concave, and differentiable function. Note well that consumers 1 and 2 get as much utility out of their neighbor's yard as they do out of their own, and their utility for food is linear. Also imagine that consumer 3 has utility $$u^3(x)=w(x^3_1)+x^3_2.$$ There is a social endowment of gardening services and food.
+
+###7.3.1
+Suppose the social endowment is initially allocated evenly among the three consumers. What will be the corresponding Walrasian equilibrium?
+
+Let the price of gardening be $p_1$ and the price of food be $p_2$. The social endowment of gardening will be $e_1$ and that for food will be $e_2$. The initial allocation is $(\frac{e_1}{3},\frac{e_1}{3},\frac{e_1}{3};\frac{e_2}{3},\frac{e_2}{3},\frac{e_2}{3})$. Since consumers 1 and 2 have the same utility function, they will solve the same utility maximization problem.
+$$\max_{x^h_1,x^h_2} u^h(x)=w(x^1_1)+w(x^2_1)+x^h_2 \ \ s.t. \ \ p_1x_1^h + p_sx_2^h \leq p_1\frac{e_1}{3}+p_2\frac{e_2}{3}$$
+This utility function is strictly increasing, strictly concave in $x^h_1$, and concave in $x^h_2$, so the budget constraint is binding.
+$$\max_{x^h_1} u^h(x^h_1)=w(x^1_1)+w(x^2_1)+ \frac{p_1}{p_2}\frac{e_1}{3}+\frac{e_2}{3}-\frac{p_1}{p_2}x^h_1$$
+FOCs:
+$\frac{d u^h}{d x^h_1}(x^h_1)=w'(x^h_1)-\frac{p_1}{p_2}=0$
+$\Rightarrow w'(x^h_1)=\frac{p_1}{p_2}$, for $h=1,2$.
+
+For consumer 3, the budget constraint is similarly binding and they will solve,
+$$\max_{x^3_1} u^3(x^h_1)=w(x^3_1)+ \frac{p_1}{p_2}\frac{e_1}{3}+\frac{e_2}{3}-\frac{p_1}{p_2}x^3_1$$
+FOCs:
+$\frac{d u^3}{d x^3_1}(x^3_1)=w'(x^3_1)-\frac{p_1}{p_2}=0$
+$\Rightarrow w'(x^3_1)=\frac{p_1}{p_2}>0$.
+
+Since $w$ is increasing and strictly concave, $w'(x^1_1)=w'(x^2_1)=w'(x^3_1)=\frac{p_1}{p_2}$ ijmplies that $x_1^1=x^2_i=x^3_1=\frac{e_1}{3}$. Then, because the initial endowments are equal, $x^1_2=x^2_2=x^3_2=\frac{e_2}{3}$. And the market for food clears when the market for gardening clears.
+So, the Walrasian equilibrium is $(\frac{p_1}{p_2},x_1^1,x_1^2,x_1^3,x_2^1,x_2^2,x_2^3)=(w'(\frac{e_1}{3}), \frac{e_1}{3},\frac{e_1}{3},\frac{e_1}{3},\frac{e_2}{3},\frac{e_2}{3},\frac{e_2}{3})$.
+
+###7.3.2 
+Characterize the set of Pareto optimal allocations of the social endowment. Is the equilibrium allocation in part (a) Pareto optimal?  
+
+Pareto optimality requires the marginal rates of substitution to be equal regardless of the social welfare functional form. Therefore, a social planner solves for the optimal allocation $(x^1_1,x^2_1,x^3_1,x^2_1,x^2_2,x^2_3)$ to maximize some social welfare function. The endowment constraints are binding because all of the utility functions are strictly increasing.
+
+$\max_{x^1_1,x^2_1,x^3_1,x^2_1,x^2_2,x^2_3} \alpha_1u^1+\alpha_2u^2+\alpha_3u^3$ such that $x_1^1+x_1^2+x_1^3=e_1$ and $x_2^1+x_2^2+x_2^3=e_2$
+
+$$\mathscr{L}(x^1_1,x^2_1,x^3_1,x^2_1,x^2_2,x^2_3)=\alpha_1u^1+\alpha_2u^2+\alpha_3u^3 + \lambda_1(e_1-x_1^1-x_1^2-x_1^3)+\lambda_2(e_2-x_2^1-x_2^2-x_2^3)$$
+Since the equilibrium allocation in part (a) is interior, we can restrict our optimization problem to interior solutions.  
+FOCs  
+$$\frac{\partial \mathscr{L}}{\partial x_1^1}: (\alpha_1+\alpha_2)w'(x_1^1)-\lambda_1=0$$
+$$\frac{\partial \mathscr{L}}{\partial x_1^2}: (\alpha_1+\alpha_2)w'(x_1^2)-\lambda_1=0$$
+$$\frac{\partial \mathscr{L}}{\partial x_1^3}: \alpha_3w'(x_1^3)-\lambda_1=0$$
+$$\frac{\partial \mathscr{L}}{\partial x_2^1}: \alpha_1-\lambda_2=0$$
+$$\frac{\partial \mathscr{L}}{\partial x_2^2}: \alpha_2-\lambda_2=0$$
+$$\frac{\partial \mathscr{L}}{\partial x_2^3}: \alpha_3-\lambda_2=0$$
+So, we have $(\alpha_1+\alpha_2)w'(x_1^1)=(\alpha_1+\alpha_2)w'(x_1^2)=\alpha_3w'(x^2_1)=\alpha_3w'(x_1^3)=\lambda_1$ and $\alpha_1=\alpha_2=\alpha_3=\lambda_2\Rightarrow 2w'(x_1^1)=2w'(x_1^2)=w'(x^3_1)$
+
+The equilibrium from part 1 satisfies $w'(x_1^1)=w'(x_1^2)=w'(x^3_1)=\frac{p_1}{p_2}\neq 0$, so this equilibrium does not satisfy our Pareto optimal conditions.
+
+##8.1
+Each question below is concerned with a different marriage problem.  
+
+###8.1.1
+There are two men, $m$ and $m'$, and two women, $w$ and $w'$. All partners of the opposite sex are acceptable to each agent. Let $w \succ^m w', w' \succ^{m'} w, m' \succ^w m$ and $m \succ^{w'} m'$. Show that, in the main-proposing DA, no man can benefit from lying about his preferences.
+
+  When the men follow the DA structure and do not lie, they each first propose to their first choice woman. Then, as they have heteogenous preferences over the women, the game ends there and they both are left with their most desired match. Therefore, there is no benefit they can realize from lying (proposing to a woman who is not their most preferred).
+
+###8.1.2
+Prove that if the man-proposing DA and the woman-proposing DA select the same match, then the stable match is unique.
+
+A stable match is a match to which there does not exist a blocking pair. Suppose that the vector of men, $M$, and the vector of women, $W$, which propose to each other in the man-proposing and woman-proposing DA produce identical matches ${(m_1,w_1), (m_2,w_2), ..., (m_n,w_n)}$. Further, suppose there exists a blocking pair which are not matched, some arbitrary $(m',w)$ which they currently are in the pairs $(m',w')$ and $(m,w)$. There are two possible cases to explain why this pair is not matched.  
+  
+Case 1: The proposing agent, $m'$ or $w$, never proposed to the other party.  
+  If $m'$ was the proposing agent, it must be the fact that he prefers $w'$ to $w$ as, in the DA structure, the men propose in descending order of preferences and are never barred from proposing to a woman who already holds a man.
+Symmetrically, if $w$ was the proposing agent, it must be the fact that she prefers $m$ to $m'$.
+Therefore, in either scenario it cannot be the case that this consitutes a blocking pair.
+
+Case 2: The proposing agent, $m'$ or $w$, did propose to the other party.
+If $m'$ was the proposing agent, it must be the fact that $w$ prefers $m$ to $m'$ as, in the DA structure, the women are never barred from accepting an offer from a man that they prefer to the one they already hold.
+Symmetrically, if $w$ was the proposing agent, it must be the fact that $m'$ prefers $w'$ to $w$.
+Therefore, in either scenario it cannot be the case that this consitutes a blocking pair.
+
+  Further, given that we assume preferences are strict (a person cannot be indifferent to two individuals of the opposite sex), it must be the case that this stable match is unique.
+
+###8.1.3
+Assume that all women rank all men the same, whereas men's preferences can be arbitrary. Prove that the unique stable match coincides with the unique SD outcome in the related economy in which women are objectified and the men's power ordering coincides with the women's common ranking of men.
+
+  In the economy where women rank all men the same and men's preferences are arbitrary, all women will first propose to $m_1$, the most desirable man. He will then accept the proposal from his first preferance of woman and not be proposed to again. Then the remaining women will propose to $m_2$, the second most desired, he will accept the proposal from his most desired of the remaining women and not be proposed to again. This cycle will continue until all pairs are matched.
+
+  In the SD economy where men's power ordering coincides with the women's ranking, $m_1$ chooses his match first. He will select his most desired woman. Obviously, this scenario exactly coincides with that in the previous economy. Then, $m_2$ chooses his match. He selects his most desired woman of those remaining (meaning, all of those except for the match of $m_1$). Obviously, this also perfectly coincides with that in the previous economy. This cycle will continue exactly matching that in the first scenario until all pairs are matched.
+  
+  Since both allocations are the same, we know from part (2) that this stable match is also unique.
+
+###8.1.4
+This question  illustrates that a small change in the gender balance may lead to a stark change in the agent's welfare. To begin with, there are three men, $m, m',$ and $m''$, and three women, $w, w',$ and $w''$. All partners of the opposite sex are acceptable. Consider the cycle $m \rightarrow w'' \rightarrow m' \rightarrow w \rightarrow m'' \rightarrow w' \rightarrow m$. Each agent ranks the agents of the opposite sex in the descending order as he travels the cycle once, starting from his own position. For instance, the preferences of man $m'$ are $w \succ^{m'} w' \succ^{m'} w''$. Show that if an arbitrary agent drops out (thereby causing gender imbalance), then the unique stable match in the marriage problem with the remaining five agents corresponds to the unique SD outcome in the related economy in which the (three) agents on the long side of the markets are objectified and those (two) on the short side are endowed with an arbitrary power ordering.
+
+Suppose $w''$ drops out. Then, the unique stable matches are ${(m,w'),(m'',w)}$ with $m'$ as a singleton. So, each woman is left with her most preferred man. 
+
+
+  In the alternate economy, given that $w''$ dropped out, we assume the men are objectified and the women hold the power with some arbitrary ordering.
+There are two cases, one in which $w$ goes first and the other in which $w'$ goes first.
+Case 1: $w$ matches with $m''$, her most preferred. Then $w'$ matches with $m$, her most preferred. $m'$ is left as a singleton.
+Case 2: $w'$ matches with $m$, her most preferred. $w$ matches with $m''$, her most preferred. $m'$ is left as a singleton.
+
+  Obviously, in all of these scenarios the matched pairs remain the same and we say that in the presence of gender imbalance, the unique stable match in the marriage problem with the remaining five agents corresponds to the unique SD outcome in the related economy in which the agents on the long side of the markets are objectified and those on the short side are endowed with an arbitrary power ordering.
+
+###8.1.5
+The number of men and women is the same and is denoted by $n$. Give an upper bound on the number of proposal rounds in which DA must terminate.
+
+  Given that the genders are balanced, we know that stable matches must exist. The worst case scenario for any proposer, suppose that is a man, is that they get their last choice partner, meaning that they have been rejected $n-1$ times. With this happening, the game continues accordingly.
+
+  One round of the initial proposal (no rejection).
+$n-1$ rounds of rejection for $n$ men ($n(n-1)$ total rounds).
+One final round where the matches are stabilized.
+
+  Therefore, the largest number of possible rounds before DA termination are $1 + n(n-1) +1$, or $n^2 - n + 2$.
+
+##8.2
+Recall the production economy studied in section 4.2. This economy has been discovered in a Hitherto Unheard-of Latin American Country (Hulac, for short) by a group of Princeton Effective Altruists (PEAs, for short). In Hulac, the capitalist's amount of capital is $K$, and the measure of workers is $W$, where $W/b > K/a$. In Princeton, the measure of PEAs is $P$. In their quest to accomplish "most good", PEAs consider four scenarios.
+
+  * _Scenario A_: Stay away from Hulac
+  * _Scenario B_: Go to Hulac, join the workers (so the measure of wokers in Hulac becomes $W+P$), and donate any consumption above $\gamma$ to the proletariat (i.e. the workers employed by the capitalist) of Hulac.
+  * _Scenario C_: Promise to send each member of the Hulac proletariat $\gamma$ of stuff.
+  * _Scenario D_: Go to Hulac to buy and operate a unit of capital each (so that the amount of capital in Hulac becomes $K+P$), operate it in the same manner as the native Hulac capitalist does, and donate all profit (which amounts to share $P/(K+P)$ of all profit earned back from capital) to the proletariat. 
+  
+###8.2.1
+Suppose that PEAs proceed with Scenario A. What is the equilibrium utility of Hulac workers?
+
+When $\frac{W}{b}>\frac{K}{a}$, then in the unique Walrasian equilibrium the wage is $w=\gamma$ and the capitalist employs $\frac{bK}{a}$ workers, all of whome are exploited. Ther workers not employed will produce $\gamma$ on their own, so the income among all Hulac workers is $\gamma$.
+
+###8.2.2
+Suppose that PEAs proceed with Scenario B. What is the equilibrium utility of Hulac native workers?
+
+$\\frac{W+P}{b}>frac{W}{b}>\frac{K}{a}$, so the wage will still be $\gamma$. Then, since the PEA workers will not consume more than $\gamma$ they will not donate to the Hulac workers, so their consumption will remain at $\gamma$.
+
+###8.2.3
+Suppose that PEAs proceed with Scenario C. What is the equilibrium utility of Hulac workers?
+
+This will increase the opportunity cost of working in the farm so the Hulac workers will now be willing to work as proletariats for wage zero while receiving $\gamma$ from the PEAs. Overall, each workers would still make $\gamma$.
+
+###8.2.4
+Suppose that PEAs proceed with Scenario D, and $W/b > (K+P)/a$. What is the equilibrium utility of Hulac workers?
+
+In this scenario, native Hulac people would still work in the firm as long as their opportunity costs are equal among working in the firm and the farm. So, the sum of their wages $w$ and the proportion of the profits donated to them $\frac{P}{K+P}$ would still be $\gamma$ (equal to the opportunity cost of working in the farm). Therefore, everyone would continue to earn $\gamma$.
+
+###8.2.5
+Suppose that PEAs proceed with Scenario D, and $W/b < (K+P)/a$. What is the equilibrium utility of Hulac workers?
+
+In this scenario, labor will become scarcer than capital so all workers will be hired and the wage would increase to $\frac{1}{\lambda}>\gamma$. The capitalists will employ $W$ workers, none of whom are exploited, and there will be no more profits to donate back to the workers. So, everyone would earn $\frac{1}{\lambda}$.
+
+###8.2.6
+Suppose that PEAs define "most good" as achieving the highest utility for Hulac native workers. Which of the scenarios A, B, C, and D would you recommend to PEAs?
+
+They would choose scenario D as it is weakly better than the other scenarios, with strict inequality if their capital is large enough.
+
+##8.3
+Prove theorem 4.2. (_Hint_: The proof follows closely the proof of the FWT.)
+Theorem 4.2: Let $x$ be a Walrasian equilibrium allocation of the exchange economy $\sigma$. If u-monotonicity holds, then $x$ is in the core of $\sigma$.
+
+By way of contradiction, suppose that the equilibrium allocation $x$ that is not within the core of $\sigma$. Then, there has to be some feasible allocation $y$ that is weakly preferred for every member of coalition $S$, with the preferences being strict for at least one of them. Revealed preferences tell us that it must hold that $py>px$, otherwise $y$ would be the Walrasian equilibrium. However, since $x$ is the Walrasian equilibrium, it must be the case that $x$ is actually preferred to $y$ or that $y$ is not feasible. If either of these are the case, $y$ would not be in the core. Therefore, it must be that $x$ is in the core.
+
+##8.4
+Consider a house allocation problem of section 3.3 with three agents, $I={1, 2, 3}$, and three houses, $L={A, B, C}$. The agents' preferences are $$A \succ^1 B \succ^1 C$$ 
+$$B \succ^2 A \succ^2 C$$ 
+$$A \succ^3 C \succ^3 B$$. 
+
+###8.4.1
+Assume that no agent is initially endowed with a house. List all Pareto efficient allocations. Can you think of a systematic way to do so?
+
+We find the Pareto efficient allocations by listing all possible combinations and checking if there are any possible trades using the Top Trading Cycle (TTC) alhorithm. If any trades exist, we discard the allocation as a possible Pareto efficient allocation. The possible allocations for this game are,
+
+\(\begin{aligned}
+\{(1,A),(2,B),(3,C)\} \\
+\{(1,A),(2,C),(3,B)\} \\
+\{(1,B),(2,A),(3,C)\} \\
+\{(1,B),(2,C),(3,A)\} \\
+\{(1,C),(2,B),(3,A)\} \\
+\{(1,C),(2,A),(3,B)\} \\
+\end{aligned}\)
+  
+In $\{(1,A),(2,C),(3,B)\}$, Person 2 and 3 would like to trade.  
+In $\{(1,B),(2,A),(3,C)\}$, Person 1 and 2 would like to trade.  
+In $\{(1,C),(2,A),(3,B)\}$, Person 2 and 3 would like to trade.  
+In all other allocations, no trades will be made.  
+  
+So, we have that the three Pareto efficient allocations are $\{(1,A),(2,B),(3,C)\}$, $\{(1,B),(2,C),(3,A)\}$, and $\{(1,C),(2,B),(3,A)\}$. 
+
+###8.4.2
+Assume that agent 1 is endowed with house C, agent 2 is endowed with house A, and agent 3 is endowed with house B. List all core allocations. Can you think of a systematic way to do so?
+
+Here, agents 2 and 3 would like to trade their allocations, resulting in $\{(1,C),(2,B),(3,A)\}$. From above, we know that this is a Pareto efficient allocation, so no other trades will be made. Therefore, in this scenario, the only allocation in the core is $\{(1,C),(2,B),(3,A)\}$ and it is found by applying the TTC algorithm.
+
+#Previous Exam Questions
+##Final 2015
+###1.
+Consider a two-consumer exchange economy with two goods. Consumer 1 has endowment $\omega^1=(5,5)$ and utility function $u^1(x_1,x_2)=\sqrt{x_1x_2}$. Consumer 2 has endowment $\omega^2=(0,10)$ and utility function $u^2(x_1,x_2)=x_1+\log x_2$. Find the Walrasian equilibrium.
+
+###2.
+Consider a technology that transforms the inputs labor ($\ell$) and capital ($k$) into output ($q$) according to production function given by $f(\ell,k)=\ell^{\frac{2}{3}}k^{\frac{1}{3}}$.
+  a) Write the technology as a set, $Y$, of feasible netput vectors (assume free disposal).
+  b) Is the point $(q,\ell,k)=(3,-4,-4)$ supportable by prices? If yes, what are the supporting prices?
+  c) Is the point $(q,\ell,k)=(12,-8,-27)$ supportable by prices? If yes, what are the supporting prices?
+  
+###3.
+Bob consumes two goods, $x_1$ and $x_2$. His preferences are represented by the utility function $$U(x_1,x_2)=x_1.$$
+  a) Are Bob's preferences monotonic?
+  b) Are Bob's preferences locally non-satiated?
+  c) Are Bob's preferences convex?
+  
+In each case, answer with reference to the formal definition of the property in question.
+  
+###4.
+Suppose a consumer has quasi-linear utility over two goods: $$U(x_1,x_2)=x_1+u(x_2),$$ where $u$ is differentiable with $u'>0$ and $u''<0$.
+
+The consumer has income $I$, which is large enough that you do not need to consider corner solutions in what follows. The prices of the two goods are $p_1$ and $p_2$; normalize prices so that $p_1=1$.
+
+  a) Show that consumer's demand for good 2 is a strictly decreasing function of $p_2$.
+  b) Formally define the consumer's indirect utility function $V$. What is $\frac{\partial V}{\partial p_2}$?
+  c) Show that $V$ is a strictly decreasing and strictly convex function of $p_2$.
+  
+Now suppose that the consumer finds a store to shop at by taking one random draw from some population. Every store charges $p_1=1$ for good 1, but they differ in $p_2$. Thus, a population of stores is characterized by the CDF of prices for good 2. Assume that every store has a price for good 2 between $\frac{1}{2}$ and $\frac{3}{2}$.
+
+The consumer can only make purchases from the store she draws - any income not spent at that store is wasted.
+
+Finally, suppose that the consumer satisfies the von Neumann-Morgenstern axioms, and that $U$ is a Bernoulli utility function.
+
+  d) Does the consumer prefer to draw its store from the population with CDF $F(p_2)=p_2-\frac{1}{2}$ or from the population with CDF $G(p_2)=(p_2-\frac{1}{2})^2$?
+  e) Does the consumer prefer to draw its store from the population with CDF $F(p_2)=p_2-\frac{1}{2}$ or from the population with CDF
+  
+  \(H(p_2)=\begin{cases}
+   1 & \ \ if \ \ p_2\geq 1 \\
+  0 & \ \ if \ \ p_2<1
+  \end{cases}?\)
+
+##Final 2014  
+###1.
+A consumer consumes two goods, $x_1$ and $x_2$. She likes good 1, but does not care about good 2, so one utility function that represents her preferences is: $$u(x_1,x_2)=x_1$$
+  a) Are the consumer's preferences locally non-satiated?
+  b) Are the consumer's preferences strictly convex?
+  
+In each case, give the formal definition of the property in question and explain why it is or is not satisfied.
+
+###2.   
+An empirical researcher is studing a consumer who buys two goods, 1 and 2, at prices $p_1$ and $p_2$, respectively. The consumer's income is $Y$. The researcher decides to estimate demand for good one ($x_1$) with the equation: $$x_1=\beta_1\log p_1 + \beta_2(\frac{p_2}{Y}),$$
+where $\beta_1$ and $\beta_2$ are parameters to be estimated. Has the researcher selected a functional form for demand that is consistent with the utility maximizing model of the consumer? Why or why not?
+
+###3.  
+Robinson Crusoe owns a technology $Y=\{(-z,y)|y\leq z_1^{\frac{1}{3}}z_2^{\frac{1}{3}},z\geq 0\}$, and an endowment $\omega=(32,256,0)$. His preferences are represented by the utility function $U(x)=\log x_1+\log x_2 + \log x_3$.
+
+  a) Solve for Robinson's optimal choice of inputs and hence his optimal production plan and consumption plan $x^*$.
+  b) Solve for the price vector that supports the optimal production plan.
+  c) At these prices what is Crusoes budget set? Confirm that $x^*$ is the optimal point in this budget set.
+  d) What does this have to do with the Fundamental Theorems of Welfare Economics?
+  
+###4. 
+Consider the manager of the division of a firm. The manager is in charge of producing $q$ units of an intermediate input to be used elsewhere in the firm. She does not choose $q$ - instead, she is instructed by the CEO to produce a certain quantity at the least possible cost, and she always follows instructions. 
+
+The manager is in charge of a technology that produces $q$ from inputs $z_1$ and $z_2$ according to the production function $$q=f(z_1,z_2).$$
+
+The manager can buy any amount of inputs on the open market at fixed prices $w_1$ for $z_1$ and $w_2$ for $z_2$.
+
+  a) Formally state the manager's cost minimization problem, and formally define the value function for this problem.
+  
+The value function is called the _cost function_, and is denoted by $c(q;w_1,w_2)$. The cost-minimizing input choices are called the _conditional factor demands_, and are denoted by $z_1^*(q;w_1,w_2)$ and $z_2^*(q;w_1,w_2)$.
+
+  b) Show formally that the cost function is nondecreasing in $w$ - that is, $(w_1,w_2)\geq(w_1',w_2')$ implies $c(q;w_1,w_2)\geq c(q;w_1',w_2')$.
+  c) Show that the cost function is a concave function of $(w_1,w_2)$.
+  d) Use part (c) and the envelope theorem to determine how $z_1^*$ varies with $w_1$.

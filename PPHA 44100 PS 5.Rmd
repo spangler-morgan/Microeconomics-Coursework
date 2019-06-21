@@ -1,0 +1,120 @@
+---
+title: "PPHA 44100 Problem Set 5"
+author: "Morgan Conklin Spangler"
+date: "11/4/2018"
+output: pdf_document
+in-header:
+  -\usepackage{amsmath}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##Exercise 7.1
+A profit-maximizing firm must decide wgree to locate a retail outlet. The set of possible locations is the interval [0,1]. All locations cost the same; what distinguishes locations is how many consumers are nearby. Profit at location $x$ is given by a function $R(x- \theta)$, where $R$ is differentiable, strictly concave, and maximized at 0. Here, $\theta$ is a parameter related to the distribution of customers along the interval. It satisfies $0 < \theta < 1$.
+  
+1. What is the firm's optimal location? Justify your answer with reference to the first order condition.
+  
+  The firm's optimal location is $x^*$ such that their profit is maximized.
+  $$\Pi=\max_xR(x-\theta)$$
+  Meaning, it is such that the first order condition binds.
+  $$\frac{\partial \Pi}{\partial x} : R_x(x- \theta)=0$$
+  
+2. Use the envelope theorem to deduce how the maximized profit varies with $\theta$.
+  
+  The envelope theorem tells us that given $V(\theta) = \max R(x-\theta)$ we can say that $V'(\theta) = R_\theta(x^*(\theta)- \theta)$. Therefore, $R_\theta(x^*(\theta)- \theta)=0$ gives us our maximized value of profit for any level of parameter $\theta$.  
+  
+3. Now suppose that the firm can only locate at one of the endpoints of the interval: $x \in {0, 1}$. What does the envelope theorem say in this case?
+
+  Given the choice of $x \ in {0,1}$, the envelope theorem let's us simplify the problem by saying whichever possible $x$, $x=0$ or $x=1$, maximizes $x^*(\theta)$ will be the optimal location.
+  
+##Exercise 8.1
+Alice consumes two goods, $x_1$ and $x_2$. Her expenditure function is $$M(p_1, p_2, \bar{u})=2\bar{u}\sqrt{p_1p_2}$$
+What are her compensated demands?
+  
+The compensated demand of each good is equivalent to the partial derivative of the expenditure function with respect to each price, by Shepard's Lemma, so we solve the demands as such.
+$$
+x^c_1(p,\bar u)=\frac{\partial M}{\partial p_1}=\bar u \frac{\sqrt{p_2}}{\sqrt{p_1}} \\
+x^c_2(p,\bar u)=\frac{\partial M}{\partial p_2}= \bar u \frac{\sqrt{p_2}}{\sqrt{p_1}}
+$$
+  
+##Exercise 8.2
+The $n$-good Cobb-Douglas utility function is $$u(x)=A\Pi^n_{j=1}x_j^{a_j},$$ where $A>1$ and $\sum_j a_j=1$.
+  
+1. Derive the demand function.
+   
+  To make this function easier to work with we apply a log transformation, leaving us with $$u(x)=A\sum^n_{j=1}a_j\log{x_j}.$$
+  Given that $\sum_j a_j=1$, we have a strictly concave function and we know the marginal utility of $x_j$ is $\frac{a_j}{x_j}$. This diverges to infinity as $x_j \rightarrow 0$, so we know that any solution will be interior and that the first order conditions are sufficient for finding a maximum. I assume a standard budget constraint, $\sum_{j=1}^n p_jx_j=I$
+  FOCs:
+  $$
+  A\frac{a_j}{x^*_j}=\lambda p_j \ \forall j \\
+  px^*=I
+$$
+By subsitution into the budget constraint we get
+$$A\sum_j \frac{a_j}{\lambda}=I \\
+\Rightarrow \lambda = \frac{A}{I}\  by \sum_j a_j=1$$
+  Which we substitute back into the first FOC ($x_j$) to find $x^*_j(p_j,I)$. We find the demand function to  be $$x^*_j(p_j,I)=\frac{a_j}{p_j}I.$$
+    
+2. Derive the indirect utility function.
+  
+The indirect utility function is $u(x_j^*(p_j,I))$. $$u(x^*_j(p_j,I))=A\Pi^n_{j=1}(\frac{a_j}{p_j}I)^{a_j}$$
+or $$u(x)=A\sum^n_{j=1}a_j\log({\frac{a_j}{p_j}I}).$$
+  
+3. Compute the expenditure function.
+  
+The expenditure function minimizes cost subject to the utility being maximized, $\bar{u}=u(x^*_j(p_j,I))$.
+$$
+\min_{x_j} \sum_{j=1}^np_jx_j \ s.t. \ u(x_j)\geq\bar{u}
+$$
+  
+4. Compute the compensated demand.
+  
+The compensated demand function is found by solving the expenditure function.
+$$
+E=\min_{x_j} \sum_{j=1}^np_jx_j \ s.t. \ u(x_j)\geq\bar{u}, \ x_j \geq 0 \ \forall \ j \\
+$$
+Or, alternatively, by applying Shepard's Lemma.
+$$
+\frac{\partial E}{\partial p_j}: x_j-\lambda\frac{\partial u(x_j)}{\partial x_j}=0 \\
+x_j=\lambda \frac{\partial u(x_j)}{\partial x_j} \\
+x_j = \frac{A}{I^2}p_j \\
+$$
+These conditions are used to solve for the compensated demand, $x^c(p,\bar{u})=\frac{A}{I^2}p_j$.
+  
+##Exercise 8.5
+Consider the following discrete-choice problem. A consumer has endowment of $I$ units of good 1 ("money"). She can consume either 0 or 1 units of good 2 (a car). Write her consumption bundle as $(m,c)$, where $m \in \mathbb{R}$ is money and $c \in {0,1}$ is cars. Her utility is $$U(m,c)=m+vc$$ where $v>0$ is her willingness to pay for a car.
+  
+1. Suppose the price of money is fixed at 1. What is the consumer's demand when the price of a car is $p$?
+  
+With these assumptions, the consumer's demand function becomes $$\max_{m,c} (m+vc) \ s.t. \ m+pc\leq I$$
+and is solved to find the demand of a car.
+Givnen that when the FOCs are solved we find that $v=p$, the decision maker will choose to purchase a car, $c=1$, if $v < I$, the decision maker will choose not to purchase a car, $c=0$, if $v > I$, and the decision maker will be indifferent at $v=I$. Therefore,
+$x^*(p,I)=I$
+\[ \begin{cases} 
+       (m,c)=(I-v,1) & if \ v< I \\
+      (m,c) =  (I,0) & if \ v > I \\
+      (m,c)=(I,0)=(0,1) & if \ v=I
+   \end{cases}
+\]
+We see that in each case, the consumer demand is always equal to $I$.
+  
+2. What is the consumer's indirect utility function?
+  
+The consumer's indirect utility function is the utility function when solved for $x^*$.
+$V(p,I)=I$
+\[ \begin{cases} 
+      (I-p)+p & if \ p< I \\
+      I & if \ p > I \\
+      I \ or \ (I-p)+p & if \ p=I
+   \end{cases}
+\]
+  
+3. Does Roy's identity hold for this consumer?
+  
+Roy's identity states that $$x^*_j(p,I)=\frac{\frac{\partial V}{\partial p_j}(p,I)}{\frac{\partial V}{\partial I}(p,I)} $$
+Given that we can solve the partial derivatives as such,
+$$\frac{\partial V}{\partial p_j}(p,I) = I\\
+{\frac{\partial V}{\partial I}(p,I)} =1$$
+we compute $$x^*_j(p,I)=\frac{I}{1}=I$$
+which is what was found previously. Therefore, Roy's Identity does hold.

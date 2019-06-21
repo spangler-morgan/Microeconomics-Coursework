@@ -1,0 +1,115 @@
+---
+title: "Adverse Selection"
+author: "Morgan Conklin Spangler"
+date: "3/4/2019"
+output: pdf_document
+header-includes:
+  - \usepackage{setspace}\doublespacing
+  - \usepackage{ amssymb }
+  - \usepackage{amsmath}
+  - \usepackage{tikz}
+  - \usepackage{pgfplots}
+  - \usepackage{float}
+  - \floatplacement{figure}{H}
+  - \usepackage{dsfont}
+  - \usepackage{ mathrsfs }
+  - \usepackage{ wasysym }
+  - \usepackage{mathtools}
+  - \usepackage{tcolorbox}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+(Adverse selection causes competitive markets to not necessarily reach a Pareto Optimum.)\newline
+
+*Adverse Selection* informed agent's trading behavior is based on private information and that behavior adversely affects another agent who is uninformed.
+
+  * ex: labor market, insurance market, used car market (Akerlof)
+  
+**Lemons Market (Ch 13, MWG)**
+  
+  1. identical firms, set a good at price $p=1$, with constant returns to scale
+      * $\Rightarrow$ the firms in the long term equilibrium will operate such that $E[\pi]=0$
+  2. workers are the only input, who supply one unit of labor if employed and have varying levels of production, parameterized by $\theta=[\underline{\theta},\bar{\theta}]\sim F()$.
+  3. Each worker has a reservation wage, $r(\theta)$
+  
+**Competitive Equilibrium**
+
+Case A: Public info about $\theta$
+
+  * $w(\theta)=\theta$ (wage varies perfectly with theta)
+  * employed workers must have $\{\theta: r(\theta)\leq\theta\}$
+  * this maximizes surplus such that, given $N$ workers, $$N\int_{\underline{\theta}}^{\bar{\theta}}[I(\theta)\theta+(1-I(\theta))r(\theta)]dF(\theta),$$ $$I(\theta)=\begin{cases} 1 & if  \ \ employed \\ 0 & otherwise\end{cases}\Rightarrow I(\theta)=\begin{cases} 1 & if  \ \ r(\theta)\leq\theta \\ 0 & r(\theta)>\theta\end{cases}$$
+  
+Case B: Firms have no information about $\theta$
+
+  * Labor supply: $\Theta(w)=\{\theta:r(\theta)\leq w\}$
+  * Labor demand: $\mu=$ expected productivity $z(w)=\begin{cases} 0 & if \ \ \mu<w \\ [0,\infty] & if \ \ \mu=w \\ \infty & if \mu>w\end{cases}$
+  
+Equilibrium: $w^*$ and $\Theta^*$ such that $\Theta^*=\{\theta:r(\theta)\leq w^*\}$ and $w^*=E[\theta|\theta\in \Theta^*]$
+
+Case C: *(One case of B)* Asymmetric information $\rightarrow$ could lead to Pareto Inefficiency
+
+  * ex: $r(\theta)=r, \ \ f(r)\in(0,1)$
+  
+*Aside: Need to make the assumption that, if no workers were employed, $E[\theta|\Theta=\emptyset]=E[\theta]$.*\newline
+
+  * This case only has two possible equilibria: either everyone works, $\Theta(w)=[\underline{\theta},\bar{\theta}]$, or no one works, $\Theta=\emptyset$.
+      * in either case, $w=E[\theta]\Rightarrow \begin{cases}\Theta(w)=[\underline{\theta},\bar{\theta}] & if \ \ w=E[\theta]\geq r \\ \Theta=\emptyset & if \ \ w=E[\theta]< r\end{cases}$ 
+  * Pareto optimum: $\begin{cases} \theta\geq r \Rightarrow & {work} \\ \theta<r \Rightarrow & {don't} \ \ {work}\end{cases}$
+
+**Game Theoretic**: SPNE, pure strategy\newline
+
+  1. Firms simultaneously announce wages (without loss of generality, assume we have two firms)
+  2. Then workers individually decide if they will work and for whom
+  
+Let $W^*$ be the set of competitive equilibrium wages. $w^*$ solves $\max_{w\in W^*}w$
+
+  i) if $w^*>r(\underline{\theta})$ and $\exists \epsilon>0$ such that $E[\theta|r(\theta)<w']>w' \ \forall w'\in [w^*-\epsilon,w^*]$, then there is a unique SPNE in pure stragegies to set $w=w^*$
+  ii) if $w^*=r(\underline{\theta})$, there are multiple SPNE in pure strategies, but all payoffs are the same as $w^*$
+  
+1st result: We assumed $r(\theta)<\theta$ so the efficient allocation is to have everyone employed.\newline
+2nd result: If the social planner doesn't observe $\theta$, then they can't acheive a Pareto improvement relative to $w^*$ (even though $w^*$ is not Pareto efficient). So, we say that $w^*$ is a constrained Pareto efficient outcome. 
+3rd result: If the social planner doesn't observe $\theta$, then it still may be possible to increase total surplus.
+
+**Signaling**: Spence (1973, 1974)\newline
+
+  A. costless screening $\rightarrow$ everyone gets served if $\theta>\underline{\theta}$ (all but the lowest type gets screened to show they're not the worst) $\rightarrow w^*(\theta)=\theta$
+  B. costly screening $\rightarrow$ $\theta_H>\theta_L$ $$\lambda=Pr(\theta=\theta_H), 1-\lambda=Pr(\theta=\theta_L)$$
+  our tool is "education", $e$
+      i. does nothing for productivity
+      ii. costly, $c(e,\theta)$
+          * $c(0,\theta)=0$
+          * $c_e(e,\theta)>0$
+          * $c_{ee}(e,\theta)>0$
+          * $c_\theta(e,\theta)<0$
+          * $c_{e\theta}(e,\theta)<0 \rightarrow$ single crossing property
+
+pqyoffs: $u(w,e|\theta)=w-c(e,\theta)$, $r(\theta)$\newline *Extreme assumption* $r(\theta)=0\Rightarrow w^*=E[\theta]$\newline
+In this game: 
+
+  1. Nature selects $\theta$
+  2. Individuals choose their level of education, $e(\theta)$
+  3. Firms choose their wages, $w(e)$
+  4. Workers choose to work or not
+  
+Perfect Bayesian Equilibrium:\newline
+$\sigma(e)=$ wage offer
+$\mu(e)=$ belief $\rightarrow Pr(\theta=\theta_h|e)$
+
+  i. Workers' strategy, $e(\theta)$, is optional given firms' strategies
+  ii. $\mu(e)$ is derived according to Bayes' rule when possible (cannot use Bayes' rule with levels of education found off the equilibrium path)\newline (i. and ii. sufficient for a weak Bayesian equilibrium)
+  iii. wage offer $\sigma(e)$ is a Nash equilibrium of a simultaneous move game where $Pr(\theta=\theta_H|e)=\mu(e)$\newline(pure strategy perfect Bayesian Equilibrium)
+
+  A. $E[\theta|e]=\mu(e)\theta_H+(1-\mu(e))\theta_L=w^*(e), \in [\theta_L,\theta_H]$
+  B. (on graph, single crossing property shows that the $\theta_L$ and $\theta_H$ curves only cross one time on the $(e,w)$ plane of preferences)
+  
+Signaling equilibrium: $e_H\neq e_L$
+
+  1. $w(e(\theta_H))=\theta_H$ because $\mu(e(\theta_H))=1$ $\Rightarrow w(e(\theta_L))=\theta_L$
+  2. $e^*(\theta_L)=0$\newline Proof: Suppose $e_L>0$, if $e_L=0$, $w(0)\geq \theta_L$. Therefore, they are better off not consuming any costly education and $e^*(\theta_L)=0$.
+  
+  
+  

@@ -1,0 +1,572 @@
+---
+title: "PPHA 44100 Problem Set 4"
+author: "Morgan Conklin Spangler"
+date: "10/24/2018"
+output: 
+  pdf_document: default
+header-includes: 
+- \usepackage{ mathrsfs }
+- \usepackage{ wasysym }
+- \usepackage{tikz}
+- \usepackage{pgfplots}
+- \usepackage{float}
+- \floatplacement{figure}{H}
+geometry: margin=.5in
+fontsize: 14pt
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+## 4.4
+Consider the following three utility functions (in each case, \(\alpha_1, \alpha_2 > 0\)):  
+1. \(U(x_1,x_2)=\alpha_1 \sqrt{x_1} +\alpha_2 \sqrt{x_2}\)  
+2. \(U(x_1, x_2)= \alpha_1 x_1 + \alpha_2 x_2\)  
+3. \(U(x_1, x_2)= \min(\alpha_1x_1,\alpha_2x_2)\)  
+For each, answer the following:  
+(a) Are the preferences monotone? Strictly monotone?  
+(b) Are the preferences convex? Strictly convex?  
+(c) For each, calculate the demands for strictly positive prices $(p_1,p_2) >> 0$ and income $I$. (For utility functions (1) and (2), use the Kuhn-Tucker conditions. For part (3), explain why the Kuhn-Tucker Theorem does not apply, and then find the demands anyway.)  
+
+<!---
+Preferences are monotonic if \(x \geq  y\) implies \(x \succsim y\). Preferences are strictly monotonic if \(x > y\) implies \(x \succ y\).   Preferences are convex if their upper contour sets are quasiconcave. That is, if \(U(x) \geq U(y)\) implies \(U(\lambda x + (1-\lambda) y) \geq U(y)\), \(\forall \lambda \in [0,1]\). Preferences are strictly convex if they have strictly quasiconcave upper contour sets. So, if \(U(x) \geq U(y)\), \(U(z)\geq U(y)\), \(x \neq z,\) implies \(U(\lambda x + (1-\lambda) z) \geq U(y)\), \(\forall \lambda \in (0,1)\).
+--->
+  
+#### 1.a) 
+Suppose there exist two bundles, $x=(x_1,x_2)$ and $y=(y_1,y_2)$.  
+  
+  \(U(x_1,x_2)=\alpha_1 \sqrt{x_1} +\alpha_2 \sqrt{x_2}\) is monotonic if \(x \geq  y\) implies \(x \succsim y\).  
+  Suppose \(x \geq y\). Then, \(x_1 \geq y_1\) and \(x_2 \geq y_2\).  
+  $$\begin{aligned}
+  U(x)=\alpha_1 \sqrt{x_1} +\alpha_2 \sqrt{x_2}\\
+  U(y)=\alpha_1 \sqrt{y_1} +\alpha_2 \sqrt{y_2}
+  \end{aligned}$$
+  Given that \(x_1 \geq y_1\), we can also say that \(\sqrt{x_1} \geq \sqrt{y_1}\).   
+  Then, given that \(\alpha_1, \alpha_2 >0\), we can also say that \(\alpha_1 \sqrt{x_1}\geq \alpha_1 \sqrt{y_1}\).  
+  Similarly, we can say that \(\alpha_2 \sqrt{x_2}\geq \alpha_2 \sqrt{y_2}\). Therefore, \(U(x) \geq U(y)\) for any \(x \geq y\), and we say this function **is monotonic**. 
+    
+  Further, Suppose \(x > y\). Then, \(x_1 \geq y_1\) and \(x_2 \geq y_2\), with at least one having strict inequality, $>$.  
+  $$
+  \begin{aligned}
+  U(x)=\alpha_1 \sqrt{x_1} +\alpha_2 \sqrt{x_2}\\
+  U(y)=\alpha_1 \sqrt{y_1} +\alpha_2 \sqrt{y_2}
+  \end{aligned}
+  $$
+  Given that \(x_1 \geq y_1\), we can also say that \(\sqrt{x_1} \geq \sqrt{y_1}\). Then, given that \(\alpha_1, \alpha_2 >0\), we can also say that \(\alpha_1 \sqrt{x_1}\geq \alpha_1 \sqrt{y_1}\).   
+  Similarly, we can say that \(\alpha_1 \sqrt{x_2}\geq \alpha_1 \sqrt{y_2}\). Again, with one section having strict inequality, $>$.   
+  Therefore, \(U(x) \geq U(y)\) for any \(x \geq y\) and we say this function **is strictly monotonic**. 
+    
+#### 1.b) 
+Suppose there exists two bundles, $x=(x_1,x_2)$ and $y=(y_1,y_2)$. \(U(x_1,x_2)=\alpha_1 \sqrt{x_1} +\alpha_2 \sqrt{x_2}\) satisfies convexity if \(U(x) \geq U(y)\) implies \(U(\lambda x + (1-\lambda) y) \geq U(y)\), \(\forall \lambda \in [0,1]\).   
+  Suppose \(x \geq y\). Then, \(x_1 \geq y_1\) and \(x_2 \geq y_2\).  
+  $$
+  \begin{aligned}
+  U(x)=\alpha_1 \sqrt{x_1} +\alpha_2 \sqrt{x_2} \\
+  U(y)=\alpha_1 \sqrt{y_1} +\alpha_2 \sqrt{y_2} \\
+  U(\lambda x + (1-\lambda)y)=\lambda(\alpha_1 \sqrt{x_1} +\alpha_2\sqrt{x_2})+(1-\lambda)(\alpha_1 \sqrt{y_1} +\alpha_2 \sqrt{y_2}) \\
+  U(\lambda x+(1-\lambda)y)=\lambda\alpha_1\sqrt{x_1}+\lambda\alpha_2\sqrt{x_2})+(1-\lambda)\alpha_1 \sqrt{y_1}+(1-\lambda)\alpha_2 \sqrt{y_2}) \\
+   U(\lambda x+(1-\lambda)y)=\lambda\alpha_1\sqrt{x_1}+\lambda\alpha_2\sqrt{x_2})+\alpha_1\sqrt{y_1}-\lambda\alpha_1\sqrt{y_1}+\alpha_2\sqrt{y_2}-\lambda\alpha_2\sqrt{y_2}) \\
+   U(\lambda x+(1-\lambda)y)=\lambda\alpha_1\sqrt{x_1}+\lambda\alpha_2\sqrt{x_2}-\lambda\alpha_2\sqrt{y_2}-\lambda\alpha_1\sqrt{y_1}+U(y) \\
+   U(\lambda x+(1-\lambda)y)=\lambda(\alpha_1(\sqrt{x_1}-\sqrt{y_1})+\alpha_2(\sqrt{x_2}-\sqrt{y_2})+U(y)
+   \end{aligned} $$
+   Therefore, since \(\lambda \in [0,1]\) and \(x_1 \geq y_1, x_2 \geq y_2\), we can say that 
+   \(\lambda(\alpha_1(\sqrt{x_1} - \sqrt{y_1})+\alpha_2 (\sqrt{x_2} - \sqrt{y_2}) \geq 0\).  
+   Therefore, \(U(\lambda x + (1-\lambda)y=\lambda(\alpha_1(\sqrt{x_1} - \sqrt{y_1})+\alpha_2 (\sqrt{x_2} - \sqrt{y_2})  + U(y) \geq U(y)\) and we say that **convexity is satisfied**.   
+   
+  Now, suppose we have a third bundle, $z=z_1,z_2$, $z\succsim y$, $z\neq x$.
+  $$U(z)=\alpha_1 \sqrt{z_1} +\alpha_2 \sqrt{z_2}$$
+  Strict convexity is satisfied if \(U(\lambda x + (1-\lambda)z)>U(y)\). Or, in other words, \(U(\lambda x + (1-\lambda)z)-U(y)>0\).  
+  \(U(\lambda x + (1-\lambda)z)-U(y)=\lambda\alpha_1( \sqrt{x_1} - \sqrt{z_1})+\lambda\alpha_2(\sqrt{x_2}-\sqrt{z_2}) + \alpha_1 (\sqrt{z_1}-\sqrt{y_1}) +\alpha_2 (\sqrt{z_2}-\sqrt{y_2})\)  
+  Therefore, strict convexity is satisfied if  
+  $$ \lambda\alpha_1( \sqrt{x_1} - \sqrt{z_1})+\lambda\alpha_2(\sqrt{x_2}-\sqrt{z_2}) + \alpha_1 (\sqrt{z_1}-\sqrt{y_1}) +\alpha_2 (\sqrt{z_2}-\sqrt{y_2})>0 $$ 
+  However, since we cannot say anything about the relationship of $x$ and $z$, this cannot be proven to be true.
+
+#### 1.c) 
+To find demand, we maximize the utility function with respect to the budget constraint.   
+\(\max_{x_1, x_2 \in X} U(x_1,x_2)=\alpha_1 \sqrt{x_1} +\alpha_2 \sqrt{x_2}\) subject to \(p_1x_1 + p_2x_2 \leq I\) and \(x_1,x_2 \geq 0\).  
+$$
+\begin{aligned}
+\mathscr{L}=\max_{x_1,x_2 \in X} \alpha_1 \sqrt{x_1} +\alpha_2 \sqrt{x_2} +\lambda(I-p_1x_1-p_2x_2),\ x_1,x_2 \geq 0.\\  
+\frac{\partial\mathscr{L}}{\partial x_1}: \frac{1}{2}\alpha_1x_1^{-(\frac{1}{2})}\leq p_1\lambda, x_1 \geq 0 \\
+x_1\frac{\partial\mathscr{L}}{\partial x_1}=0 \\
+\Rightarrow \frac{1}{2}\alpha_1\sqrt{x_1}=p_1x_1\lambda \\
+\frac{\partial\mathscr{L}}{\partial x_2}: \frac{1}{2}\alpha_2x_2^{-(\frac{1}{2})}\leq p_2\lambda, x_2 \geq 0 \\
+x_2\frac{\partial\mathscr{L}}{\partial x_2}=0 \\
+\Rightarrow \frac{1}{2}\alpha_2\sqrt{x_2}=p_2x_2\lambda \\
+\frac{\partial \mathscr{L}}{\partial \lambda}: I\leq p_1x_1+p_2x_2, \lambda \geq 0 \\
+\lambda(I-p_1x_1-p_2x_2)=0
+\end{aligned}
+$$
+We consider the cases \(\lambda=0, \lambda>0\). 
+If \(\lambda = 0\), 
+$$
+\begin{aligned}
+\frac{1}{2}\alpha_1x_1^{-(\frac{1}{2})}\leq 0\\
+\Rightarrow x_1^{-(\frac{1}{2})}\leq 0\\
+\Rightarrow x_1\leq 0
+\end{aligned}
+$$
+Similarly, \(\Rightarrow x_2\leq 0\).
+Therefore,
+\(x^*_1=0,x^*_2=0\).
+If \(\lambda>0\), 
+$$
+\begin{aligned}
+\frac{\frac{1}{2}\alpha_1\sqrt{x_1}}{p_1x_1}=\lambda=\frac{\frac{1}{2}\alpha_2\sqrt{x_2}}{p_2x_2}. \\
+\Rightarrow\frac{\alpha_1\sqrt{x_1}}{p_1x_1}=\frac{\alpha_2\sqrt{x_2}}{p_2x_2}\\
+\Rightarrow\frac{\alpha_1\sqrt{x_1}x_2}{\alpha_2\sqrt{x_2}x_1}=\frac{p_1}{p_2}\\
+\Rightarrow\frac{p_1}{p_2}=\frac{\alpha_1\sqrt{x_2}}{\alpha_2\sqrt{x_1}} \\
+\Rightarrow x_1(\frac{\alpha_2p_1}{\alpha_1p_2})^{-\frac{1}{2}}=x_2 \\
+\end{aligned}
+$$
+Also, given that \(\lambda>0\), we have that \(I=p_1x_1+p_2x_2\).
+$$
+\begin{aligned}
+\Rightarrow I=\frac{\alpha_1p_2\sqrt{x_1}\sqrt{x_2}}{\alpha_2}+p_2x_2 \\
+\Rightarrow I=\frac{\alpha_2p_1\sqrt{x_1}\sqrt{x_2}}{\alpha_1}+p_1x_1 \\
+\Rightarrow I=\frac{\alpha_2p_1\sqrt{x_1}\sqrt{x_1(\frac{\alpha_2p_1}{\alpha_1p_2})^{-\frac{1}{2}}}}{\alpha_1}+p_1x_1 \\
+\Rightarrow I=(1+(\frac{\alpha_2}{\alpha_1})^2 \frac{p_1}{p_2})p_1x_1 \\
+\Rightarrow \frac{I}{(1+(\frac{\alpha_2}{\alpha_1})^2 \frac{p_1}{p_2})p_1}=x^*_1(I,p_1,p_2)
+\end{aligned}
+$$
+Similarly, we find \(x^*_2\).
+$$
+\begin{aligned}
+\frac{p_1\alpha_2}{p_2\alpha_1}=\frac{\sqrt{x_2}}{\sqrt{x_1}} \\
+\Rightarrow \sqrt{x_1}=\frac{p_2\alpha_1}{p_1\alpha_2}\sqrt{x_2} \\
+\Rightarrow x_1=(\frac{p_2\alpha_1}{p_1\alpha_2})^\frac{1}{2}x_2 \\
+I=\frac{\alpha_2p_1\sqrt{x_1}\sqrt{x_2}}{\alpha_1}+p_1x_1 \\
+\Rightarrow I=p_2x_2+\frac{\sqrt{p_1}\sqrt{p_2}\alpha_1}{\alpha_2}x_2 \\
+\Rightarrow I=x_2(p_2+(\frac{p_1p_2 \alpha_1}{\alpha_2})^\frac{1}{2}) \\
+\Rightarrow \frac{I}{p_2+(\frac{p_1p_2\alpha_1}{\alpha_2})^\frac{1}{2}}=x^*_2(I,p_1,p_2)
+\end{aligned}
+$$
+   
+#### 2.a)
+  Suppose there exist two bundles, $x=(x_1,x_2)$ and $y=(y_1,y_2)$.  
+  
+  \(U(x_1, x_2)= \alpha_1 x_1 + \alpha_2 x_2\) is monotonic if \(x \geq  y\) implies \(x \succsim y\).  
+  Suppose \(x \geq y\). Then, \(x_1 \geq y_1\) and \(x_2 \geq y_2\).  
+  $$\begin{aligned}
+  U(x)=\alpha_1 x_1 +\alpha_2 x_2\\
+  U(y)=\alpha_1y_1 +\alpha_2y_2
+  \end{aligned}$$
+  Given that \(x_1 \geq y_1\), and \(\alpha_1, \alpha_2 >0\), we can say that \(\alpha_1x_1 \geq \alpha_1y_1\).   
+  Similarly, we can say that \(\alpha_2x_2\geq \alpha_2y_2\). Therefore, \(U(x) \geq U(y)\) for any \(x \geq y\), and we say this function **is monotonic**. 
+  Further, Suppose \(x > y\). Then, \(x_1 \geq y_1\) and \(x_2 \geq y_2\), with at least one having strict inequality, $>$.  
+  $$
+  \begin{aligned}
+  U(x)=\alpha_1x_1+\alpha_2x_2\\
+  U(y)=\alpha_1y_1 +\alpha_2y_2
+  \end{aligned}
+  $$
+  Given that \(x_1 \geq y_1\), and  \(\alpha_1, \alpha_2 >0\), we can also say that \(\alpha_1x_1 \geq \alpha_1y_1\). Again, with one section having strict inequality, $>$. 
+  Therefore, \(U(x) > U(y)\) and we say this function **is strictly monotonic**. 
+#### 2.b)
+  Suppose there exists two bundles, $x=(x_1,x_2)$ and $y=(y_1,y_2)$. \(U(x_1,x_2)=\alpha_1x_1 +\alpha_2x_2\) satisfies convexity if \(U(x) \geq U(y)\) implies \(U(\lambda x + (1-\lambda) y) \geq U(y)\), \(\forall \lambda \in [0,1]\).   
+  Suppose \(x \geq y\). Then, \(x_1 \geq y_1\) and \(x_2 \geq y_2\).  
+  $$
+  \begin{aligned}
+  U(x)=\alpha_1x_1+\alpha_2x_2 \\
+  U(y)=\alpha_1y_1 +\alpha_2y_2 \\
+  U(\lambda x + (1-\lambda)y)=\lambda(\alpha_1x_1 +\alpha_2x_2)+(1-\lambda)(\alpha_1y_1 +\alpha_2y_2) \\
+  \Rightarrow U(\lambda x+(1-\lambda)y)=\lambda\alpha_1x_1+\lambda\alpha_2x_2+(1-\lambda)\alpha_1 y_1+(1-\lambda)\alpha_2y_2 \\
+\Rightarrow U(\lambda x+(1-\lambda)y)=\lambda\alpha_1x_1+\lambda\alpha_2x_2+\alpha_1y_1+\alpha_2y_2-\lambda\alpha_1y_1-\lambda\alpha_2y_2
+\\
+U(\lambda x + (1-\lambda)y) \geq^? U(y) \\
+\lambda\alpha_1x_1+\lambda\alpha_2x_2+\alpha_1y_1+\alpha_2y_2-\lambda\alpha_1y_1-\lambda\alpha_2y_2 \geq^? \alpha_1y_1 +\alpha_2y_2 \\
+\lambda\alpha_1x_1+\lambda\alpha_2x_2-\lambda\alpha_1y_1-\lambda\alpha_2y_2 \geq^? 0 \\
+\lambda(\alpha_1(x_1-y_1)+\alpha_2(x_2-y_2)) \geq^? 0\\
+   \end{aligned} $$
+   Therefore, since \(\lambda \in [0,1]\) and \(x_1 \geq y_1, x_2 \geq y_2\), we can say that 
+   \(\lambda(\alpha_1(x_1-y_1)+\alpha_2(x_2-y_2)) \geq 0\).  
+   Therefore, \(U(\lambda x + (1-\lambda) y) \geq U(y)\) and we say that **convexity is satisfied**.   
+   
+  Now, suppose we have a third bundle, $z=z_1,z_2$, $z\succsim y$, $z\neq x$.
+  $$U(z)=\alpha_1z_1 +\alpha_2z_2$$
+  Strict convexity is satisfied if \(U(\lambda x + (1-\lambda)z)>U(y)\). Or, in other words, \(U(\lambda x + (1-\lambda)z)-U(y)>0\).
+  \(U(\lambda x + (1-\lambda)z)-U(y)=\lambda\alpha_1(x_1 -z_1)+\lambda\alpha_2(x_2-z_2) + \alpha_1 (z_1-y_1) +\alpha_2 (z_2-y_2)\)
+  Therefore, strict convexity is satisfied if  
+  \(\lambda\alpha_1(x_1-z_1)+\lambda\alpha_2(x_2-z_2) + \alpha_1 (z_1-y_1) +\alpha_2(z_2-y_2)>0\).  
+  However, since we cannot say anything about the relationship of $x$ and $z$, this cannot be proven to be true.   
+    
+#### 2.c)
+  To find demand, we maximize the utility function with respect to the budget constraint.^[Given \(\lambda=0\), all equations degenerate to 0.]   
+\(\max_{x_1, x_2 \in X} U(x_1,x_2)=\alpha_1x_1 +\alpha_2x_2\) subject to \(p_1x_1 + p_2x_2 \leq I\) and \(x_1,x_2 \geq 0\).  
+$$
+\begin{aligned}
+\mathscr{L}=\max_{x_1,x_2 \in X} \alpha_1x_1 +\alpha_2x_2 +\lambda(I-p_1x_1-p_2x_2),\ x_1,x_2 \geq 0.\\
+\\
+\frac{\partial\mathscr{L}}{\partial x_1}: \alpha_1\leq p_1\lambda, x_1 \geq 0 \\
+x_1\frac{\partial\mathscr{L}}{\partial x_1}=0 \\
+\Rightarrow \alpha_1x_1=p_1x_1\lambda \\
+\frac{\partial\mathscr{L}}{\partial x_2}: \alpha_2x_2\leq p_2\lambda, x_2 \geq 0 \\
+x_2\frac{\partial\mathscr{L}}{\partial x_2}=0 \\
+\Rightarrow \alpha_2x_2=p_2x_2\lambda \\
+\frac{\partial \mathscr{L}}{\partial \lambda}: I\geq p_1x_1+p_2x_2, \lambda \geq 0 \\
+\lambda(I-p_1x_1-p_2x_2)=0\\
+\\
+For \ \lambda>0 \\
+\lambda=\frac{\alpha_1}{p_1}\\
+\lambda=\frac{\alpha_2}{p_2}\\
+\Rightarrow \frac{p_1}{p_2}=\frac{\alpha_1}{\alpha_2}\\
+\alpha_2x_2=p_2x_2\lambda \\
+\Rightarrow \alpha_2x_2=p_2x_2\frac{\alpha_1}{p_1}\\
+I=p_1x_1+p_2x_2\\
+\Rightarrow p_2x_2=I-p_1x_1\\
+\Rightarrow \alpha_2x_2=(I-p_1x_1)\frac{\alpha_1}{p_1}\\
+\Rightarrow x_2=\frac{I-\alpha_1x_1}{\alpha_2}\\
+\\
+\Rightarrow I=p_1x_1+p_2\frac{I-x_1\alpha_1}{alpha_2}\\
+\Rightarrow I=p_1x_1+I\frac{p_2}{\alpha_2}-p_1x_1\\
+\Rightarrow I=I\frac{p_2}{\alpha_2}\\
+\Rightarrow \alpha_2=p_2\\
+\end{aligned}
+$$
+$$
+\begin{aligned}
+\alpha_2x_2=\alpha_2x_2\lambda\\
+\Rightarrow \lambda=1 \\
+\Rightarrow p_1=\alpha_1\\
+\end{aligned}
+$$
+  If it were the case that \(\alpha_1\leq \alpha_2\), the decision maker optimizes as such,
+  $$\begin{aligned}
+  I=\alpha_1x_1 \\
+  x^*_1=\frac{I}{\alpha_1}\\
+  x^*_2=0
+  \end{aligned}
+  $$
+    If it were the case that \(\alpha_2\leq \alpha_1\), the decision maker optimizes as such,
+  $$\begin{aligned}
+  I=\alpha_2x_2 \\
+  x^*_2=\frac{I}{\alpha_2} \\
+  x^*_1=0
+  \end{aligned}
+  $$
+  If \(\alpha_1=\alpha_2\), the decision maker is indifferent between the two goods and will randomize between them until the entire budget, $I$, is used.
+    
+#### 3.a)  
+Plotting our utility function would give us the following general shape,
+\begin{tikzpicture}
+\begin{axis}[
+		xlabel={$x_1$},
+		ylabel={$x_2$}
+	]
+\draw [->] (0,0) -- (10,0);
+\draw [->] (0,0) -- (0,10);
+\addplot coordinates {
+	(1,8)    (1,3)    (7,3)
+};
+\legend{$U(x)$}
+\end{axis}
+\end{tikzpicture}
+
+Then, if monotonicity was satisfied, adding another bundle $y$ such that \(x \geq  y\) implies \(x \succsim y\).
+\begin{tikzpicture}
+\begin{axis}[
+		xlabel={$x_1$},
+		ylabel={$x_2$}
+	]
+\draw [->] (0,0) -- (10,0);
+\draw [->] (0,0) -- (0,10);
+\addplot coordinates {
+	(1,8)    (1,3)    (7,3)
+};
+\addplot coordinates {
+	(.5,6)    (.5,3)    (5,3)
+};
+\legend{$U(x)$, $U(y)$}
+\end{axis}
+\end{tikzpicture}
+Clearly, at every point along the plot, \(U(x) \geq U(y)\) for any arbitrarily chosen parameters. Therefore, \(x \geq  y\) implies \(x \succsim y\) and we can say **monotonicity is satisfied**.
+Strict monotonicity would be satisfied if \(x_1 \geq y_1\) and \(x_2 \geq y_2\), with at least one having strict inequality, $>$, implied  \(x \succ y\). However, when looking at our previous graph that is clearly not the case. (At the kink, we see that $x$ is strictly greater than $y$ along the horizontal axis but, given that they are equal along the vertical axis, $U(x)=U(y)$ as long as the vertical axis input is the minimum.)  
+Therefore, this function is not strictly monotonic.
+  
+####  3.b)
+Convexity exists if \(U(x) \geq U(y)\) implies \(U(\lambda x + (1-\lambda) y) \geq U(y)\), \(\forall \lambda \in [0,1]\). 
+Suppose that \(U(x) \geq U(y)\),
+$$\Rightarrow \min\{\alpha_1x_1,\alpha_2x_2\}\geq \min\{\alpha_1y_1,\alpha_2y_2\}$$
+Then, \(U(\lambda x + (1-\lambda) y)=\min\{\lambda\alpha_1x_1+(1-\lambda)\alpha_1y_1, \lambda\alpha_2x_2+(1-\lambda)\alpha_2y_2\}\)  
+  
+Case 1: Suppose \(\min\{\lambda\alpha_1x_1+(1-\lambda)\alpha_1y_1, \lambda\alpha_2x_2+(1-\lambda)\alpha_2y_2\}=\lambda\alpha_1x_1+(1-\lambda)\alpha_1y_1\)
+$$\begin{aligned}
+\Rightarrow U(\lambda x + (1-\lambda) y)=\lambda\alpha_1x_1-\lambda\alpha_1y_1+\alpha_1y_1
+\end{aligned}$$
+If $U(y)=\alpha_1y_1$, then
+$$\lambda\alpha_1x_1-\lambda\alpha_1y_1+\alpha_1y_1 \geq \alpha_1y_1$$
+because \(\lambda\alpha_1x_1-\lambda\alpha_1y_1 >0\) due to the fact that we suppose \(U(x)\geq U(y)\). 
+$$\Rightarrow U(\lambda x + (1-\lambda) y) \geq U(y)$$
+If $U(y)=\alpha_2y_2$, then
+$$\lambda\alpha_1x_1-\lambda\alpha_1y_1+\alpha_1y_1 \geq \alpha_2y_2$$
+We know this to be true due to the following:  
+1. \(\lambda\alpha_1x_1 \geq \lambda\alpha_1y_1\) (from previous)  
+2. \(U(y)=\alpha_2y_2 \ \Rightarrow \min\{\alpha_1y_1,\alpha_2y_2\}=\alpha_2y_2 \Rightarrow \alpha_1y_1 \geq \alpha_2y_2\)
+$$\Rightarrow U(\lambda x + (1-\lambda) y) \geq U(y)$$    
+Case 2: Suppose \(\min\{\lambda\alpha_1x_1+(1-\lambda)\alpha_1y_1, \lambda\alpha_2x_2+(1-\lambda)\alpha_2y_2\}=\lambda\alpha_2x_2+(1-\lambda)\alpha_2y_2\}\)
+$$\begin{aligned}
+\Rightarrow U(\lambda x + (1-\lambda) y)=\lambda\alpha_2x_2-\lambda\alpha_2y_2+\alpha_2y_2
+\end{aligned}$$
+If $U(y)=\alpha_2y_2$, then
+$$\lambda\alpha_2x_2-\lambda\alpha_2y_2+\alpha_2y_2 \geq \alpha_2y_2$$
+because \(\lambda\alpha_2x_2-\lambda\alpha_2y_2 >0\) due to the fact that we suppose \(U(x)\geq U(y)\). 
+$$\Rightarrow U(\lambda x + (1-\lambda) y) \geq U(y)$$
+If $U(y)=\alpha_1y_1$, then
+$$\lambda\alpha_2x_2-\lambda\alpha_2y_2+\alpha_2y_2 \geq \alpha_1y_1$$
+We know this to be true due to the following:
+1. \(\lambda\alpha_2x_2 \geq \lambda\alpha_2y_2\) (from previous)
+2. \(U(y)=\alpha_1y_1 \ \Rightarrow \min\{\alpha_1y_1,\alpha_2y_2\}=\alpha_1y_1 \Rightarrow \alpha_2y_2 \geq \alpha_1y_1\)
+$$\Rightarrow U(\lambda x + (1-\lambda) y) \geq U(y)$$  
+Given that we find \(U(\lambda x + (1-\lambda) y) \geq U(y)\) to be true in all cases, we say that **convexity is satisfied**. 
+  
+Now, suppose an additional third bundle \(z=(z_1,z_2)\) such that \(U(z)\geq U(y), z\neq x\).
+Strict convexity is satisfied if \(U(x) \geq U(y)\), \(U(z)\geq U(y)\), \(x \neq z,\) implies \(U(\lambda x + (1-\lambda) z) > U(y)\), \(\forall \lambda \in (0,1)\).
+\begin{tikzpicture}
+\begin{axis}[
+		xlabel={$x_1$},
+		ylabel={$x_2$}
+	]
+\draw [->] (0,0) -- (10,0);
+\draw [->] (0,0) -- (0,10);
+\draw[fill] (1,3) circle [radius=0.05];
+\node [right] at (1,4) {$U(\lambda x + (1-\lambda) z) = U(y)$};
+\addplot coordinates {
+	(1,8)    (1,3)    (7,3)
+};
+\addplot coordinates {
+	(1,7)    (1,3)    (6,3)
+};
+\addplot coordinates {
+	(1,6)    (1,3)    (5,3)
+};
+\legend{$U(x)$, $U(z)$, $U(y)$}
+\end{axis}
+\end{tikzpicture}
+Obviously, strict convexity is not satisfied.  
+  
+#### 3.c) 
+Due to the shape of our utility function, we cannot use Kuhn Tucker conditions because it is not continuously differentiable (the graph has obvious kinks).
+  
+We solve for consumer demand as follows.
+$$U=min\{\alpha_1x_1,\alpha_2x_2\}$$ such that $$p_1x_1+p_2x_2 \leq I, x_1 \geq 0, x_2 \geq 0$$
+There are two cases, either \(min\{\alpha_1x_1,\alpha_2x_2\}=\alpha_1x_1\) or \(min\{\alpha_1x_1,\alpha_2x_2\}=\alpha_2x_2\).  
+Case 1: \(min\{\alpha_1x_1,\alpha_2x_2\}=\alpha_1x_1\)  
+$$\begin{aligned}
+\mathscr{L}=\max_{x_1,x_2}{\alpha_1x_1} + \lambda_1[I-p_1x_1-p_2x_2]+\lambda_2[\alpha_2x_2-\alpha_1x_1] \\
+\frac{\partial\mathscr{L}}{\partial x_1}: \alpha_1 \leq p_1\lambda_1+\alpha_1\lambda_2, \ x_1\geq 0, \ \alpha_1=\frac{p_1\lambda_1}{(1-\lambda_2)} \\
+\frac{\partial\mathscr{L}}{\partial x_2}: \ \alpha_2 \leq \partial_2, \ x_2\geq 0, \alpha_2=p_2 \\
+\frac{\mathscr{L}}{\partial \lambda_1}: \ I \geq \alpha_2x_2 + \alpha_1x_1, \lambda_1 \geq0, I= p_1x_1 + p_2x_2 \\
+\frac{\mathscr{L}}{\lambda_2}: \ \alpha_2x_2 \geq \alpha_1x_1, \ \lambda_2 \geq0, \alpha_2x_2 = \alpha_1x_1 \\
+\end{aligned}$$
+From these first order conditions, we get the following.
+1. \(\frac{x_1}{x_2}=\frac{\alpha_2}{\alpha_1}\)
+2. \(I=p_1x_1 + p_2x_2\)
+3. \(\alpha_2=p_2\)
+4. \(\alpha_1=p_1\frac{\lambda_1}{1-\lambda_2}\)
+$$\begin{aligned}
+I=p_1x_1 + \alpha_2x_2 \\
+\Rightarrow \frac{I-\alpha_2x_2}{p_1}=x_1 \\
+\frac{x_1}{x_2}=\frac{\alpha_2}{\alpha_1} \\
+\Rightarrow x_1=\frac{\alpha_2}{\alpha_1}x_2 \\
+\\ 
+\Rightarrow \frac{I-\alpha_2x_2}{p_1}=\frac{\alpha_2}{\alpha_1}x_2 \\
+\Rightarrow x^*_2=\frac{\alpha_1I}{(p_1+\alpha_1)\alpha_2} \\
+\\
+x_1=\frac{\alpha_2}{\alpha_1}x^*_2 \\
+\Rightarrow x_1=\frac{\alpha_2}{\alpha_1}\frac{\alpha_1I}{(p_1+\alpha_1)\alpha_2} \\
+\Rightarrow x^*_1=\frac{I}{p_1+\alpha_1}
+\end{aligned}$$
+   
+Case 2: \(min\{\alpha_1x_1,\alpha_2x_2\}=\alpha_2x_2\)  
+$$\begin{aligned}
+\mathscr{L}=\max_{x_1,x_2}{\alpha_2x_2} + \lambda_1[I-p_1x_1-p_2x_2]+\lambda_2[\alpha_1x_1-\alpha_2x_2] \\
+\frac{\partial\mathscr{L}}{\partial x_2}: \alpha_2 \leq p_2\lambda_1+\alpha_2\lambda_2, \ x_2\geq 0, \ \alpha_2=\frac{p_2\lambda_1}{(1-\lambda_2)} \\
+\frac{\partial\mathscr{L}}{\partial x_1}: \ \alpha_1 \leq \partial_2, \ x_1\geq 0, \alpha_1=p_1 \\
+\frac{\mathscr{L}}{\partial \lambda_1}: \ I \geq \alpha_2x_2 + \alpha_1x_1, \lambda_1 \geq0, I= p_1x_1 + p_2x_2 \\
+\frac{\mathscr{L}}{\lambda_2}: \ \alpha_2x_2 \geq \alpha_1x_1, \ \lambda_2 \geq0, \alpha_2x_2 = \alpha_1x_1 \\
+\end{aligned}$$
+From these first order conditions, we get the following.
+1. \(\frac{x_1}{x_2}=\frac{\alpha_2}{\alpha_1}\)
+2. \(I=p_1x_2 + p_2x_2\)
+3. \(\alpha_1=p_1\)
+4. \(\alpha_2=p_2\frac{\lambda_1}{1-\lambda_2}\)
+$$\begin{aligned}
+I=\alpha_1x_1 + p_2x_2 \\
+\Rightarrow \frac{I-\alpha_1x_1}{p_2}=x_2 \\
+\frac{x_1}{x_2}=\frac{\alpha_2}{\alpha_1} \\
+\Rightarrow x_2=\frac{\alpha_1}{\alpha_2}x_1 \\
+\\ 
+\Rightarrow \frac{I-\alpha_1x_1}{p_2}=\frac{\alpha_1}{\alpha_2}x_1 \\
+\Rightarrow x^*_1=\frac{\alpha_2I}{(p_2+\alpha_2)\alpha_1} \\
+\\
+x_2=\frac{\alpha_1}{\alpha_2}x^*_1 \\
+\Rightarrow x_2=\frac{\alpha_1}{\alpha_2}\frac{\alpha_2I}{(p_2+\alpha_2)\alpha_1} \\
+\Rightarrow x^*_2=\frac{I}{p_2+\alpha_2}
+\end{aligned}$$ 
+  
+## 4.6
+An infinitely lived consumer owns 1 unit of cake that she consumes over her lifetime. The cake is perfectly storable and she will receive no more than she has now. Consumption of cake in period $t$ is denoted $x_t$, and her lifetime utility function is given by
+\(U(x_0,x_1,...)=\sum_{t=0}^\infty \delta^t \log x_t\),
+where \(0< \delta <1\).
+  Calculate her optimal level of cake consumption in each period.
+  (Note: The statement of the Kuhn-Tucker theorem in class was for finite dimensional
+problems. But it also applies to this problem, even though there are infinitely many choice variables.)  
+  
+Given the utility function \(U(x_0,x_1,...)=\sum_{t=0}^\infty \delta^t \log x_t\),
+where \(0< \delta <1\), we divide by some constant to get \(\sum_t\delta^t=1\).
+Therefore, our function is strictly concave and the marginal utility of $x_t$ is \(\frac{\delta^t}{x_t}\). 
+Therefore, given \(\frac{\delta^t}{x_t} \rightarrow \infty\) as \(x_t \rightarrow 0\), we know that any solution will be interior and we solve as follows.
+$$\begin{aligned}
+U(x_0,x_1,...)=\sum_{t=0}^\infty \delta^t \log x_t, \ 0< \delta <1,\  \sum_{t=0}^\infty x_t \leq 1 \\
+\mathscr{L} = \sum_{t=0}^\infty\max_{x_t=x_0,...,x_\infty}\delta^t\log x_t +\lambda(1-\sum_{t=0}^\infty x_t) \\
+\mathscr{L} = \sum_{t=0}^\infty\max_{x_t=x_0,...,x_\infty}\delta^t\log x_t +\lambda-\lambda x_0-\lambda x_1-\lambda\sum_{t=2}^\infty x_t) \\
+\frac{\partial\mathscr{L}}{\partial x_0} : \frac{\delta^0}{x_0}=\lambda \\
+\frac{\partial\mathscr{L}}{\partial x_1} : \frac{\delta^1}{x_1}=\lambda \\
+.\\
+.\\
+.\\
+\frac{\partial\mathscr{L}}{\partial x_1} : \frac{\delta^t}{x_t}=\lambda \\
+\end{aligned}$$
+And the constraint \(1=\sum_{t=0}^\infty x_t\).
+  
+The decision maker's optimal level of cake consumption is \(x^*_t\) such that the two constraints are met,
+\(\frac{\delta^t}{\lambda}=x^*_t\) and \(1=\sum_{t=0}^\infty x_t\).
+  
+## 4.7
+A consumer consumes 2 commodities, wheat and candy. His utility from
+consuming w units of wheat and c units of candy is $3 \log w + 2 \log c$.
+He faces 4 constraints:  
+• Consumption of each good must be nonnegative.  
+• The consumer has \(\$10\) to spend, and the price of each good is \(\$1\).  
+• The consumer is on a diet, and cannot consume more than 1550 calories. A unit of wheat has 150 calories, and a unit of candy has 200 calories.  
+Follow the following steps to solve this consumer’s problem:
+  
+#### 1. 
+Derive the Kuhn-Tucker optimality conditions for this consumer’s problem.
+The Kuhn Tucker optimality conditions, taken from Proposition 4.1 in the notes, are  
+\(\frac{\partial U}{\partial x_j}(x^*)\leq \lambda p_j\)  
+\(x^*_j(\frac{\partial U}{\partial x_j}(x^*) - \lambda p_j)=0\)  
+\(px^*=I\)  
+So, for this problem, the Kuhn Tucker optimality conditions are that \(w^*, c^*\) solve the consumer's problem given that there is \(\lambda_1, \lambda_2 >0\) such that,  
+$$\begin{aligned}
+\frac{\partial U}{\partial w}(w^*,c^*) \leq 1\lambda_1 + 150\lambda_2 \\
+\frac{\partial U}{\partial c}(w^*,c^*) \leq 1\lambda_1 + 200\lambda_2\\
+w^*(\frac{\partial U}{\partial w}(w^*,c^*) - 1\lambda_1 -150\lambda_2)=0 \\
+c^*(\frac{\partial U}{\partial w}(w^*,c^*) - 1\lambda_1-200\lambda_2)=0 \\
+1w+1c=10 \\
+150w+200c=1550 \\
+\end{aligned}$$
+
+#### 2. 
+Are the conditions derived above sufficient for this problem? Why or why not?  
+These conditions are sufficient to use the Kuhn-Tucker Theorem to solve this problem because the necessary assumptions are met (keeping in mind that the set $X$ for this problem is $\mathbb R_+$, given that $w,c \geq 0$):
+  
+1. Preferences are continuous. \checked   
+$U(w,c)=3\log w+2\log c$ is continuous for all $w,c \geq 0$   
+2. Preferences are locally non-satiated. \checked   
+There exists $y \in X$ for any $x \in X, \epsilon >0$, that $||x-y||<\epsilon$ that \(y \succ x\).   
+3. Preferences are strictly convex. \checked   
+\(U(x)\geq U(x')\) implies \(U(\lambda x+(1-\lambda)x')>U(x')\)   
+4. $U$ is continuously differentiable. \checked   
+$\frac{\partial U(x)}{\partial x}$ exists for all $x \in X$   
+5. For all \(x \in \mathbb R^k_+\), we have **D**\(U(x)>0\). \checked   
+Meaning that we are experiencing demand for a normal good such that utility will increase with higher levels of consumption.     
+  
+#### 3. 
+Explain why the conditions from part (1) imply consumption of both commodities must be positive.  
+To start, we assume that $w,c\geq 0$, so we will show that $w,c \neq 0$.  
+From part (1), we have the following,
+$$\begin{aligned}
+\frac{3}{w^*}=\lambda_1+150\lambda_2 \\
+\frac{2}{c^*}=\lambda_1+200\lambda_2 \\
+w^*(\frac{3}{w^*}-\lambda_1-150\lambda_2)=0 \\
+c^*(\frac{2}{c^*}-\lambda_1-200\lambda_2)=0 \\
+w^* + c^* = 10 \\
+150w^* + 200c^* = 1550 \\
+\end{aligned}$$
+Suppose $w=0$, then:
+$$\begin{aligned}
+c^* = 10 \\
+\frac{2}{10}=\lambda_1+200\lambda_2 \\
+10(\frac{2}{10}-\lambda_1-200\lambda_2)=0 \\
+200(10) = 1550 \\
+\Rightarrow 2000 = 1550 \leftarrow contradiction
+\end{aligned}$$
+So, obviously, we find that $w^*\neq0$.  
+Now, suppose $c^* =0$, then:
+$$\begin{aligned}
+w^*=10 \\
+\frac{3}{10}=\lambda_1+150\lambda_2 \\
+10(\frac{3}{10}-\lambda_1-150\lambda_2)=0 \\
+150(10)=1550 \\
+1500 = 1550 \leftarrow contradiction
+\end{aligned}$$
+
+#### 4. 
+Explain why the conditions from part (1) imply that at least one of the budget and calorie constraint must bind.    
+If neither constraint binds, meaning if \(w^* + c^* < 10\) and \(150w^* + 200c^* < 1550\) there would be some \(\epsilon >0\) such that some input, $w$ or $c$, could be increased and the new bundle $U(w,c)+\epsilon \succ U(w,c)$. Meaning, local nonsatiation implies that at least one of the constraints must bind.    
+  
+#### 5. 
+Look for a solution the the conditions from part (1) in which only the budget constraint binds.   
+A solution in which only the budget constraint binds implies
+$$\begin{aligned}
+\lambda_2=0 \\
+\frac{3}{w^*}=\lambda_1\\
+\frac{2}{c^*}=\lambda_1\\
+w^*(\frac{3}{w^*}-\lambda_1)=0 \\
+c^*(\frac{2}{c^*}-\lambda_1)=0 \\
+w^* + c^* = 10 \\
+\Rightarrow 10=\frac{3}{2}c^*+c^* \\
+\Rightarrow 10= \frac{3c^*+2c^*}{2} \\
+\Rightarrow 20=5c^* \\
+c^* = 4
+w^* = 6
+\end{aligned}$$
+  
+#### 6. 
+Look for a solution the the conditions from part (1) in which only the calorie constraint binds.
+$$\begin{aligned}
+\lambda_1=0 \\
+\frac{3}{w^*}=150\lambda_2\\
+\frac{2}{c^*}=200\lambda_2\\
+w^*(\frac{3}{w^*}-150\lambda_2)=0 \\
+c^*(\frac{2}{c^*}-200\lambda_2)=0 \\
+150w^* + 200c^* = 1550 \\
+\Rightarrow \frac{3}{150w^*}=\lambda_2=\frac{2}{200c^*}\\
+\Rightarrow 2c^*=w^* \\
+\Rightarrow 150w^* + 100w^* = 1550 \\
+\Rightarrow w^* = 6.2 \\
+\Rightarrow c^* = 3.1 \\
+\end{aligned}$$
+   
+#### 7. 
+Look for a solution the the conditions from part (1) in which both constraints bind.  
+$$\begin{aligned}
+w^*=10-c^*\\
+w^*=\frac{1550-200c^*}{150}\\
+\Rightarrow 10-c^*=\frac{1550-200c^*}{150}\\
+\Rightarrow c^*=1\\
+\Rightarrow w^*=9
+\end{aligned}$$
+   
+## 4.9
+In a three good world, a consumer has demands given by Table 4.3.3. Are these choices consistent with the maximization of a complete, transitive, and locally non-satiated preference relation?
+```{r table6, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+tabl <- "
+| bundle | p1 | p2 | p3 | Y | x1 | x2 | x3 |
+|--------|:--:|:--:|:--:|:-:|:--:|:--:|:---|
+|   a    | 1  |  1 |  1 | 20| 10 |  5 |  5 | 
+|   b    | 3  |  1 |  1 | 20|  3 |  5 |  6 |
+|   c    | 1  |  2 |  2 | 25| 13 |  3 |  3 |
+|   d    | 1  |  1 |  2 | 20| 15 |  3 |  1 |
+"
+cat(tabl)
+```
+We can show that these demands are not consistent with the maximization of a complete, transitive, and locally non-satiated preference relation by comparing bundles $c$ and $d$.
+$$\begin{aligned}
+p_c \times x_d = 23 < Y_c \\
+\Rightarrow x_c \succ x_d \\
+p_d \times x_c = 22 < Y-d \\ 
+\Rightarrow x_d \succ x_c \\
+\Rightarrow x_c \succ x_d \succ x_c \\
+\end{aligned}$$
+This contradiction shows that these demands are inconsistent.

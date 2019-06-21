@@ -1,0 +1,133 @@
+---
+title: "PPHA 44100 Problem Set 3"
+author: "Morgan Conklin Spangler"
+date: "10/17/2018"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Exercise 3.6  
+Consider an expected utility maximizer with quadratic Bernoulli utility for wealth: $u(w)=a+bw+cw^2$
+  
+1. What restrictions (if any) must be placed on the parameters $a$,$b$, and $c$ for this decision maker to be risk averse?    
+By saying the decision maker is risk averse, I am assuming weak risk aversion. A decision maker who is risk averse has a non-negative risk premium, $R(p)$. Therefore, it must be the case that, 
+  
+\(\frac{u{''}(\mathbb {E}(p))}{u{'}(\mathbb {E}(p))} \times \frac{var(p)}{2} \geq 0\) 
+
+Given that \(var (p)\geq 0\), we can simplify this.
+  
+\(\frac{u{''}E(p))}{u^{'} E(p))} \geq 0\)
+  
+\(u{'}(w)=b+2cw\)
+  
+\(u{''}(w)=2c\)
+  
+\(\frac{u{''}\mathbb{E}(p))}{u{'}\mathbb{E}(p)) }=\frac{2c}{b+2cw} \leq 0\)
+  
+Therefore, the decision maker is strictly risk averse if \(c \geq 0\) and \(\frac{b}{2w} \geq c\), or \(c 
+ geq 0\) and \(\frac{b}{2w} \geq c\).
+
+  
+2. Over what domain of wealth can this Bernoulli utility represent the preferences of a decision maker who prefers more to less?  
+A decision maker prefers more to less if for \(x,y \in w, x>y \Rightarrow u(x)>u(y)\).
+  
+\(a+bx+cx^2>a+by+cy^2\)
+  
+\(bx+cx^2>by+cy^2\)
+  
+This restriction will hold for any \(w \subset R_+^n\), a general assumption commonly made for wealth.
+  
+3. Show that if this function satisfies the restrictions from parts (a) and (b), then the function cannot represent the preferences of a decision maker with decreasing absolute risk aversion.  
+  
+By combining the parameter restrictions from parts (1) and (2), we find the following.
+The coefficient of absolute risk aversion is \(\lambda (w)\), outlined below.
+  
+\(\lambda (w)= - \frac{u{''}(w)}{u{'}(w)} = - \frac{2c}{(b+2cw)}\)
+  
+Obviously, given that \(\frac{2c}{b+2cw} \geq 0\) from part (1), it must be the case that \(\lambda (w) \geq 0\). Therefore, it cannot be the case that \(\lambda (w)<0\).
+
+    
+## Exercise 3.9
+  
+1. Show that, if \(F\) first-order stochastically dominates \(G\), then the mean of \(x\) under \(F\) is at least as large of the mean of \(x\) under \(G\). That is, that \(\int xf(x)dx \geq \int xg(x)dx\). 
+
+If $F$ first-order stochastically dominates $G$, then \(\int u(x)f(x)dx \geq \int u(x)g(x)dx\).
+  
+\(\int u(x)f(x)dx \geq \int u(x)g(x)dx\)
+  
+We want to show that \(\int u(x)f(x)dx \geq \int u(x)g(x)dx \Longrightarrow xf(x)dx \geq \int xg(x)dx.\) 
+  
+For some \(supp(x) \in [0,\bar{x}]\)], we use integration by parts to solve the stochastic dominance equations:
+  
+\(\int_0^{\bar x}u(x)f(x)dx=u(0)+\int_0^{\bar x}u{'}(x)[1-F(x)]dx\)
+  
+\(\int_0^{\bar x}u(x)g(x)dx=u(0)+\int_0^{\bar x}u{'}(x)[1-G(x)]dx\)
+  
+Then, we know that $F$ stochastically dominates $G$, therefore,
+  
+\(\int_0^{\bar x}u{'}(x)[1-F(x)]dx \geq \int_0^{\bar x}u{'}(x)[1-G(x)]dx\)
+  
+\(\int_0^{\bar x}[1-F(x)]dx \geq \int_0^{\bar x}[1-G(x)]dx\)
+  
+
+Now, to compare means, \(\int xf(x)dx \geq \int xg(x)dx\)
+  
+We use integration by parts to solve \(\int xf(x)dx\) and \(\int xg(x)dx\)
+  
+\(U=x,V=-[1-F(x)]\)
+  
+\(\int_0^{\bar x}xf(x)dx=-x[1-F(x)]+\int_0^{\bar x}[1-F(x)]dx\)
+  
+Similarly, 
+\(\int_0^{\bar x}xg(x)dx=-x[1-G(x)]+\int_0^{\bar x}[1-G(x)]dx\)
+  
+Then, if it is not the case that \(\int xf(x)dx \geq \int xg(x)dx\), it must be that \(\int xf(x)dx< \int xg(x)dx\). 
+To see if this is possible, we use continue using the equations above.
+  
+\(-x[1-F(x)]+\int [1-F(x)]dx<-x[1-G(x)]+\int [1-G(x)]dx\)
+  
+\(x+xF(x)+\int [1-F(x)]dx<x+xG(x)+\int [1-G(x)]dx\)
+  
+\(xF(x)+ \int [1-F(x)]dx < xG(x) + \int [1-G(x)]dx\)
+  
+Therefore, given that we know \(F(x) \leq G(x)\) and \(x \geq 0\), we can rewrite this to be
+\(\int [1-F(x)]dx < \int[1-G(x)]dx\).
+  
+However, we have shown that by stochastic dominance, it must be that 
+\(\int_0^{\bar x}  [1-F(x)]dx \geq \int_0^{\bar x}[1-G(x)]dx\).
+  
+Therefore, it cannot not be the case that \(\int xf(x)dx< \int xg(x)dx\). 
+
+So, if \(\int xf(x)dx< \int xg(x)dx\), it would necessarily be the case that the mean of $x$ under $F$ is at least as large of the mean of $x$ under $G$.
+
+  
+2. Give an example where \(\int xf(x)dx > \int xg(x)dx\) but $F$ does not first-order stochastically dominate \(G\).   
+
+We want to show an example where \(\int xf(x)dx > \int xg(x)dx\) but \(\int u(x)f(x)dx \leq \int u(x)g(x)dx\).
+  
+Assume $x=[1,10]$ and $u(x)=-x$. For some lotteries $F$ and $G$, assume that
+\(\int xf(x)dx> \int xg(x)dx\).
+  
+Then, to look at whether we have first-order stochastic dominance, we compare \(\int u(x)f(x)dx and \int u(x)g(x)dx\).
+  
+\(\int u(x)f(x)dx=- \int xf(x)dx\)
+  
+\(\int u(x)g(x)dx=-\int xg(x)dx\)
+  
+Obviously, when \(\int xf(x)dx > \int xg(x)dx\), it is necessarily the fact that \(-\int xf(x)dx<-\int xg(x)dx\). Therefore, when $u(x)=-x$, it is not the case that \(\int xf(x)dx> \int xg(x)dx\). Therefore, we do not see first-order stochastic dominance.
+  
+    
+## Exercise 4.2 
+  
+Suppose $u$ is a utility representation of preferences \(\succsim\). Show that, if there is a strictly increasing function \(f\) such that\(f \circ u(x) = \sum_{j=1} ^m v_j (x)\) where each \(v_j\) is concave, then preferences are convex. 
+  
+Given that each \(v_j\) is concave, and a sum of concave functions maintains concavity, we can say that $u(x)$ is a concave function. Furthermore, given that $u(x)$ is concave, we know that \(f \circ u(x)\)is quasiconcave. Given that quasiconcavity implies convex preferences, we can say that the preferences in this situation are convex.
+   
+## Exercise 4.3  
+  
+Consider the preference relations on the interval \([0,1]\) that are continuous. What can you say about those preferences which are also strictly convex?
+  
+When preferences are continuous and strictly convex, we know that any maximization of an objective function will produce a unique solution. This is due to the fact that there are no “flat” segments of a strictly convex curve.

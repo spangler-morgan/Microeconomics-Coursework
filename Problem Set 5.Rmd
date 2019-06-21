@@ -1,0 +1,132 @@
+---
+title: "Problem Set 5"
+author: "Morgan Conklin Spangler"
+date: "3/6/2019"
+output: pdf_document
+header-includes:
+  - \usepackage{setspace}\doublespacing
+  - \usepackage{ amssymb }
+  - \usepackage{amsmath}
+  - \usepackage{tikz}
+  - \usepackage{pgfplots}
+  - \usepackage{float}
+  - \floatplacement{figure}{H}
+  - \usepackage{dsfont}
+  - \usepackage{ mathrsfs }
+  - \usepackage{ wasysym }
+  - \usepackage{mathtools}
+  - \usepackage{tcolorbox}
+  - \usepackage{tikz}
+  - \usepackage{pgfplots}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+  1. Consider a specific example of the adverse selection model from lecture:
+  
+      * Firms are identical, with constant returns to scale technology, and price of output equal to 1
+      * Productivity by type is $\theta$, which is distributed uniformly on the interval $[0,v]$
+      * Let $r(\theta)=\alpha \theta$, where $\alpha < 1$
+      
+      a) What is the pareto efficient allocation of workers in this case?\newline Assumming we have $N$ workers broken into the number employed, $n_e$, and the number unemployed, $n_u$ such that $n_e+n_u=N$. I assume workers make a wage that is some function $w(\theta)$ and have reservation wages equal to $r(\theta)$. We know that workers will choose to work if it increases their utility, so if $w(\theta)\geq r(\theta)$ $$\Rightarrow \{w(\theta):r(\theta)\leq w(\theta)\} =\{w(\theta):\alpha\theta\leq w(\theta)\}$$ \begin{tcolorbox}So the pareto efficient allocation of workers are some $n_e,n_u$ such that we maximize $n_ew(\theta)+n_ur(\theta)$ $$\Rightarrow \max_{n_e} n_e w(\theta)+(N-n_e)\alpha\theta$$ Therefore, the workers will solve for\newline $n_e=\begin{cases} N & if \ \ w(\theta)>\alpha\theta \\ n\in[0,N] & if \ \ w(\theta)=\alpha\theta \\ 0 & if \ \ w(\theta)<\alpha\theta \end{cases}$,\newline which will be the pareto efficient allocation of employed workers.\end{tcolorbox}
+      b) Solve for the function ${\bf{E}}[\theta|r(\theta)\leq w]$\newline Define the demand for labor as $\mu=$ expected productivity\newline $z(w)=\begin{cases} 0 & if \ \ \mu<w \\ [0,\infty] & if \ \ \mu=w \\ \infty & if \mu>w\end{cases}=\begin{cases} 0 & if \ \ {\bf{E}}[\theta]<w \\ [0,\infty] & if \ \ {\bf{E}}[\theta]=w \\ \infty & if {\bf{E}}[\theta]>w\end{cases}$.\newline Then, make the assumption that, if wages are equal to the reservation wage, citizens choose to work. \begin{tcolorbox}With this, there are two possible market equilibrium outcomes, everyone works, $n_e=N$, or no one works, $n_e=0$. Then, at the market equilibrium, $w={\bf{E}}[\theta]$, and $\begin{cases} n_e\in(0,N] & if \ \  {\bf{E}}[\theta]\geq \alpha\theta \\ n_e=0 & if \ \  {\bf{E}}[\theta]< \alpha\theta \end{cases}$.\newline The function will be aligned with the graph below,
+\begin{tikzpicture}
+\path[draw] (0,0)--(5,0) node[right] {$w$};
+\path[draw] (0,0)--(0,5) node[above] {${\bf{E}}[\theta|w]$};
+\path[draw, color=black, dash pattern=on 1pt off 3pt on 3pt off 3pt] (0,0) -- (5,5) node[above] {$45^o$ line};
+\end{tikzpicture}\end{tcolorbox}
+      c) For what values of $\alpha$ does a competitive market equilibrium exist with positive employment? Draw a graph demonstrating this competitive market equilibrium in $(w,\theta)$ space.\newline A market with some level of positive employment is one in which $n_e>0$ $\Rightarrow n_e\in(0,N]\Rightarrow {\bf{E}}[\theta]\geq \alpha\theta$. Given we are assuming $\theta$ is uniformly distributed between 0 and $v$, ${\bf{E}}[\theta]=\frac{v}{2}$. $\Rightarrow n_e\in(0,N]\Rightarrow \frac{v}{2\theta}\geq \alpha$. \begin{tcolorbox}So, a market with positive levels of employment exists for $\frac{v}{2\theta}\geq \alpha>0$.
+\begin{tikzpicture}
+\path[draw] (0,0)--(5,0) node[right] {$w$};
+\path[draw] (0,0)--(0,5) node[above] {${\bf{E}}[\theta|w]$};
+\path[draw, color=black, dash pattern=on 1pt off 3pt on 3pt off 3pt] (0,0) -- (5,5) node[above] {$45^o$ line};
+\end{tikzpicture}\end{tcolorbox}
+      d) For what values of $\alpha$ does the entire market unravel? Draw a graph demonstrating this competitive market equilibrium.\newline \begin{tcolorbox}Assuming "entire market unravels" means no one is employed and, thus, no products are made, the level of $\alpha$ in which this occurs is $\alpha$ such that $\frac{v}{2\theta}<\alpha$.
+\begin{tikzpicture}
+\path[draw] (0,0)--(5,0) node[right] {$w$};
+\path[draw] (0,0)--(0,5) node[above] {${\bf{E}}[\theta|w]$};
+\path[draw, color=black, dash pattern=on 1pt off 3pt on 3pt off 3pt] (0,0) -- (5,5) node[above] {$45^o$ line};
+\end{tikzpicture}\newline When $\alpha$ is too large such that the entire curve sits above the $45^o$ line, no one wil choose to work and the entire market to unravel.\end{tcolorbox}
+      
+  2. Consider a specific example of the adverse selection model from lecture: firms are identical, with constant returns to scale technology, and price of output equal to 1. There are three types of workers, a low type, middle type, and high type. The productivity of each type is $\theta_L<\theta_M<\theta_H$, respectively. Likewise, the population shares of each type are $\pi_L,\pi_M,$ and $\pi_H$. Each type has a reservation wage of $r(\theta)=0$, $\forall \theta$. Workers are able to attain costly education, $e\geq 0$, which is characterized by an education cost function: $c(e,\theta)$. Assume that $c(0,\theta)=0,c_e>0,c_{ee}>0,c_\theta<0,c_{e\theta}<0$. Assume that education has no direct effect on productivity. Utility is of the following form $$u(w,e;\theta)=w-c(e,\theta).$$ We will employ a Perfect Bayesian equilibrium concept where:
+  
+      * The worker's strategy is optimal given the firm's strategy
+      * The belief function $\mu(\theta_t;e)=Pr(\theta=\theta_t|e)$ is derived from the worker's strategy according to Bayes' Rule where possible
+      * The firms' wage offers following each choice $e$ constitute a Nash equilibrium of the simultaneous-move wage offer game in which the probability of type $\theta$ is $\mu(\theta;e)$.
+      
+      a) What will be the wage offers to each type in a separating equilibrium?\newline Given that this is a separating equilibrium, the high type will choose some level of education $e_H$, the medium type will choose another level of education $e_M$, and the low type will choose a third level of education $e_L$, all with probability 1 and such that $e_H\neq e_M \neq e_L$. Then, upon seeing these distinct levels of education, the firm will offer three distinct levels of wages $w_H, w_M, w_L$ to each type (high, middle, and low, respectively). \begin{tcolorbox}Firms are in perfect competition, so the wages offered will equal the marginal productivity of the worker (MC=MB), thus the wages will be $w_\theta =\begin{cases} w_H=\theta_H \\ w_M=\theta_M \\ w_L=\theta_L\end{cases}$.\end{tcolorbox}
+      b) Prove that the education level of the lowest type will be zero in any separating equilibrium.\newline \begin{tcolorbox}The low type will always choose to maximize their utility, $\max_{e_L} w_L-c(e_L,\theta_L)$. Given education is costly, this is clearly maximized at $e_L=0$. Thus, it need only be that $w_{\theta'}-c(e_{\theta'},\theta_L)<w_L$ for the low type to choose $e_L=0$ in the separating equilibrium. By the necessary IC constraints to satisfy the separating equilibrium, each consumer type must prefer their own targeted bundle. Thus, since the targeted bundle for the low type is $w_L$ and $e_L$, it must be that $w_{\theta'}-c(e_{\theta'},\theta_L)<w_L-c(e_L,\theta_L)$ for $\theta'\in\{\theta_H,\theta_M\}$. Additionally, we already know that $w_L-c(e_L,\theta_L)$ is maximized at $e_L=0$. Therefore, it is the case that the low type will choose $e_L=0$.\end{tcolorbox}
+      c) Draw a graph in $(e,w)$ space illustrating a separating equilibrium with the minimal level of education for each type among all separating equilibria. Include the wage, education bundle for each type, the indifference curves for each type associated with the equilibrium bundle and the equilibrium wage schedule.
+\begin{tcolorbox}
+\begin{tikzpicture}
+\path[draw] (0,0)--(10,0);
+\path[draw] (0,0)--(0,10);
+\path[draw, color=black, dash pattern=on 1pt off 3pt on 3pt off 3pt] (0,0) -- (9,9) node[above] {$45^o$ line};
+\end{tikzpicture}\end{tcolorbox}
+      d) Explain why this separating equilibrium Pareto dominates any other separating equilibria.\newline In any separating equilibrium, it must be that $e_H\neq e_M\neq e_L$. We have already proven that $e_L=0$, thus it must be that $e_H\neq e_M, \{e_H,e_M\}>0$. Then, a market equilibrium will exist such that firms will choose to employ individuals and those individuals will choose to work for $w\in [r(\theta),\theta]$, where $r(\theta)$ is the reservation wage for a type $\theta$. We know that the upper bound on wages is $\theta$ because that is the zero profit wage. Therefore, for each type, the utility function is $u(w,e;\theta)=\begin{cases}w_H-c(e_H,\theta_H) & for \ \ \theta=\theta_H \\ w_M-c(e_M,\theta_M) & for \ \ \theta=\theta_M \\ w_L-c(e_L,\theta_L) & for \ \ \theta=\theta_L\end{cases}=\begin{cases}w_H-c(e_H,\theta_H) & for \ \ \theta=\theta_H \\ w_M-c(e_M,\theta_M) & for \ \ \theta=\theta_M \\ w_L & for \ \ \theta=\theta_L\end{cases}$. \begin{tcolorbox}The perfectly competitive equilibrium such that $w\Rightarrow w_\theta=\theta$ pareto dominates any other equilibrium $w'\Rightarrow w_\theta<\theta$ because $\sum_\theta u(w,e;\theta)>\sum_\theta u(w',e;\theta)$, given that utility is increasing in wages and $w'<w$.\end{tcolorbox}
+      e) Now draw a graph in $(e,w)$ space illustrating a separating equilibrium with the maximum level of education for each type among all separating equilibria. Include the wage, education bundle for each type, the indifference curves for each type associated with the equilibrium bundle and the equilibrium wage schedule.
+\begin{tcolorbox}
+\begin{tikzpicture}
+\path[draw] (0,0)--(10,0);
+\path[draw] (0,0)--(0,10);
+\path[draw, color=black, dash pattern=on 1pt off 3pt on 3pt off 3pt] (0,0) -- (9,9) node[above] {$45^o$ line};
+\end{tikzpicture}\end{tcolorbox}
+      f) Define $\bar{e}_H(e_M,e_L)$ as the highest education level possible in a separating equilibrium for the highest type, conditional on the education levels of the two lower types. Likewise, define $\underline{e}_H(e_M,e_L)$ as the lowest education level possible in a separating equilibrium for the highest type, conditional on the education levels of the two lower types. Explain why the upper and lower bounds are increasing functions of $e_M$ and not a function of $e_L$.\begin{tcolorbox} Given that we have proven that $e_L=0$, as the lowest type would not have any incentive to invest in education in a separating equilibrium, it is obvious that this would not be a parameter in the highest type's education level. Also, we know that the education level of the highest type will be increasing with the education level of the middle type because, as the middle type increases their chosen level of education, the high type will as well to continuously differentiate themselves as a high type.\end{tcolorbox}
+      g) Using figures similar to the ones above, illustrate a case where banning education is a Pareto improvement in this three type model. Explain what drives the Pareto improvement.\begin{tcolorbox}If we ban education such that everyone's utility weakly increases, thus each individual is made weakly better off while no one is made worse off, the society will experience a Pareto improvement. What drives this is the fact that education is costly without being productive. This makes any expense spent on education essentially a waste and, by not having this ability to differentiate, the possibility curve for the market can be moved and allocations made in a way that everyone is made better off.
+\begin{tikzpicture}
+\path[draw] (0,0)--(10,0);
+\path[draw] (0,0)--(0,10);
+\path[draw, color=black, dash pattern=on 1pt off 3pt on 3pt off 3pt] (0,0) -- (9,9) node[above] {$45^o$ line};
+\end{tikzpicture}\newline Clearly, from the graph, we see that everyone's indifference curves move up as a result of education being banned and everyone receiving a wage equal to the expected level of productivity. Given everyone is shifting to a preferred indifference curve, everyone is made at least weakly better off and no one is made worse off.\end{tcolorbox}
+      h) Now draw a figure where banning education makes the lowest and middle types better off, but makes the highest type worse off.
+\begin{tcolorbox}
+\begin{tikzpicture}
+\path[draw] (0,0)--(10,0);
+\path[draw] (0,0)--(0,10);
+\path[draw, color=black, dash pattern=on 1pt off 3pt on 3pt off 3pt] (0,0) -- (9,9) node[above] {$45^o$ line};
+\end{tikzpicture}\newline Clearly, from the graph, we see that with this distribution of types the low and middle types have shifted to a better indifference curve, but now the high type's indifference curve has shifted downward. Thus, this is not a Pareto efficient move as the high type is made worse off.\end{tcolorbox}
+      
+  3. Consider the two type optimal tax problem from lecture:
+  
+      * Individuals have utility over consumption, $c$ and earnings $z$, $u_i(c,z)$
+      * Preferences are quasiconcave
+      * $\partial u_i/\partial c>0, \partial^2u_i/\partial c^2<0, \partial u_i/\partial z<0, \partial^2 u_i/\partial z^2>0$
+      * We have a Spence-Mirrlees condition: $$MRS_1(c,z)=\frac{-\partial u_1(c,z)/\partial z}{\partial u_1(c,z)/\partial c}>\frac{\partial u_2(c,z)/\partial z}{\partial u_2(c,z)/\partial c}=MRS_2(c,z), \ \ \forall (c,z)$$
+      * Each type occurs in the population with probability $\pi_i$
+      * The social planner collects tax revenues from each individual, $T_i$
+      * Tax revenues per person must satisfy a government revenue minimum: $\bar{R}$
+      * Individuals maximize utility over $c$ and $z$, subject to the budget constraint: $c=z-T(z)$
+      
+      a) Write down the social planner's problem, in terms of choice variables $\{z_i,T_i\}_{i=1}^2$. Identify the various constraints on the maximization problem.\newline Individuals solve the maximization problem: $$\max_{(c_1,z_i)} u(c_i,z_i)$$ subject to $c_i=z_i-T(z_i)$. Then, first order conditions are: $$\frac{\partial u_i(c_i,z_i)}{\partial c_i}=\lambda, \frac{\partial u_i(c_i,z_i)}{\partial z_i}=\lambda (\frac{d T(z_i)}{d z_i}-1) \Rightarrow MRS_i(c_i,z_i)=\frac{d T}{d z_i}-1$$
+      \begin{tcolorbox}The social planner solves the maximal societal welfare, $$\max_{z_i,T_i} \sum_{i=1}^2\pi_i u_i(c_i,z_i)$$ subject to $c_i=z_i-T(z_i)$, $\sum_{i=1}^2\pi_iT_i\geq \bar{R}$ $\forall i\in \{1,2\}$, $u_1(z_1-T(z_1),z_1)\geq u_1(z_2-T_(z_2),z_2)$, $u_2(z_2-T(z_2),z_2)\geq u_2(z_1-T_(z_1),z_1)$. $$\max_{\{z_i,T_i\}}\pi_1u_1(z_1-T(z_1),z_1)+\pi_2u_2(z_2-T(z_2),z_2) \ \ \ s.t. \ \ \ \pi_1T_1+\pi_2T_2=\bar{R},$$ $$u_1(z_1-T(z_1),z_1)\geq u_1(z_2-T_(z_2),z_2), \ \ \ u_2(z_2-T(z_2),z_2)\geq u_2(z_1-T_(z_1),z_1)$$ Thus, we have that the social planner is maximizing everyone's aggregated utility subject to the government's budget constraint (as the individual's budget constraint is already taken into account in the simplification) as well as the incentive compatibility constraints.\end{tcolorbox}
+      b) Solve the social planner's problem from Part (3a) ignoring the incentive compatibility constraints. Show that the first-order constraints imply lump-sum taxation (i.e. zero marginal tax rates).\begin{tcolorbox} From the problem in (3a), we have $$\Rightarrow \mathscr{L}=\pi_1u_1(z_1-T(z_1),z_1)+\pi_2u_2(z_2-T(z_2),z_2)+\lambda[\pi_1T_1+\pi_2T_2-\bar{R}]$$ subject to the incentive compatibility constraints $$u_1(z_1-T(z_1),z_1)\geq u_1(z_2-T_(z_2),z_2), \ \ \ u_2(z_2-T(z_2),z_2)\geq u_2(z_1-T_(z_1),z_1).$$ When ignoring the additional constraints, we have the following FOCs:
+      $$\frac{\partial u_1}{\partial c_i}=\lambda$$ $$-\frac{\frac{\partial u_i}{\partial z_i}}{\frac{\partial u_i}{\partial c_i}}=1$$ This marginal tradeoff between labor (earnings) and consumption being a constant tells us that there is no marginal distortion to the supply of labor happening as a result of these taxes. Thus, a lump sum tax can be used to redistribute.\end{tcolorbox}
+      c) Write down the generalized Lagrangian for the problem in part (3a) with all constraints again considered. \begin{tcolorbox} From the problem in (3a), we have $$\mathscr{L}=\pi_1u_1(z_1-T(z_1),z_1)+\pi_2u_2(z_2-T(z_2),z_2) +\lambda_1[\pi_1T(z_1)+\pi_2T(z_2)-\bar{R}]$$
+      $$+ \lambda_2[u_1(z_1-T(z_1),z_1)-u_1(z_2-T_(z_2),z_2)]$$
+      $$+ \lambda_3[u_2(z_2-T(z_2),z_2)-u_2(z_1-T_(z_1),z_1)]$$ \end{tcolorbox}
+      d) Solve for the Kuhn-Tucker first-order conditions for the problem in (3c).
+      $$\mathscr{L}=\pi_1u_1(z_1-T_1,z_1)+\pi_2u_2(z_2-T_2,z_2)$$ $$+\lambda_1[\pi_1T_1+\pi_2T_2-\bar{R}]$$ $$+ \lambda_2[u_1(z_1-T_1,z_1)-u_1(z_2-T_2,z_2)]$$ $$+ \lambda_3[u_2(z_2-T_2),z_2)-u_2(z_1-T_1,z_1)]$$ 
+\begin{tcolorbox}$\frac{\partial \mathscr{L}}{\partial z_1}=\pi_1\frac{\partial u_1(z_1-T_1,z_1)}{\partial z_1}(1-T_1)+\lambda_2\frac{\partial u_1(z_1-T_1,z_1)}{\partial z_1}(1-T_1)-\lambda_3\frac{\partial u_2(z_1-T_1,z_1)}{\partial z_1}(1+T_1)$\newline
+      $\frac{\partial \mathscr{L}}{\partial z_2}=\pi_2\frac{\partial u_2(z_2-T_2,z_2)}{\partial z_2}(1-T_2)-\lambda_2\frac{\partial u_1(z_2-T_2,z_2)}{\partial z_2}(1+T_2)+\lambda_3\frac{\partial u_2(z_2-T_2,z_2)}{\partial z_2}(1-T_2)$\newline
+      $\frac{\partial \mathscr{L}}{\partial T_1}=\pi_1(\lambda_1-\frac{\partial u_1(z_1-T_1,z_1)}{\partial T_1})-\lambda_2\frac{\partial u_1(z_1-T_1,z_1)}{\partial T_1}+\lambda_3\frac{\partial u_2(z_1-T_1,z_1)}{\partial T_1}$\newline
+      $\frac{\partial \mathscr{L}}{\partial T_2}=\pi_2(\lambda_1-\frac{\partial u_2(z_2-T_2,z_2)}{\partial T_2})+\lambda_2\frac{\partial u_1(z_1-T_1,z_1)}{\partial T_2}-\lambda_3\frac{\partial u_2(z_1-T_1,z_1)}{\partial T_2}$\newline
+      $\frac{\partial \mathscr{L}}{\partial \lambda_1}=\pi_1T_1+\pi_2T_2-\bar{R}$\newline$\frac{\partial \mathscr{L}}{\partial \lambda_2}=u_1(z_1-T_1,z_1)-u_1(z_2-T_2,z_2)$\newline$\frac{\partial \mathscr{L}}{\partial \lambda_3}=u_2(z_2-T_2,z_2)-u_2(z_1-T_1,z_1)$\end{tcolorbox}
+      e) Assume the IC constraint is slack for the low type and binding for the high-type. Use the first-order condition for $z_2$ to show that there is no distortion for the high type (i.e. show that the marginal tax rate remains zero at the top, or alternatively, that $MRS_2=1$).\newline Assuming this normal case, $\lambda_2=0, \ \lambda_3>0$, the lagrangian becomes $\mathscr{L}=\pi_1u_1(z_1-T_1,z_1)+\pi_2u_2(z_2-T_2,z_2)+\lambda_1[\pi_1T_1+\pi_2T_2-\bar{R}]+ \lambda_3[u_2(z_2-T_2,z_2)-u_2(z_1-T_1,z_1)]$ and the first order condition for $z_2$ becomes $\frac{\partial \mathscr{L}}{\partial z_2}: \pi_2\frac{\partial u_2}{\partial z_2}(1-T_2)+\lambda_3\frac{\partial u_2}{\partial z_2}(1-T_2)=0\Rightarrow (1-T_2)(\pi_2+\lambda_3)\frac{\partial u_2}{\partial z_2}=0$.\begin{tcolorbox}Given that $\frac{\partial u_2}{\partial z_2}<0$, it must be that either $\pi_2+\lambda_3=0$ or $1=T(z_2)$. Then, given that $\lambda_3>0$ (given) and $\pi_2$ cannot be negative (as it is a proportion), it must be that $1=T(z_2)$. Further, we can use this to find the marginal tax rate on person 2's earnings, $\frac{d T(z_2)}{d z_2}=0$. Thus, we find that the marginal tax rate is zero at the top.\end{tcolorbox}
+      f) Graphically show the optimal allocations, $\{c_i,z_i\}_{i=1}^2$ in $(z,c)$ space. Given your graph, argue that with these allocations: $$\frac{-\partial u_2(c_1,z_1)/\partial z}{\partial u_2(c_1,z_1)/\partial c}<1$$ where $(c_1,z_1)$ is the bundle targeted to the low type.
+\begin{tcolorbox}
+\begin{tikzpicture}
+\path[draw] (0,0)--(10,0);
+\path[draw] (0,0)--(0,10);
+\path[draw, color=black, dash pattern=on 1pt off 3pt on 3pt off 3pt] (0,0) -- (9,9) node[above] {$45^o$ line};
+\end{tikzpicture}\newline
+Clearly, at the bundle for person 2, B, the point at which their indifference cure is tangent to their budget constraint will sit such that the slope is below the $45^o$ line. Thus, it will be less than 1. Therefore, we say that with these allocations, it must be that $\frac{-\partial u_2(c_1,z_1)}{\partial z}<\frac{\partial u_2(c_1,z_1)}{\partial c}\Rightarrow \frac{-\partial u_2(c_1,z_1)/\partial z}{\partial u_2(c_1,z_1)/\partial c}<1$\end{tcolorbox}
+      g) Use the first-order condition for $z_1$, along with the result in (3f), to show that: $$MRS_1=1-T'_1$$ where $T'>0$.\begin{tcolorbox}If we assume that the high type is indifferent between their bundle and the bundle targeted at the low type, whereas the low type strictly prefers their own targeted bundle. Therefore, by the single-crossing property the high type's bundle will be where their indifference curve crosses the $45^o$ line, where their MRS=1. Therefore, $MRS_2=1$ (which confirms what we found previously). $MRS_1=\frac{-\partial u_1/\partial z}{\partial u_1/\partial c}$ which, if they are at a bundle where they strictly prefer their own to the other group's, we see that it must be in the area in which $MRS_1$ is below the $45^o$ line, such that $MRS_1=1-T_1'<1\Rightarrow T'_1>0$.\end{tcolorbox}
+      h) Now, assume that the IC constraint is binding for the low type and slack for the high type. Using similar arguments, show that: $$MRS_1=1$$ $$MRS_2=1-T'$$ where $T_2'<0$, that is the marginal tax rate is negative for the high type. In other words, we are subsidizing the high type’s earnings at the margin. [Hint: Drawing a graph as in (3f) will be helpful.]
+\begin{tcolorbox}
+\begin{tikzpicture}
+\path[draw] (0,0)--(10,0);
+\path[draw] (0,0)--(0,10);
+\path[draw, color=black, dash pattern=on 1pt off 3pt on 3pt off 3pt] (0,0) -- (9,9) node[above] {$45^o$ line};
+\end{tikzpicture}\newline If we assume that the IC constraint is, now, binding for the low type and slack for the high type, we are assuming that the low type is indifferent between their bundle and the bundle targeted at the high type, and the high type is strictly preferring their own targeted bundle. Therefore, by the single-crossing property the low type's bundle will be where their indifference curve crosses the $45^o$ line, where their MRS=1. Therefore, $MRS_1=1$. $MRS_2=\frac{-\partial u_2/\partial z}{\partial u_2/\partial c}$ which, if they are at a bundle where they strictly prefer their own to the other group's, we see that it must be in the area in which their MRS is above the $45^o$ line, such that $MRS_2=1-T_2'>1\Rightarrow T'_2<0$.\end{tcolorbox}

@@ -1,0 +1,107 @@
+---
+title: "Problem Set 3"
+author: "Morgan Conklin Spangler"
+date: "1/28/2019"
+output: pdf_document
+header-includes:
+  - \usepackage{setspace}\onehalfspacing
+  - \usepackage{ amssymb }
+  - \usepackage{amsmath}
+  - \usepackage{tikz}
+  - \usepackage{pgfplots}
+  - \usepackage{float}
+  - \floatplacement{figure}{H}
+  - \usepackage{ dsfont }
+  - \usepackage{ mathrsfs }
+  - \usepackage{ wasysym }
+  - \usepackage{mathtools}
+  - \usepackage{tcolorbox}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+1. Consider a Cournot model of oligopoly, where there are $n$ firms. assume that $i^{th}$ firm has a constant marginal cost of $c$. Aggregate inverse demand for aggregate output is $p(Y)$, and each firm's output is denoted $y$. Firms are producing a homogeneous good.
+    (a) Write down the maximization problem of the $i^th$ firm. \begin{tcolorbox}
+    $$\max_{y_i} \ \ p(Y)\cdot y_i-c\cdot y_i$$ subject to $$Y=\sum_i^n y_i=n\cdot y_i$$\end{tcolorbox}
+    (b) Solve for total output at the Nash equilibrium [assume an interior solution]. That is, write down a first-order condition in terms of aggregate output, $Y$, costs and aggregate inverse demand. How does this compare to the socially efficient optimum?\newline
+    $$\mathscr{L} = p(Y)\cdot y_i - c\cdot y_i$$
+    FOC: $\frac{d \mathscr{L}}{d Y}: p(Y)+p'(Y)y_i=c$\newline
+    $\Rightarrow p(Y)[1+\frac{dp}{dY}\frac{y_i}{p}]=c$\newline
+    Share of output for firm $i \equiv s_i = \frac{y_i}{Y}$\newline
+    $\Rightarrow p(Y)[1+\frac{dp}{dY}\frac{Y}{p}s_i]=c$\newline
+    Elasticity of demand $\equiv \epsilon, \Rightarrow \frac{1}{\epsilon} = \frac{dp}{dY}\frac{Y}{p}$\newline
+    \begin{tcolorbox}
+    $$\Rightarrow p(Y)[1+\frac{s_i}{\epsilon}]=c$$
+    \end{tcolorbox}
+    At the socially efficient optimum, the marginal cost of producing a product is equal to the price. Another way of saying this is that the market equilibrium is as it is in a perfectly competitive market. In this scenario of perfect competition, that is equivalent to a single firm's individual share being 0. Let's call this socially optimum price $p^c(Y)$. Since $p^c(Y)=c$ and $p(Y)[1+\frac{s_i}{\epsilon}]=c$, we say $p(Y)[1+\frac{s_i}{\epsilon}]=p^c(Y)$. In other words, the socially optimum price is strictly lower than the price found in this market for any market that is less than perfectly competitive ($s_i>0$), so the quantity consumed, $Y$, is less than the socially efficient amount, $Y^c$.
+    \begin{tcolorbox}$p(Y)>p^c(Y) \Rightarrow (p(Y),Y)<(p^c(Y),Y^c)$ \end{tcolorbox}
+    (c) In lecture we asserted the Cournot outcome could be thought as the solution to maximizing a modified social welfare function. what is this alternative social welfare function? Show that its first-order condition coincides with part (1b).\newline
+    The cournot outcome is equivalent to maximizing a special case of social welfare, \begin{tcolorbox}$$W_c(Y)=\max_Y Y(p(Y)-c)+(n-1)[\int_0^Yp(t)dt-cY]$$\end{tcolorbox}
+    We can solve for the first order condition using Leibniz's rule.\newline
+    $\Rightarrow W_c(Y)=Y(p(Y)-c)+(n-1)[\int_0^Yp(t)dt-cY]$\newline
+    FOC:
+    $\frac{d {W}_c(Y)}{d Y}: p(Y)+p'(Y)Y-c+(n-1)[1\cdot p(Y)-0\cdot p(0) + \int_0^Y0 -c]$\newline
+    \begin{tcolorbox}
+    $\Rightarrow p(Y)+p'(Y)Y-c+(n-1)(-c)=0$ \newline$\Rightarrow p(Y)+p'(Y)Y-c-nc+c=0$\newline$\Rightarrow p(Y)+p'(Y)Y=nc$\newline
+    From (1b), $p(Y)+p'(Y)y_i=c$. We can sum both sides of the equation with respect to $i$ and maintain equality, \newline $\sum_i^n[p(Y)+p'(Y)y_i]=\sum_i^nc\Rightarrow p(Y)+p'(Y)Y=nc$ \newline So, we see that the first order equations are equivalent $\Rightarrow p(Y)+p'(Y)Y=nc \ \checkmark$.\end{tcolorbox}
+    (d) Now, we will show the result in the opposite direction. Start with the first-order condition in part (1b), and show that if you integrate over the range of total output $[0,Y]$, you get the modified social welfare function [Hint: to show this, you can use integration by parts to handle the $p'(t)$ term].\newline
+    From (1b), $p(Y)+p'(Y)y_i=c$.\newline $\Rightarrow \int_0^Y[p(Y)+p'(Y)y_i ]dY=\int_0^Yc \ dY$ \newline Now, we use integration by parts to solve. \newline $\Rightarrow \sum_i[\int_0^Yp(Y)+\int_0^Yp'(t)y_idt -\int_0^YcdY$ \newline $\Rightarrow \int_0^Yp(Y)+\int_0^Y\sum_i^np'(t)y_idt-nc\int_0^YdY$ \newline $\Rightarrow Yp(Y)+(n-1)[\int_0^Yp(t)dt]-ncY]$\newline $\Rightarrow Yp(Y)-cY+(n-1)[\int_0^Yp(t)dt]+cY-ncY$
+    \begin{tcolorbox}$$W_c(Y)= Y(p(Y)-c)+(n-1)[\int_0^Yp(t)dt-cY] \checkmark$$\end{tcolorbox}
+    
+2. Consider a Bertrand model of duopoly, where there are two firms. Each firm has a constant marginal cost of production, $c_1$. Firms are producing a homogeneous good. Assume that consumers have full information and purchase the good from the firm with the lowest price.
+    (a) If firms are competing on price, what is the demand curve facing each curve?\newline
+    Each firm is facing some market demand which is a function of their respective prices. I will assume that if the two firms set prices such that they are equal, the firm with the lower marginal cost will get the entire demand. \begin{tcolorbox}So, given marginal costs are unequal and $c_i<c_j$, firms are facing demand\newline $d_i(p_i,p_j)=
+    \begin{cases}
+    D(p_i) & p_i \leq p_i \\
+    0 & p_i > p_j
+    \end{cases}$\end{tcolorbox}
+    (b) Assume that $c_1>c_2$. Solve for the best response functions for both firms. \newline First, I assume that marginal costs are less than the firm's respective monopoly price, $c_2 < \min\{p_1^m,p_2^m\}$, $p_i^m$ being the monopoly price for firm $i$. \begin{tcolorbox}Firm $i$ has the profit function $\pi_i (p_i) = \max_{p_i} p_i\cdot d_i(p_i,p_j)-c_i\cdot d_i$.\newline
+    $\pi_1 (p_1,p_2)=
+    \begin{cases}
+    p_1\cdot D_1(p_1)-c_1\cdot D_1(p_1) & p_1 \leq p_2 \\
+    0 & p_1 > p_2
+    \end{cases}$\newline
+    $\pi_2 (p_1,p_2)=
+    \begin{cases}
+    p_2\cdot D_2(p_2)-c_2\cdot D_2(p_2) & p_2 < p_1 \\
+    0 & p_2 \geq p_1
+    \end{cases}$\newline\end{tcolorbox}
+    And the best response curves will look like,
+    \newline \newline \newline \newline
+    \newline \newline \newline \newline
+    \newline \newline \newline \newline
+    \newline \newline \newline \newline
+    (c) Solve for the Nash equilibrium.
+    \begin{tcolorbox}In this game, prices will be set at $p=p_1=p_2=c_1$. Firm 1 will choose not to produce anything (by our assumptions and them are indifferent between producing and not, price equal to marginal cost) and firm 2 will capture all of the demand, $D_2(p_2)$, and make some profit, $\pi_2$, but note that $p_2<p_2^m$ so the consumers will also capture some of the total surplus. \end{tcolorbox}
+    (d) How does this outcome compare to the socially efficient outcome?
+    \begin{tcolorbox}
+    We know the socially efficient outcome is that in which price is equal to marginal cost. So, given that firm 2 is setting their price above their marginal cost, we know that in a socially efficient outcome the price would be lower, $p_2>p_2^*=c_2$, and then the quantity consumed would be higher, $D(p_2)<D(p^*_2)$.\end{tcolorbox}
+
+3. Consider the Stackelberg model from lecture. Assume again that profit functions are decreasing in opponent's output and that best response functions are downward sloping.
+    (a) Write down the leader's maximization problem and first-order condition.\newline
+    Assumming two firms, firm 1 and firm 2, such that firm 1 is the leader and they are copmeting in quantity (as in class). Further, I am assumming they face an aggregate demand curve $P(Y)$, $Y=y_1+y_2$, and each has a general cost function $c)i(y_i)$.\newline
+    We know that firm 2 (the follower) will solve for their profit-maximizing level of output as such,
+    $$\max_{y_2} p(y_1+y_2)y_2-c_2(y_2) \Rightarrow f(y_2)$$ And then firm 1 uses firm 2's response function, $f(y_2)$ to solve for their profit maximizing level of output, $y_1$.\begin{tcolorbox}
+    $$\max_{y_1} p(y_1+f_2(y_1))y_1-c_1(y_1)$$
+    FOC:
+    $$p'(Y)+p'(Y)[1+f_2'(y_1)]y_1=c'_1(y_1), \ \ Y=y_1+y_2$$\end{tcolorbox}
+    (b) Graphically depict the solution to the Stackelberg model in output, $(y_1,y_2)$, space. Include the best response functions of both firms as well as the isoprofit curves for firm 1. Note: the best response function for firm 1 will have to be plotted inversely in this space.
+    \newline \newline \newline \newline
+    \newline \newline \newline \newline
+    \newline \newline \newline \newline
+    \newline \newline \newline \newline \newpage
+    (c) Consider the isoprofit curve for firm 1 in this space, i.e. $(y_1,y_2|\pi_1(y_1,y_2)\equiv \pi)$. This implicitly defines a function $y_2^\pi(y_1,\pi)$. Show that, conditional on $\pi$, this reaches its highest point, in $(y_1,y_2)$ space, when it intersects with the inverse best response function for firm 1.
+    \newline \newline \newline \newline
+    \newline \newline \newline \newline
+    \newline \newline \newline \newline
+    \newline \newline \newline \newline
+    \begin{tcolorbox}
+    Firm 1 has some isoprofit curve, $\pi_1(y_1)=p(y_1,f_2(y_1))y_1-c_1(y_1)=p(Y)y_1-c_1(y_1)$. Firm 1 also has a best response function which is a function of it's competitor's output, $f_1(y_2)$, which solves for the profit maximizing level of output firm 1 will produce given any level of $y_2$. So, for some $\bar{y_2}$ along the isoprofit curve corresponding to $\pi_1$, firm 1 will (by definition of a best response function) choose the level of ouput, $y_1$, which falls on the best response line. Therefore, the isoprofit line (the profit function for some given profit) will be set equal to the best response curve, meaning they will intersect.  \end{tcolorbox}
+    (d) Show that at the Stackelberg outcome, the isoprofit curve, $y^\pi_2(y_1,\pi)$, is tangent to the best response function for firm 2.
+    \newline \newline \newline \newline
+    \newline \newline \newline \newline
+    \newline \newline \newline \newline
+    \newline \newline \newline \newline
+    \begin{tcolorbox}Similar to firm 1, firm 2 will choose its profit maximizing level of output after observing $y_1$. We know that firm 1 will choose some output, $y_1$, taking firm 2's maximization problem into account, which maximizes their profit, so the profit of firm 1 will be some $\pi_1$. With $y_1$ given, firm 2 chooses $y_2$ according to their best response function $f_2$. By definition of the best response function, we know this $y_2$ will be a point on that line (or curve). Then, since firm 1 had perfect information and maximized so that they were at $pi_1$, we know that this choice of $y_2$ maintains this level of profit. So, the point of equilibrium $(y_1,y_2)$ must be at the point in the output space where the isoprofit curve $y_2^{\pi}(y_1,\pi)=\pi_1$ is equal to firm 2's response function. We know they will not cross because that would mean there is some higher level of profit $\pi_1'>\pi_1$ which would be tangent (and not intersect) $f_2$ which both firms would prefer. So, given that $y_2^{\pi}(y_1,\pi)=\pi_1=f_2$ at $(y_1,y_2)$, but $y_2^{\pi}(y_1,\pi)=\pi_1\neq f_2$ for some $y_1'>y_1$, it must be that $y_2^{\pi}(y_1,\pi)=\pi_1$ is tangent to $f_2$ at $(y_1,y_2)$.\end{tcolorbox}

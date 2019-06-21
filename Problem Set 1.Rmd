@@ -1,0 +1,179 @@
+---
+title: "PPHA 44200 Problem Set 1"
+author: "Morgan Conklin Spangler"
+date: "1/7/2019"
+output: pdf_document
+header-includes:
+  - \usepackage{setspace}\onehalfspacing
+  - \usepackage{ amssymb }
+  - \usepackage{amsmath}
+  - \usepackage{tikz}
+  - \usepackage{pgfplots}
+  - \usepackage{float}
+  - \floatplacement{figure}{H}
+  - \usepackage{ dsfont }
+  - \usepackage{ mathrsfs }
+  - \usepackage{ wasysym }
+  - \usepackage{mathtools}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+  1. Consider a central authority who has $x$ total units of a good to allocation among $\mathds{I}$ consumers, each of who has a quasilinear utility function of the form $U_i(x_i,y_i)=u_i(x_i)+y_i$, with $u_i(\cdot)$ a differentiable, increasing, and strictly concave function. The central authority allocates the good to maximize the sum of consumer's utilities $\sum_i u_i(x_i)$.
+      (a) Set up the central authority's maximization problem and derive the first-order conditions for each $x^*_i(x)$.
+      $\max \sum_i u_i(x_i)$ such that $\sum_i x_i \leq x$ and $u_i(\cdot)$ is a differentiable, increasing, and strictly concave function.
+      $$\mathscr{L}= \sum_i u_i(x_i)+\lambda (x-x_i-\sum_{-i} x_{-i})$$
+      Given $u_i(\cdot)$ is a differentiable, increasing, and strictly concave function, we can simply use Kuhn-Tucker first order conditions as we know the solution will be interior.
+      First order conditions:  
+      $\frac{\partial \mathscr{L}}{\partial x_i}: u'_i(x_i)=\lambda$  
+      $\frac{\partial \mathscr{L}}{\partial \lambda}: x=x_i+\sum_{-i} x_{-i}$  
+      This can be simplified to $x_i=x-\sum_{-i} x_{-i}$ and $u'_i(x_i)=\lambda$  
+      $\Rightarrow u'_i(x_i)=u'_j(x_j)$ for any two consumers $i,j \in \mathds{I}$ and $x_i=x-\sum_{-i} x_{-i}$.
+    (b) Let $u(x)$ be the value function of the central authority's problem. That is, $u(x)=\sum_i u_i(x^*_i(x))$. Let $P(x)=u'(x)$ be its derivative. Show that if $(x^*_1, ..., x^*_\mathds{I})$ is the optimal allocation of the good given available quantity $x$, then $P(x)=u'_i(x_i)$ for all $i$ with $x_i^* >0$.
+    If we assume $u(x)$ is the value function of the central authority's problem, then this is equivalent to saying that that $u(x)=\sum_i u_i(x^*_i(x))$. Further, if we assume that the $(x_1^*,...,x_i^*,...,x_\mathds{I}^*)$ is the optimal allocation of goods given some aggregate available quantity, $x$, then we can say that $u(x)=\sum_i u_i(x^*_i)=u_1(x_1^*)+...+u_i(x_i^*)+...+u_\mathds{I}(x_\mathds{I}^*)$. With this, we can find $P(x)=u'(x)$.
+    \begin{alignat*}{6}
+                                              \frac{\partial u(x)}{\partial x_1}=u'_1(x_1^*) & \\
+                                \vdotswithin{\frac{\partial u(x)}{\partial x_i}=u'_i(x_i^*)} & \\
+                                              \frac{\partial u(x)}{\partial x_i}=u'_i(x_i^*) & \\
+     \vdotswithin{\frac{\partial u(x)}{\partial x_\mathds{I}}=u'_\mathds{I}(x_\mathds{I}^*)} & \\
+                   \frac{\partial u(x)}{\partial x_\mathds{I}}=u'_\mathds{I}(x_\mathds{I}^*) &
+    \end{alignat*}
+    So, we can say that $P(x)=u'(x)=u_i'(x_i)$ for all $i$ with $x_i>0$.
+    
+    (c) Argue that if all consumers maximize utility facing a price for the good $x$ of $P(\bar{x})$, then the aggregate demand for the good is exactly $\bar{x}$. Conclude that $P(\cdot)$ is, in fact, the inverse aggregate demand function.
+    
+    Consumers maximizing utility facing a price of good $p(\bar{x})$ would solve the following problem,
+      \newline
+      \newline
+        $\max_{x_i} u_i(x_i)+y_i$ subject to $P(\bar{x})\cdot x_i+p_y\cdot y_i =\omega_i$,
+        where $\omega_i$ represents the income or wealth for consumer $i$, and market clearing            condition $\sum_i x_i \leq \bar{x}$. 
+      \newline
+      \newline
+    Given the quasilinear utility function (strictly concave, differentiable, etc.), we know that the market clearing constraint and budget constraints will bind (Kuhn-Tucker conditions are satisfied), so $\sum_i x_i^* = \bar{x}$. In other words, the aggregate demand, $\sum_i x_i^*$ will equal the aggregate supply $\bar{x}$. Previously (b), we showed that the inverse demand function for the central authority is $P(x)=u_i'(x_i)$. Given that the central authority is simply optimizing the aggregate utility, we can conclude that $P(\cdot)$ is the inverse aggregate demand function.
+      
+  2. In lecture we considered the incidence of an *ad valorem* tax, $\tau$, on consumers of the form $p(1+\tau)$. We assumed that markets are competitive and that, initially, there is no tax (i.e. $\tau =0$). We then derived an expression for **tax incidence** for either side of the market. That is, for an increase of $d_{\tau}$, we showed the change in **pre-tax price** received by producers, $p$, and the **after-tax price** paid by consumers, $P=p(1+\tau)$.
+      (a) Show what the tax incidence will be for each side of the market if the tax $\tau$ is instead paid by producers. Measure incidence as the semi-elasticity of price: $$\frac{d \log p}{d\tau}.$$
+      
+      If the tax $\tau$ is paid by the producers, we will have the following pricing scheme. \newline
+       \begin{alignat*}{6}
+       D(p)=S(p(1-\tau)) & \\
+       D'(p)\frac{\partial p}{\partial\tau}=S'(p(1-\tau))\frac{\partial p}{\partial \tau} & \\
+       D'(p)\frac{\partial p}{\partial\tau}=s'(p(1-\tau))(\frac{\partial p}{\partial \tau}+\frac{\partial p}{\partial \tau}\tau_0-p) & \\
+       \tau_0=0 \Rightarrow D'(p)\frac{\partial p}{\partial \tau}=S'(p(1-\tau))(\frac{\partial p}{\partial \tau}-p) & \\                                                       
+       D'(p)\frac{\partial p}{\partial \tau}=S'(p(1-\tau))\frac{\partial p}{\partial \tau}-S'(p(1-\tau))p & \\                                    
+       S'(p(1-\tau))p=\frac{\partial p}{\partial \tau}(S'(p(1-\tau))-D'(p)) & \\ 
+       \frac{S'(p(1-\tau))}{S'(p(1-\tau))-D'(p)}=\frac{\partial p}{\partial \tau}\frac{1}{p} & \\
+       \frac{S'(p(1-\tau))\frac{p}{Q}}{S'(p(1-\tau))\frac{p}{Q}-D'(p)\frac{p}{Q}}=\frac{\partial p}{\partial \tau}\frac{1}{p} & \\
+       \frac{S'(p(1-\tau))\frac{p}{S}}{S'(p(1-\tau))\frac{p}{S}-D'(p)\frac{p}{D}}=\frac{\partial p}{\partial \tau}\frac{1}{p} & \\
+       \frac{\epsilon_S}{\epsilon_S+\epsilon_D} = \frac{\partial p}{\partial \tau} \cdot \frac{1}{p} &
+       \end{alignat*}
+      (b) Show what the percent change in quantity will be after the introduction of $\tau$. \newline
+      The change in quantity is calculated as $\frac{\epsilon_s\epsilon_d}{\epsilon_s+\epsilon_d}$. Therefore, the change in quantity will be,\newline $\frac{\epsilon_S \epsilon_D}{\epsilon_S+\epsilon_D}=\frac{\partial p}{\partial \tau}\frac{1}{p}(-D'(p))\frac{p}{D}$
+      $$\frac{\epsilon_S \epsilon_D}{\epsilon_S+\epsilon_D}=\frac{\partial p}{\partial \tau}[\frac{-D'(p)}{Q}]$$
+      (c) Show what the tax incidence will be instead for a *specific* tax, *t*, on producers of the form $p-t$. Now measure incidence in terms of the change in price: $$\frac{dp}{dt}.$$ Compare this to the previous case in part (2a).
+       \begin{alignat*}{6}
+       D(p)=S(p-t) & \\
+       D'(p)\frac{\partial p}{\partial t}=S'(p-t)(\frac{\partial p}{\partial t}+\frac{\partial p}{\partial t}t_0-1) & \\
+       D'(p)\frac{\partial p}{\partial t}=s'(p-t)(\frac{\partial p}{\partial t}-S'(p-t) & \\
+       S'(p-t)=S'(p-t)\frac{\partial p}{\partial t}-D'(p)\frac{\partial p}{\partial t} & \\ 
+       S'(p-t)=[S'(p-t)-D'(p)]\frac{\partial p}{\partial t} & \\ 
+       \frac{S'(p-t)}{S'(p-t)-D'(p)}=\frac{\partial p}{\partial t} & \\ 
+       \frac{S'(p-t)\frac{p}{S}}{S'(p-t)\frac{p}{S}-D'(p)\frac{p}{D}}=\frac{\partial p}{\partial t} &\\
+       \frac{\epsilon_S}{\epsilon_S+\epsilon_D}=\frac{\partial p}{\partial t} & \end{alignat*}
+       We find this to be identical to what we found in part (a), that the more elastic side of the market bears the propoertionately larger burden of the tax.
+       (d) Consider an ad valorem tax of $\tau$ on firms, and the equilibrium consumer price and quantity with that tax, $p^\tau$ and $D(p^\tau)$ respectively. What level of specific tax, $t$, will be needed to raise the same level of per-unit revenue as is raised under an ad valorem tax at the quantity under the ad valorem tax, $D(p^\tau)$? What will be the equilibrium supply and prices under this per-unit-revenue-equivalent specific tax? (Hint: Start with the equilibrium condition under the ad valorem tax and calculate per-unit revenue.)
+      Change in per-unit revenue is calculated as $\Delta Q\cdot p$
+      For an ad-valorem tax, $\tau$:
+      $\Delta Q\cdot p=\frac{\partial p}{\partial \tau}[\frac{-D'(p)p}{pQ}\cdot p]$ \newline
+      $\Delta Q\cdot p=\frac{\partial p}{\partial \tau}[\frac{-D'(p)}{Q}\cdot p]$ \newline
+      $\Delta Q\cdot p=\frac{\partial p}{\partial \tau}[\frac{-D'(p)p}{Q}]$  \newline
+      For a specific tax, $t$:
+      $\Delta Q\cdot p=\frac{\partial p}{\partial t}[-D'(p)\frac{p}{Q}\cdot p]$ \newline
+      \newline
+      $\Rightarrow \frac{\partial p^t}{\partial t}(-D'(p^t))\frac{p^t}{Q}\cdot p^t=\frac{\partial p^\tau}{\partial \tau}\frac{-D(p^\tau}{Q}p^{\tau}$\newline
+      $\frac{\partial p^t}{\partial t}\frac{\partial \tau}{\partial p^{\tau}}=\frac{1}{p^t}$\newline
+      $$p^t=\frac{\partial t}{\partial \tau}\frac{\partial p^{\tau}}{\partial^t}$$
+      $\Delta Q=\frac{\partial p^t}{\partial t}(-D'(p^t))\frac{p^t}{Q}=(-D'(p^t))\frac{1}{Q}(\frac{\partial p^{\tau}}{\partial \tau})$\newline
+      $\Delta Q =-D'(p^t)\frac{1}{Q}(\frac{\partial p^{\tau}}{\partial \tau})$\newline
+      $\Delta Q = Q|_{t=0} - Q_{t>0}=D(p^{t=0})-D(p^t)$\newline
+      $\Rightarrow Q - \Delta Q = Q^t = Q + D'(p^t)\frac{1}{Q}\frac{\partial p^t}{\partial t}$\newline
+      $D(p) + D'(p^t)\frac{1}{Q}\frac{\partial p^t}{\partial t}$
+      $$D(p) + \frac{D'(p^t)}{D(p)}\frac{\partial p^t}{\partial t}=Q^t=S$$
+      (e) Now assume that the market is supplied by a monopolist, who pays an ad valorem tax as in part (2a). Write down the monopolist's maximization problem. Find the Lerner Markup in terms of the after-tax price for the monopolist.
+      The monopolist will maximize profits with the following objective function,
+      $$L = \max_p p(1-\tau)D(p(1-\tau))-c(D(p(1-\tau)))$$ such that $S(\cdot)=D(\cdot)\equiv Q$
+      $p(1-\tau)=P \Rightarrow L = \max_p P\cdot D(P)-c(P)$ such that $P=p(1-\tau)$
+      FOC:
+      \begin{alignat*}{6}
+      \frac{\partial L}{\partial p}: D(P)+P\cdot D'(P)=C'(P) & \\
+      \end{alignat*}
+      SOC:
+      \begin{alignat*}{6}
+      2D'(P)+P\cdot D''(P)=C''(P) & \\
+      \Rightarrow D(P)[1+\frac{1}{\epsilon_D}]=c'(P) &
+      \end{alignat*}
+      Now, we use the FOC in terms of demand elasticity to solve for the Lerner Markup, $L=-\frac{1}{\epsilon_D}$.
+      $D(P)+\frac{D(P)}{\epsilon_D}=C'(P)$\newline
+      $\frac{D(P)}{\epsilon_D}=C'(P)-D(P)$\newline
+      $\frac{1}{\epsilon_D}=\frac{C'(P)}{D(P)}-1$\newline
+      $-\frac{1}{\epsilon_D}=L=1-\frac{C'(P)}{D(P)}$
+      $$L=1-\frac{C'(P)}{D(P)}$$
+      (f) Using the Lerner Market formula, show that if marginal costs are constant and if the elasticity of demand is decreasing (in absolute value) in price, then the burden borne by consumers is even more than the amount of tax. Here we have defined the elasticity of demand such that it is positive for a downward sloping demand: $$\epsilon_D=-D'(p)\frac{p}{D(p)}\geq 0$$ (Hint: It's sufficient to show that after the tax, the monoplist's tax-inclusive price actually *increases*. First, show that the marginal revenue at the optimum is higher after the tax is introduced. What does this imply about quantity supplied? What does this imply about the elasticity of demand in equilibrium? Finally, use the Lerner markups before and after the tax is introduced to show that the tax-inclusive price increases.)\newline
+    We know the marginal cost is some constant, so we denote this marginal cost as simply $c$.\newline
+    Marginal revenue pre-tax: $D(P)+PD'(P)=c$\newline
+    Marginal revenue post-tax: $D(p(1-\tau))+p(1-\tau)D'(p(1-\tau))=c$\newline
+    Given that marginal revenue in each instance is equal to the constant marginal cost, and the cost is essentially being raised with the introduction of the tax (or, the marginal revenue - revenue per unit is decreasing by the amount of the tax) the actual marginal revenue will increase after the tax is introduced. This means that the quantity supplied will decrease. If prices going up result in total quantity decreasing it implies that demand is relatively more elastic than supply, because they are more responsive to the price going up (quantity demanded decreasing) than supply (quantity supplied increasing).
+  3. In class we discussed the two-instrument principle. When a monopolist had the power to set an entry fee $f$ and a per unit price, $p$, all of the surplus was captured by the monopolist. Varian (pg. 243) characterizes perfect price discrimination differently. In particular, the monopolist is setting one price for the good. Yet, she is still able to capture all of the surplus. Is this a violation of the two-instrument principle?
+  
+  This is not a violation of the two-instrument principle. Similar to the example we did in class, the monopolist is able to offer a unique price to every consumer (whether that is some combination of $f$ and $p$ or a simple complete price $r$ is irrelevant) such that each consumer is paying their maximum willingness to pay. In this way, the monopolist captures the total surplus and, thus, the heart of the two-instrument principle is satisfied.
+  
+  4. Consider a seller of good $x$ with a linear cost fuction $C(x)\equiv c\cdot x$. The seller faces a single buyer with preferences represented by the utility function $u(x,y)$, where $y$ is a numeraire good. The buyer has income $I$. The seller is able to charge an entry fee, $f$, and a price per unit of $p$.
+      (a) Suppose preferences are quasilinear, i.e. $u(x,y)=v(x)+y$, with $v'(x)>0$ and $v''(x)<0$. Write down the consumer's optimization problem and show the first-order necessary conditions, for the consumer, at an interior solution (i.e. $x>0$). \newline
+      $\max_{x,y} u(x,y)$ such that $f + p\cdot x + y \leq I, x>0 y\geq 0$ \newline
+      $$\Rightarrow \mathscr{L}_{x} v(x)+I-f-p\cdot x$$
+      FOCs: (Can skip right to Kuhn-Tucker because conditions are satisfied as in question 1) \newline
+      $\frac{\partial \mathscr{L}}{\partial x}: v'(x)-p=0$ \newline
+      $\Rightarrow v'(x)=p$ \newline
+      The demand function for $x^*(p)$ is $\Rightarrow x^*(p)=p^2+v(p)+v(p)+I-f$
+      (b) Write down the seller's optimization problem as a function of $p$ and $f$, including a participation constraint, and show the following is true at the optimum: $p=c$. \newline
+      $$\max_{p,f} f+p\cdot x^*(p)-c\cdot x^*(p)$$ such that $f\leq \int_0^{D(p)}(p^d(t)-p)dt$ \newline
+      We know that the participation constraint will be binding; the monopolist will continue to produce products until the marginal cost is equal to the price offered to the marginal consumer (competitive price, $p^*$). Therefore, the constraint can be solved as such,
+       $f=\max_p \int_0^{D(p)} p^d(t)dt-pD(p)+pD(p)-C(D(p))$ \newline
+       FOC:\begin{alignat*}{6}
+       D'(p)p^d(D(p))-C'(D(p))D'(P)=0 & \\                                                                    D'(p)[p^d(D(p^*))-C'(D(p^*))]=0 & \\
+       D'(p)[p^*-C'(D(p^*))]=0 & \\
+       D'(p)\neq 0 & \\
+       \Rightarrow p^*=C'(D(p^*)) & \\
+       C'(D(p^*))=c & \\
+       \Rightarrow p^*=c \end{alignat*}     
+      (c) Now, suppose that preferences are not necessarily quasilinear. Instead, we only know that $u(x,y)$ is quasiconcave. Write down the consumer's new optimization problem and first-order necessary conditions, for the consumer, at an interior solution (i.e. $x>0$).
+       $\max_{x,y} u(x,y)$ such that $f + p\cdot x + y \leq I, x>0 y\geq 0$
+      $$\Rightarrow \mathscr{L}_{x,y} = u(x,y)+\lambda(I-f-p\cdot x-y)$$
+      $y=I-f-p\cdot x\Rightarrow \mathscr{L}_{x,y}= u(x,I-f-p\cdot x)$
+      FOCs:  
+      $\frac{\partial \mathscr{L}}{\partial x}: \frac{\partial u}{\partial x}=p\lambda$\newline
+      $\frac{\partial \mathscr{L}}{\partial y}: \frac{\partial u}{\partial y}=\lambda$\newline  
+      $\frac{\partial \mathscr{L}}{\partial \lambda}: I=f+p\cdot x+y$\newline
+    $$\Rightarrow \frac{\partial u}{\partial x}=p\frac{\partial u}{\partial y}, I=f+\frac{u_x(x,y)}{u_y(x,y)}\cdot x+y$$
+    The demand function for $x^*(p,f,I)$ is $\Rightarrow x^*(p,f,I)=(I-f-y)\frac{u_y(x,y)}{u_x(x,y)}$\newline
+    The demand function for $y^*(p,f,I)$ is $\Rightarrow y^*(p,f,I)=I-f-\frac{u_x(x,y)}{u_y(x,y)}x$\newline
+      (d) Define $v(p,f,I)=u(x(p,f,I),y(p,f,I))$, i.e. the indirect utility function. Solve for $\partial v/\partial I$, $\partial v/\partial p$, and $\partial v/\partial f$. Hint: Differentiate the budget constraint by $I,p,$ and $f$ and use in conjunction with the first order conditions above to simplify.
+      $$v(p,f,I)=u((I-f-y)\frac{1}{p},I-f-px)=u(\frac{I-f-y}{p},I-f-p\cdot x)$$
+      $$\frac{\partial v}{\partial I}=u_I(\cdot)(\frac{1}{p}+1)$$
+      $$\frac{\partial v}{\partial p}=u_p(\frac{1}{p}-x)$$
+      $$\frac{\partial v}{\partial f}=u_f(\cdot)(\frac{1}{p}+1)$$
+      (e) Write down the seller's new optimization problem as a function of $p$ and $f$, including a participation constraint. Express the participation constraint in terms of the indirect utility function: $v(p,f,I)$. Assuming $x$ and $y$ are normal goods, explain why this constraint will be binding at the optimum.
+       $\max_{p,f} f+p\cdot x-c\cdot x$ such that $f\leq \int_0^{v(p,f,I)}(p^d(t)-p)dt$ \newline
+       $$\max_{p,f} f+p\cdot x-c\cdot x$$ such that $$f \leq \int_0^{u(\frac{I-f-y}{p},I-f-p\cdot x)}(p^d(t)-p)dt$$
+      We know that the participation constraint will be binding, assuming $x$ and $y$ are normal goods, as the monopolist will continue to produce products until the marginal cost is equal to the price offered to the marginal consumer (competitive price, $p^*$). 
+      (f) Given that the participation constraint is binding, this implies a relationship between $f$ and $p$ that keeps the constraint satisfied. Denote this relationship as $f(p)$, i.e. $f$ is implicitly a function of $p$. Solve for $f'(p)$. Hint: Use the results of Question (4d) above. \newline
+$$f(p) = \int_0^{u(\frac{I-f-y}{p},I-f-p\cdot x)}(p^d(t)-p)dt$$
+      (g) Rewrite the seller's problem incorporating $f(p)$ in order to capture the participation constraint. Show that at an interior solution (i.e. $x>0$) the seller still sets $p=c$.
+       $\max_p \int_0^{v(\cdot)}p^d(t)\partial t - pv(\cdot)+pv(\cdot)-c(v(\cdot))$\newline
+ $\frac{\partial v(\cdot)}{\partial p}p^d(v(\cdot))-c'(v(\cdot))\frac{\partial v(\cdot)}{\partial p}=0$\newline
+ $\frac{\partial v(\cdot)}{\partial p}[p^d(v(\cdot))-c'(v(\cdot))]=0$\newline
+ $u_p(\frac{1}{p}-x)[p^d(v(\cdot))-c'(v(\cdot))]=0$\newline
+ $\Rightarrow u_p(\frac{1}{p}-x) \neq 0 \Rightarrow p^d(v(\cdot))=c'(v(\cdot))$\newline
+ $$\Rightarrow p^d(v(\cdot))=c \Rightarrow p^*=c$$

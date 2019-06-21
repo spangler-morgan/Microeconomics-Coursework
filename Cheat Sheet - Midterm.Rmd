@@ -1,0 +1,180 @@
+---
+fontsize: 10pt
+geometry: margin=.75cm
+output: 
+  pdf_document:
+    pandoc_args: [
+      "-V", "classoption=twocolumn"
+    ]
+header-includes:
+  - \usepackage{setspace}\singlespacing
+  - \usepackage{ amssymb }
+  - \usepackage{amsmath}
+  - \usepackage{tikz}
+  - \usepackage{pgfplots}
+  - \usepackage{float}
+  - \floatplacement{figure}{H}
+  - \usepackage{dsfont}
+  - \usepackage{ mathrsfs }
+  - \usepackage{ wasysym }
+  - \usepackage{mathtools}
+  - \usepackage{tcolorbox}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+*mkt Equilibrium*: Consumers: $u_i(X_i)$, $X_i=(x_{1i},...,x_{Li})$; (endow) $\omega_i=(\omega_{1i},...,\omega_{Li})$; 
+(total endow of good $l$) $\omega_l=\sum_i \omega_{li}$; $J$ firms: prod set $Y_j$, $y_j=(y_{1j},...,y_{Lj})$; Net amount of $l$ is $\omega_l + \sum_{j} y_{lj}$.
+  
+Feasible allct.: $(x_1,...,x_{\mathds{I}},y_1,...,y_J)$ s.t. $\sum_{i=1}^{\mathds{I}}x_{li}\leq\omega_l+\sum_{j=1}^J, \ \forall \ l=1,...,L$ is P.O. if no other feasible allct. $u_i(x'_j)\geq u_i(x_i) \forall i$ & $u_i(x'_i)>u_i(x_i)$ for some $i$. [The allct. & $p^*$ is a CE if it satisfies profit max, util max, & mkt clearing.]
+
+*Demand* (w/ QL) $\max U_i(x_i^d,y_i)=u_i(x_i^d)+y_i$ s.t. BC, $p\cdot x_i^d + y_i \leq w_i\Rightarrow p^d_i=u'_i(d_i^d)$ (inv demand fn). 
+  * $x^d=\sum_i x_i^d$. Agg. demand in a comp mkt is the solution to: $u(x^d)=\max_{(x_1^d,...,x_{\mathds{I}}^d)} \sum_{i=1}^{\mathds{I}}u_i(x_i^d)$ s.t. $\sum_{i=1}^{\mathds{I}} x_i^d\leq x^d$
+  * opt of agg. util $u(x^d)+y$, s.t. the BC $p\cdot x^d + y \leq w$, where $y=\sum_i y_i$ & $w=\sum_i w_i\Rightarrow$ leads to an agg. inv demand fn: $p^d=u'(x^d)$
+  
+*Supply* - 
+
+  * $\max\pi_j= p\cdot x_j^s - c_j(x_j^s)$, $c_j$, is measured in units of inputs, $y_j$ & each firm max $\pi$ by setting $p=c'_j(x^s_j)$. 
+  * Define agg. supply as: $x^s=\sum_j x^s_j$. 
+  * Define the agg. cost fn $c(x^s)$ as the solution to the opt prob: $c(x^s) = \min_{(x_1,...,x_J)}\sum_j c_j(x^s_j)$ s.t. $\sum_j x^s_j\geq x^S$. 
+  * The supply side can be characterized by the $c(x^s)$ & mkt supply is chosen by $\max_{x^s} px^s - c(x^s)$. 
+  * The FOC generates an agg. inv supply fn $p^s = c'(x^s)$
+  
+*Equilibrium* - demand + Supply $\Rightarrow$ eqm level of output $x^*$: $u'(x^*)=c'(x^*)$, then solve for the FOC to solve the mkt eqm.
+
+*FTWE* (in a partial eqm): In the case of QL util, a P.O. allct. satisfies $u'(x^*)=\mu^*=c'(x^*)$, & $\sum_{i=1}^{\mathds{I}}x^{*d}_i=\sum_{i=j}^J x_j^{*s}$. We can see that the mkt eqm satisfies these w/ $p^*=\mu^*$. $\Rightarrow$ if $p^*$ & $(x_1^{*d},...,x_{\mathds{I}}^{*d},x_1^{*s},...,x_J^{*s})$ constitute a CE, then this allct. is P.O.
+
+*Tax Incidence (Use the concept of semi-elasticity: $\frac{d \log p}{d \tau}=\frac{dp}{d\tau}\frac{1}{p}$)*: Measuring the burden of an ad-valorem tax: Start w/ the mkt eqm, plugging in the relevant $p$ for each side of the mkt: $Q^*=D(p(1+\tau))=S(p)$. Since this is an identity, differentiate both sides by $\tau$
+$\Rightarrow \Delta$ producer p of $\frac{d \log p}{d \tau}=\frac{-\epsilon_d}{\epsilon_s+\epsilon_d}\in[0,1]$ & $\Delta$ consumer p of $\frac{d \log P}{d \tau}=\frac{\epsilon_s}{\epsilon_s +\epsilon_d}\in[0,1]$
+
+*Monopoly* - 
+$\max_{p,y} py-c(y)$ s.t. $D(p)=y \Rightarrow$ (sub in the demand fn) $\max_p pD(p)-c(D(p))\rightarrow$ (frame things in terms of q using inv demand) $\max_y p(y)y-c(y)\rightarrow$, & solve for FOC & SOC.\newline
+FOC: $p(y) + p'(y)y = c'(y)$ (This is equiv to the MR=MC that competitive firms do, but MR is diff in this case - incorporating the $\Delta$ p needed to sell more q.)\newline
+SOC: $2p'(y)+p''(y)y-c''(y)\leq 0$ (The SOC states that the slope of the MC curve must be greater than that of the MR curve.)\newline
+$\rightarrow$ Rewrite the FOC in terms of elasticity of demand: $p(y)[1+\frac{1}{\epsilon(y)}]=c'(y)$
+  
+*Welfare Analysis* - 
+$W(x)=u(x)-c(x)$, we know the welfare max level of output satisfies $u'(x^*)=c'(x^*)-p(x^*)$. Now, evaluate $W$ at $x^m$, $x^m$: \newline $W'(x^m)=u'(x^m)-c'(x^m)$
+
+*Tax incidence*: (Monopolist paying an ad valorem tax) monopolist solves $\max_p p(1-\tau)D(p)-C(D(p))$
+
+*Price Differentiation*
+
+*First-Degree*: Charge a diff $p$ for each unit. (Key is the ability for the firm to capture total surplus $\rightarrow$ the MR curve becomes the inv demand curve).
+
+Monopolist is facing inv demand curve $p(x)\Rightarrow$ capture more surplus by offering a two-part tariff $T(x)=\begin{cases} 0 & if \ \ x=0 \\ px+f & if \ \ x>0 \end{cases}$ w/ unit price $p$ & entry fee $f$.\newline Solve $\max_{p,f} f+pD(p)-c(D(p))$ w/ the IR constraint: $f\leq \int_0^{D(p)}(p_d(t)-p)dt$ (this will be binding $\Rightarrow$ plug into obj fn & solve $p^*$ & $f^*$).
+
+*Second-Degree* - 
+The p differs depending on the number of units sold (nonlinear pricing).
+
+  * Two types of consumers, $\theta\in\{1,2\}$, that occur equally in the population
+  * Each consumer has QL util $v(x,\theta)-T$ where $T$ is payment for $x$
+  * The single crossing condition: $\frac{\partial}{\partial \theta}(\frac{\partial v(x\theta)}{\partial x})>0$ (marginal util is increasing in type) 
+  * util of zero units is equal for $\theta$, $v(0,1)=v(0,2)$ & marginal costs are constant, $MC=c$
+  
+The monopolist will choose bundles: $(x_1,T-1)$ & $(x_2,T_2)$ targeted to each type. $\Rightarrow \max_{\{x_1,x_2,T_1,T_2\}}\frac{1}{2}(T_1-cx_1)+\frac{1}{2}(T_2-cx_2)$ s.t. (IR)$=\begin{cases} v(x_1,1)-T_1\geq 0 \\ v(x_2,2)-T_2\geq 0\end{cases}$\newline & for each type to prefer their targeted bundle,(IC) $=\begin{cases} v(x_1,1)-T_1\geq v(x_2,1)-T_2 \\ v(x_2,2)-T_2\geq v(x_1,2)-T_1\end{cases}$\newline Rewrite the prob in terms of consumer surplus: $CS_\theta = v(x_\theta,\theta)-T_\theta$\newline & define the fn: $I(x)=v(x,2)-v(x,1)=\int_1^2\frac{\partial v(x,t)}{\partial \theta}dt$ where $I$ can be thought of as the information rent.\newline $\Rightarrow \max_{\{x_1,x_2,CS_1,CS_2\}}\frac{1}{2}(v(x_1,1)-CS_1-cx_1)+\frac{1}{2}(v(x_2,2)-CS_2-cx_2)$ s.t. $CS_\theta\geq 0$, $CS_1\geq CS_2-I(x_2)$, $CS_2\geq CS_1+I(x_1)$.\newline
+$\Rightarrow \max_{\{x_1,x_2\}} \frac{1}{2}(v(x_1,1)-cx_1)+\frac{1}{2}(v(x_2,2)-I(x_1)-cx_2)$
+
+  * Distortion at the bottom, in order to keep the high type honest. (No distortion at the top, since no one else that we need to keep honest). 
+  * The high type has some surplus (information rent). 
+  * May not supply to the low type at all (if $MC(0)>MR(0)$). 
+  * We are still setting $MR=MC$.
+  
+*Third-Degree*- 
+diff consumers charged diff prices, but each pays a constant p.
+
+Index consumers by type $m=1,...,M$. agg. demand & inv demand for each type are $X_m(\cdot)$ & $P_m(\cdot)$.\newline Monopolist: $\max_{\{x_1,..,x_M\}}\sum_{m=1}^M x_mP_m(x_m) - c(\sum_{m=1}^Mx_m)$.\newline FOC: $P_m+x_mP'_m(x_m)-c'(\sum_{m=1}^Mx_m)=0$ for $m=1,...,M$.
+  
+Social welfare: (two types of consumers) $W(x_1,x_2)=\int_0^{x_1}P_1(t)dt + \int_0^{x_2}P_2(t)dt - c(\sum_{m=1}^2x_m)=v_1(x_1)+v_2(x_2)-c(\sum_{m=1}^2x_m)$\newline
+Compare the $p_m^U$ & $x^U$ $(p_m^U;x_1^U,x_2^U)$ to the 3DPD $(p_1^*,p_2^*;x_1^*,x_2^*)$. Given that (1) agg. benefit ($v_m(x_m)$) is concave (since demand is downward sloping), (2) costs are weakly convex [or costs are constant ($c$)] $\Rightarrow$ welfare improvement means $Y$ increases.
+
+*Airline Example* - $\theta\in \{b,t\}$, w/ $N_b$ & $N_t$, $k\in \{r,u\}$, ($r$) & ($u$), assm that the MC of producing a ticket is zero, util from purchasing a ticket is $v_\theta^k$.
+
+  * $v_\theta^u\geq v_\theta^r$, strictly greater than for $\theta=0$
+  * $v_b^k>v_t^k$
+  
+[Note: If the airline can only sell one ticket type, they would sell the unrestricted ticket (p either $p=v_t^u$ or $p=v_b^u$, depends on the distribution: $N_bv_b^u\gtrless (N_b+N_t)v_t^u\Rightarrow N_b\gtrless \frac{v_t^u}{v_b^u-v_t^u}N_t$)]  
+
+(Assm $k=u$ targeted to $b$) Monopolist:
+$\max_{p^u,p^r} N_bp^u+N_tp^r$ s.t. (IR) $\begin{cases} v_b^u-p^u & \geq 0 \\ v_t^r-p^r & \geq 0\end{cases}$(IC) $\begin{cases} v_b^u-p^u \geq v_b^r-p^r \\ v_t^r - p^r \geq v_t^u - p^u\end{cases}$\newline
+[Note: constraint set is empty if $v_t^u-v_t^r> v_b^u-v_b^r \Rightarrow$ assm $v_b^u-v_b^r\geq v_t^u-v_t^r$ (Single-Crossing Condition)]\newline
+IC1 & IR2 are binding $\Rightarrow$ solve for $p^u$,$p^r \Rightarrow p^r=v_t^r$ & $p^u=v_b^u-(v_b^r-v_t^r)$   
+
+  * This leaves the $b$ w/ some surplus & $t$ with none ($b$ has information rent to keep them from pretending to be $t$)
+
+$\Rightarrow \pi=N_b(v_b^u-(v_b^r-v_t^r))+N_tv_t^r$\newline  
+[Note: not guaranteed that $p^{PD}$ will dominate $p^U$ in $\pi$]
+  
+$Y=y_1+y_2$ (Agg Output), $p(Y)=p(y_1+y_2)$ (Agg Inv demand), $c_i(y_i)$ (Firm cost)
+
+*Cournot* (Simultaneous competition of q adjustment) 
+
+1) $n$ firms & identical goods:
+
+Firm $i$: $\max_{y_i} \pi_i(y_i,y_j)=p(y_i+y_j)y_i-c_i(y_i)$\newline
+FOC:$p(Y)+p'(Y)y_i=c'_i(y_i)\Rightarrow p(Y)[1+\frac{dp}{dY}\frac{y_i}{p}]=c'_i(y_i)\Rightarrow p(Y)[1+\frac{s_i}{\epsilon}]=c'_i(y_i), \ \ (s_i=\frac{y_i}{Y})$\newline
+SOC for firm $i$: $\frac{\partial^2\pi_i}{\partial y_i^2}=2p'(Y)+p''(Y)y_i-c''_i(y_i)\leq 0$
+
+$\Rightarrow$ FOC defines a BRF $\rightarrow f_i(y_j): \frac{\partial \pi_i(f_i(y_j),y_j)}{\partial y_i}\equiv 0$
+
+$\Rightarrow$ differentiate this BRF to see how the response changes as $y_j$ changes: $f'_i(y_j)=-\frac{\partial^2\pi_i/\partial y_i\partial y_j}{\partial^2\pi_i/\partial y_i^2}$
+
+  * Denominator is negative due to SOC
+  * Numerator is $\frac{\partial^2\pi_i}{\partial y_i\partial y_j}=p'(Y)+p''(Y)y_i$
+      
+Comparative statics - 
+Consider a parameter $a$ that shifts $\pi$ for firm $i$: $\pi_i=\pi_i(y_i,y_j,a)$, $\pi_j=\pi_j(y_i,y_j)$
+
+  * Then, the FOCs become:\newline $\frac{\partial \pi_i(y_i(a),y_j(a),a)}{\partial y_i}\equiv 0, \frac{\partial \pi_j(y_i(a),y_j(a),a)}{\partial y_j}\equiv 0$
+  * Using IFT & Cramer's: $\Rightarrow {sign}(\frac{\partial y_i}{\partial a})={sign}(\frac{\partial^2\pi_i}{\partial y_i\partial a})$
+
+Compare to CE w/ $c_i=c$, $p(Y)=[1+\frac{1}{n\epsilon}]=c$
+
+A Cournot solution is equiv to a social planner max the following: $W_C(Y)=[p(Y)-c]Y+(n-1)[\int_0^Yp(t)dt-cY]$: a weighted average of $\pi$ & social welfare, w/ the weight on social welfare $\rightarrow$ 1 as $n$ $\rightarrow$ $\infty$.
+  
+2) w/ differentiated goods:
+assm two firms w/ zero marginal costs. inv demand for each firm's good is $p_1=\alpha_1-\beta_1y_1-\gamma y_2$ &  $p_2=\alpha_2-\gamma y_1-\beta_2y_2$
+
+Firm 1 max: $\pi_1=(\alpha_1-\beta_1y_1-\gamma y_2)y_1$ & has response fn $y_1=\frac{\alpha_1-\gamma y_2}{2\beta_1}$
+
+*Bertr&* (Simultaneous competition of p adjustment.) 
+
+1) $n$ firms & identical goods w/ constant MC $c_i$:\newline
+demand curve for firm i: $d(p_i,p_{-i})=\begin{cases} D(p_i) & if \ \ p_i<\min{p_{j}} \forall j\neq i, j\in I \\ \frac{D(p_i)}{n} & if \ \ p_i=p_j \forall j\neq i, j\in I \\ 0 & if \ \ p_i>\min{p_j} , j\in I \end{cases}$\newline
+$\Rightarrow$ If $c_i=c_j=c \forall j\neq i, j\in I$, we have a pure strategy eqm w/ $p=c$. If $c_i\neq c_j$, the p will equal whichever MC is higher & the firm w/ the higher MC will not produce.
+
+2) $n$ firms, search costs, & identical goods:
+
+  * $I$ informed consumers that will select the product w/ the lowest p & $2U$ uninformed consumers that will go to a website at r&om. All consumers have a reservation p $r$.
+  * Firms have no marginal costs, but face a fixed cost $k$
+  * Firms choose a probability distribution over prices w/ cdf $F(p)$ & pdf $f(p)$\newline
+Expected $\pi$ for a p $p$ are $\pi(p)=(1-F(p))[p(I+U)]+F(p)[pU]-k$\newline
+$\Rightarrow$ Overall expected $\pi$ are $\bar{\pi}=\int_0^\infty\pi(p)f(p)dp$\newline
+We know $F(p)=\frac{p(I+U)-k-\bar{\pi}}{pI}$, so we just need to figure out $\bar{\pi}$. We can use the reservation p for this by solving for $F(r)$.\newline $\bar{\pi}=rU-k \Rightarrow F(p)=\frac{p(I+U)-rU}{pI}$
+
+3) eqm w/ differentiated goods:
+two firms w/ zero marginal costs. inv demand for each firm's good is $p_1=\alpha_1-\beta_1y_1-\gamma y_2, p_2=\alpha_2-\gamma y_1-\beta_2y_2$ This yields linear demand systems of $y_1=a_1-b_1p_1+cp_2, y_2=a_2+cp_1-b_2p_2$
+
+Firm 1: $\pi_1=(a_1-b_1p_1-cp_2)p_1$ & has BRF $p_1=\frac{a_1+cp_2}{2b_1}$
+
+*Stackelberg* $Y=y_1+y_2$, $p(Y)=p(y_1+y_2)$, $c_i(y_i)$, firm 2 is the follower.\newline
+[Quantity Leadership] 
+Firm 2: $\max_{y_2} p(y_1+y_2)y_2-c_2(y_2)$,
+FOC defines their BRF, $f_2(y_1)$.\newline Firm 1: $\max_{y_1} p(y_1+f_2(y_1))y_1-c_1(y_1)$
+
+  * $\pi_1\vert Stackelberg>\pi_1\vert Cournot$
+  * If goods are subs ($\frac{\partial p_i}{\partial y_j}<0$) & BRF (demand) downward sloping ($\frac{\partial f_i}{\partial y_j}<0$) $\Rightarrow \pi^{Leader}>\pi^{Follower}$
+
+[Price Leadership] Firm 1: $\max_{p_2} p_2x_2(p_1,p_2)-c_2(x_2(p_1,p_2)) \Rightarrow BRF_2: p_2=g_2(p_1)$.
+
+Firm 1: $\max_{p_1} p_1x_1(p_1,g_2(p_1))-c_1(x_1(p_1,g_2(p_1)))$.\newline
+Sps we have homogeneous goods & symmetric cost fns.
+
+  * $y^*_2$ chosen to $max(\pi_2)$ at $p_1$, so firm 2's supply curve is their MC curve (BRF), $g_2(p_1)$
+  * Firm 1: $p_1$ chosen to max $\pi_1$ over the residual demand curve, $r(p_1)=x_1(p_1)-g_2(p_1) \Rightarrow \max_{p_1} p_1r(p_1)-c_1(r(p_1))$\newline [equiv to a monopolist max $\pi$ when facing $r(p_1)$]
+  
+Consensus result: If both firms have upward sloping reaction fns, then if one prefers to be a leader the other will prefer to be a follower.
+
+If both firms have identical costs, & demand & response fns are upward sloping, then each must prefer follow:$\pi_2(g_1(p^L_2),p^L_2)<\pi_2(g_1(p^L_2),g_2(g_1(p^L_2)))<\pi_2(p^L_1,g_2(p^L_1))$

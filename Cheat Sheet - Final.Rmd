@@ -1,0 +1,149 @@
+---
+fontsize: 10pt
+geometry: margin=.75cm
+output:
+  pdf_document:
+classoption: twocolumn
+header-includes:
+  - \usepackage{setspace}\singlespacing
+  - \usepackage{ amssymb }
+  - \usepackage{amsmath}
+  - \usepackage{tikz}
+  - \usepackage{pgfplots}
+  - \usepackage{float}
+  - \floatplacement{figure}{H}
+  - \usepackage{ dsfont }
+  - \usepackage{ mathrsfs }
+  - \usepackage{ wasysym }
+  - \usepackage{mathtools}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+**Tax Incidence** *(Use the concept of semi-elasticity: $\frac{d \log p}{d \tau}=\frac{dp}{d\tau}\frac{1}{p}$)*: Burden of an ad-valorem tax: Start w/ the mkt eqm, plug in the relevant $p$ for each side of the mkt: $Q^*=D(p(1+\tau))=S(p)$. This is an identity$\Rightarrow$diff both sides by $\tau$\newline
+$\Rightarrow \Delta$ producer p of $\frac{d \log p}{d \tau}=\frac{-\epsilon_d}{\epsilon_s+\epsilon_d}\in[0,1]$ & $\Delta$ consumer p of $\frac{d \log P}{d \tau}=\frac{\epsilon_s}{\epsilon_s +\epsilon_d}\in[0,1]$
+
+**Monopoly** - 
+$\max_{p,y} py-c(y)$ s.t. $D(p)=y \Rightarrow$ (sub in the D fn) $\max_p pD(p)-c(D(p))\rightarrow$ (make in terms of q using inv D) $\max_y p(y)y-c(y)$ & solve for FOC & SOC.\newline
+FOC: $p(y) + p'(y)y = c'(y)$ 
+    (MR=MC where but MR includes $\Delta$ p needed to sell more q.)\newline
+SOC: $2p'(y)+p''(y)y-c''(y)\leq 0$ 
+    (the slope of the MC curve must be greater than the MR curve.)\newline
+$\rightarrow$ Rewrite the FOC in terms of elasticity of D: $p(y)[1+\frac{1}{\epsilon(y)}]=c'(y)$\newline (Monopolist paying $\tau$): $\max_p p(1-\tau)D(p)-C(D(p))$\newline $W(x)=u(x)-c(x)$, welfare max level of output satisfies $u'(x^*)=c'(x^*)-p(x^*)$. Now, eval at $x^m$ $\Rightarrow W'(x^m)=u'(x^m)-c'(x^m)$
+
+**First-Degree**: Charge a diff $p$ for each unit. (Key: firm captures total surplus $\Rightarrow$ the MR curve becomes the inv D curve).
+
+Monopolist is facing inv D curve $p(x)\Rightarrow$ capture more surplus with two-part tariff $T(x)=\begin{cases} 0 & if \ \ x=0 \\ px+f & if \ \ x>0 \end{cases}$ w/ $p$ & $f$.\newline Solve $\max_{p,f} f+pD(p)-c(D(p))$ w/ the IR constraint: $f\leq \int_0^{D(p)}(p_d(t)-p)dt$ (this will be binding $\Rightarrow$ plug into obj fn & solve $p^*$ & $f^*$).
+
+**Second-Degree** - 
+The p depends on the number of units sold (nonlinear pricing).\newline Types of consumers, $\theta\in\{1,2\}$, that occur equally in the population; each consumer has QL util $v(x,\theta)-T$ where $T$ is payment for $x$; single crossing condition: $\frac{\partial}{\partial \theta}(\frac{\partial v(x\theta)}{\partial x})>0$ (MU is increasing in $\theta$); $v(0,\theta=1)=v(0,\theta=2)$; MC are constant, $MC=c$.
+  
+Monopolist:$\max_{\{x_1,x_2,T_1,T_2\}}\frac{1}{2}(T_1-cx_1)+\frac{1}{2}(T_2-cx_2)$ s.t.\newline (IR)$\begin{cases} v(x_1,1)-T_1\geq 0 \\ v(x_2,2)-T_2\geq 0\end{cases}$\newline (IC)$\begin{cases} v(x_1,1)-T_1\geq v(x_2,1)-T_2 \\ v(x_2,2)-T_2\geq v(x_1,2)-T_1\end{cases}$\newline $CS_\theta = v(x_\theta,\theta)-T_\theta$\newline & $I(x)=v(x,2)-v(x,1)=\int_1^2\frac{\partial v(x,t)}{\partial \theta}dt$ where $I$ is the information rent.\newline $\Rightarrow \max_{\{x_1,x_2,CS_1,CS_2\}}\frac{1}{2}(v(x_1,1)-CS_1-cx_1)+\frac{1}{2}(v(x_2,2)-CS_2-cx_2)$ s.t. $CS_\theta\geq 0$, $CS_1\geq CS_2-I(x_2)$, $CS_2\geq CS_1+I(x_1)$.\newline
+$\Rightarrow \max_{\{x_1,x_2\}} \frac{1}{2}(v(x_1,1)-cx_1)+\frac{1}{2}(v(x_2,2)-I(x_1)-cx_2)$\newline $\Rightarrow$ Distortion at the bottom, in order to keep the high $\theta$ honest; the high $\theta$ has some surplus (information rent)
+  
+**Third-Degree**- 
+(diff consumers charged diff prices)
+
+agg. D & inv D for each $\theta$ are $X_m(\cdot)$ & $P_m(\cdot)$.\newline Monopolist: $\max_{\{x_{\theta=1},..,x_{\theta=M}\}}\sum_{m=1}^M x_mP_m(x_m) - c(\sum_{m=1}^Mx_m)$.\newline FOC: $P_m+x_mP'_m(x_m)-c'(\sum_{m=1}^Mx_m)=0$ for $\theta_m,m=1,...,M$.
+  
+Social welfare: (two $\theta$s of consumers) $W(x_1,x_2)=\int_0^{x_1}P_1(t)dt + \int_0^{x_2}P_2(t)dt - c(\sum_{m=1}^2x_m)=v_1(x_1)+v_2(x_2)-c(\sum_{m=1}^2x_m)$\newline
+Compare the $p_m^U$ & $x^U$ $(p_m^U;x_1^U,x_2^U)$ to the 3DPD $(p_1^*,p_2^*;x_1^*,x_2^*)$. Given that (1) agg. benefit ($v_m(x_m)$) is concave (since D is downward sloping), (2) c are weakly convex [or c are constant ($c$)], welfare improvement means $Y$ increases.
+
+**Airline ex** - $\theta\in \{b,t\}$, w/ $N_b$ & $N_t$, $k\in \{r,u\}$, ($r$) & ($u$), assm that the MC of producing a ticket is zero, util from purchasing a ticket is $v_\theta^k$.
+
+  * $v_\theta^u\geq v_\theta^r$, strictly greater than for $\theta=0$
+  * $v_b^k>v_t^k$
+
+(Assm $k=u$ targeted to $b$) Monopolist:
+$\max_{p^u,p^r} N_bp^u+N_tp^r$ s.t. (IR) $\begin{cases} v_b^u-p^u & \geq 0 \\ v_t^r-p^r & \geq 0\end{cases}$(IC) $\begin{cases} v_b^u-p^u \geq v_b^r-p^r \\ v_t^r - p^r \geq v_t^u - p^u\end{cases}$\newline
+[Note: constraint set is empty if $v_t^u-v_t^r> v_b^u-v_b^r \Rightarrow$ assm $v_b^u-v_b^r\geq v_t^u-v_t^r$ (Single-Crossing Condition)]\newline
+IC1 & IR2 are binding $\Rightarrow$ solve for $p^u$,$p^r \Rightarrow p^r=v_t^r$ & $p^u=v_b^u-(v_b^r-v_t^r)$   
+
+$\Rightarrow \pi=N_b(v_b^u-(v_b^r-v_t^r))+N_tv_t^r$
+  
+$Y=y_1+y_2$, $p(Y)=p(y_1+y_2)$, $c_i(y_i)$
+
+**Cournot** (sim competition of q adjustment) 
+
+1) $n$ firms & homog. goods:
+
+Firm $i$: $\max_{y_i} \pi_i(y_i,y_j)=p(y_i+y_j)y_i-c_i(y_i)$\newline
+FOC:$p(Y)+p'(Y)y_i=c'_i(y_i)\Rightarrow p(Y)[1+\frac{dp}{dY}\frac{y_i}{p}]=c'_i(y_i)\Rightarrow p(Y)[1+\frac{s_i}{\epsilon}]=c'_i(y_i), \ \ (s_i=\frac{y_i}{Y})$\newline
+SOC for firm $i$: $\frac{\partial^2\pi_i}{\partial y_i^2}=2p'(Y)+p''(Y)y_i-c''_i(y_i)\leq 0$
+
+$\Rightarrow$ FOC defines a BRF $\rightarrow f_i(y_j): \frac{\partial \pi_i(f_i(y_j),y_j)}{\partial y_i}\equiv 0$
+
+$\Rightarrow$ diff this BRF to see how the response changes as $y_j$ changes: $f'_i(y_j)=-\frac{\partial^2\pi_i/\partial y_i\partial y_j}{\partial^2\pi_i/\partial y_i^2}$
+
+  * Denom $<0$ due to SOC
+  * Num is $\frac{\partial^2\pi_i}{\partial y_i\partial y_j}=p'(Y)+p''(Y)y_i$
+      
+comp statics - 
+Consider a parameter $a$ that shifts $\pi$ for firm $i$: $\pi_i=\pi_i(y_i,y_j,a)$, $\pi_j=\pi_j(y_i,y_j)$
+
+  * Then, the FOCs become:\newline $\frac{\partial \pi_i(y_i(a),y_j(a),a)}{\partial y_i}\equiv 0, \frac{\partial \pi_j(y_i(a),y_j(a),a)}{\partial y_j}\equiv 0$
+  * Using IFT & Cramer's: $\Rightarrow {sign}(\frac{\partial y_i}{\partial a})={sign}(\frac{\partial^2\pi_i}{\partial y_i\partial a})$
+
+Compare to CE w/ $c_i=c$, $p(Y)=[1+\frac{1}{n\epsilon}]=c$
+
+A Cournot solution is equiv to a social planner max the following: $W_C(Y)=[p(Y)-c]Y+(n-1)[\int_0^Yp(t)dt-cY]$: a weighted average of $\pi$ & social welfare, w/ the weight on social welfare $\rightarrow$ 1 as $n$ $\rightarrow$ $\infty$.
+  
+2) w/ diff goods:
+assm two firms w/ zero MC. inv D for each firm's good is $p_1=\alpha_1-\beta_1y_1-\gamma y_2$ &  $p_2=\alpha_2-\gamma y_1-\beta_2y_2$
+
+Firm 1 max: $\pi_1=(\alpha_1-\beta_1y_1-\gamma y_2)y_1$ & has response fn $y_1=\frac{\alpha_1-\gamma y_2}{2\beta_1}$
+
+**Bertrand** (sim competition of p adjustment.) 
+
+1) $n$ firms & homog. goods w/ constant MC $c_i$:
+D curve for firm i: $d(p_i,p_{-i})=\begin{cases} D(p_i) & if \ \ p_i<\min{p_{j}} \forall j\neq i, j\in I \\ \frac{D(p_i)}{n} & if \ \ p_i=p_j \forall j\neq i, j\in I \\ 0 & if \ \ p_i>\min{p_j} , j\in I \end{cases}$
+$\Rightarrow$ If $c_i=c_j=c \forall j\neq i, j\in I$, we have a pure strategy eqm w/ $p=c$.
+
+2) $n$ firms, search c, & homog. goods:
+
+  * $I$ informed consumers that will select the product w/ the lowest p & $2U$ uninformed consumers that will go to a website at random. All consumers have a reservation p $r$.
+  * Firms: no MC, but face a FC $k$, price cdf $F(p)$ & pdf $f(p)$\newline
+$E[\pi\vert p]=\pi(p)=(1-F(p))[p(I+U)]+F(p)[pU]-k$\newline
+$\Rightarrow$ Overall $E[\pi]=\bar{\pi}=\int_0^\infty\pi(p)f(p)dp$\newline
+We know $F(p)=\frac{p(I+U)-k-\bar{\pi}}{pI}$, need to figure out $\bar{\pi}$. Use the reservation p by solving for $F(r)$.\newline $\bar{\pi}=rU-k \Rightarrow F(p)=\frac{p(I+U)-rU}{pI}$
+
+3) eqm w/ diff goods:
+two firms w/ zero MC. inv D for each firm's good is $p_1=\alpha_1-\beta_1y_1-\gamma y_2, p_2=\alpha_2-\gamma y_1-\beta_2y_2$ This yields linear D systems of $y_1=a_1-b_1p_1+cp_2, y_2=a_2+cp_1-b_2p_2$
+
+Firm 1: $\pi_1=(a_1-b_1p_1-cp_2)p_1$ & has BRF $p_1=\frac{a_1+cp_2}{2b_1}$
+
+**Stackelberg**\newline $Y=y_1+y_2$, $p(Y)=p(y_1+y_2)$, $c_i(y_i)$, firm 2 is the follower.\newline
+[Q Leadership] 
+Firm 2: $\max_{y_2} p(y_1+y_2)y_2-c_2(y_2)$,
+FOC defines their BRF, $f_2(y_1)$.\newline Firm 1: $\max_{y_1} p(y_1+f_2(y_1))y_1-c_1(y_1)$
+
+  * $\pi_1\vert Stackelberg>\pi_1\vert Cournot$
+  * If goods are subs ($\frac{\partial p_i}{\partial y_j}<0$) & BRF (D) downward sloping ($\frac{\partial f_i}{\partial y_j}<0$) $\Rightarrow \pi^{Leader}>\pi^{Follower}$
+
+[p Leadership] Firm 1: $\max_{p_2} p_2x_2(p_1,p_2)-c_2(x_2(p_1,p_2)) \Rightarrow BRF_2: p_2=g_2(p_1)$.
+
+Firm 1: $\max_{p_1} p_1x_1(p_1,g_2(p_1))-c_1(x_1(p_1,g_2(p_1)))$.\newline
+Sps we have homogeneous goods & symmetric c fns.
+
+  * $y^*_2$: $max(\pi_2)$ at $p_1$, so firm 2's S curve is their MC curve (BRF), $g_2(p_1)$
+  * Firm 1: $p_1$: $max(\pi_1)$ over residual D curve, $r(p_1)=x_1(p_1)-g_2(p_1) \Rightarrow \max_{p_1} p_1r(p_1)-c_1(r(p_1))$\newline [equiv to a monopolist max $\pi$ when facing $r(p_1)$]
+  
+Consensus result: If both firms have upward sloping reaction fns, then if one prefers to be a leader the other will prefer to be a follower.
+
+If firms have homog. c, & D/response fns are upward sloping, then each must prefer follow: $\pi_2(g_1(p^L_2),p^L_2)<\pi_2(g_1(p^L_2),g_2(g_1(p^L_2)))<\pi_2(p^L_1,g_2(p^L_1))$
+
+**Public Goods** eff G w/ $\sum_i MRS_i=MC\Rightarrow \sum_i \frac{\partial u_i/\partial G}{\partial u_i/\partial x_i}=c'(G)$\newline (assm indiv have single peaked pref: $\exists G_i \forall i$ s.t. $u_i'(G_i)-s_i=0$)
+
+voting: eqm is pref amount of med voter: $u'_m(G^v)=s_m$, but eff lvl of $G$ is s.t. $\frac{1}{n}\sum_i u_i'(G_e)=\frac{1}{n}\Rightarrow$ eff lvl req avg WTP=avg c (in general, avg $\neq$ med)
+
+**Groves-Clarke Mechanism** in the case of a continuous amount of the public good, $a\in A$; agents have QL preferences over the public good and the side payment: $u_n(a,p_n|\tau_n)=v_n(a|\tau_n)+p_n$, where $v_n(a|\tau_n)$ is a strictly increasing, concave function in $a$. TC of providing the good: $C(a)$, ($C'(a)>0$ & $C''(a)>0$). Agents' preference depend on type (private info), $\tau_n \in T_n\sim F_n(\tau_n)$.\newline
+SP obj fn $W(a|\tau)=\sum_n [u_n(a,p_n|\tau_n)-p_n]-C(a)=\sum_nv_n(a|\tau_n)-C(a)$\newline $a^*(\tau)=\arg\max_a W(a|\tau)$ (unique, b/c $W(a|\tau)$ is globally concave) $\Rightarrow \sigma(\tau)=(A(\tau),P_1(\tau),...,P_n(\tau))$ s.t. $A(\tau)=a^*(\tau)$, $P_n(\tau)=\sum_{j\neq i} v_j(A(\tau)|\tau_j)-C(A(\tau))+h_n(\tau_{-n})$ s.t. $h_n(\tau_{-n})$ is an arb fn ind of $\tau_n$.\newline $\tau_n=\hat{\tau}_n$: $u_n(a,p_n|\tau_n)=v_n(a|\tau_n)+P_n(\tau)=v_n(a|\tau_n)+\sum_{j\neq n}v_j(A(\hat{\tau}_n,\tau_{-n})|\tau_j)-C(A(\hat{\tau}_n,\tau_{-n}))+h_n(\tau_{-n})=W(A(\hat{\tau}_n,\tau_{-n})|\tau)+h_n(\tau_{-n})$\newline This mechanism has dom strat of truth telling: $W(A(\tau_n,\tau_{-n})|\tau)=W(a^*(\tau)|\tau)\geq W(A(\tilde{\tau}_n,\tau_n)|\tau)$ s.t. $\tilde{\tau_n}\neq\tau_n$ (lie) $\Rightarrow$ truth telling is preferred for all $n$.
+
+**Opt Inc Tax w/o Behav Response** $u(c)$ strct inc and concave, $c$ is after tax ($T$) income ($z$), $c=z-T(z)$; $z\sim h(z)$\newline Gov (SP): $\max_{T(\cdot)}\int_o^\infty u(z-T(z))h(z)dz$ s.t. $\int_0^\infty T(z)h(z)dz\geq R\Rightarrow \mathscr{L}=[u(z-T(z))+\mu T(z)]h(z)$\newline FOC: $T(z):0=\partial\mathscr{L}/\partial T(z)=[-u'(z-T(z))+\mu]h(z)\Rightarrow u'(z-T(z))=\mu\Rightarrow z-T(z)=c\Rightarrow c=\bar{z}-R$, s.t. $\bar{z}=\int zh(z)$ (avg $z$)
+
+**Mirrlees Model w/ 2 Types** $\max_{c_n,l_n}U(c_n,l_n)$ s.t. $c_n=w_nl_n$\newline FOC: $-U_l/U_c=w_n$, $\sum_n\pi_nT_n=R$\newline $z_n=w_nl_n$(before t inc): $u_n(c_,z)=U(c_n,z_n/w_n)\Rightarrow \max_{c_n,z_n}u_n(c_n,z_n)$ s.t. $c_n=z_n$\newline FOC: $-u_z/u_c=1=-U_l/U_c\cdot 1/w_n$ (MRS $\downarrow$ n):Spence-Mirlees condition
+*Baseline case* $n\in\{1,2\}$, SP:$\max_{\{z_i,T_i\}}\pi_1u_1(z_i-T_1,z_1)+\pi_2u_2(z_2-T_2,z_2)$ s.t. $\pi_1T_1+\pi_2T_2=R\Rightarrow \mathscr{L}=\pi_iu_i(z_i-T_i,z_i)+\pi_2u_2(z_2-T_2,z_2)+\mu[\pi_1T_1+\pi_2T_2-R]$\newline First-best: $\mu=\partial u_i/\partial c_i$, $-\frac{\partial u_i}{\partial z_i}/\frac{\partial u_i}{\partial c_i}=1\rightarrow$ aka no marg distortions to earnings supply (labor) $\Rightarrow$ use lump sum tax to redistribute.\newline lump-sum not feasible in reality $\Rightarrow$ screening problem: $\max_{\{z_i,T_i\}}\pi_1u_1(z_1-T_1,z_1)-\pi_2u_2(z_2-T_2,z_2)$ s.t. $\pi_1T_1+\pi_2T_2=R$, $u_1(z_1-T_1,z_1)\geq u_1(z_2-T_2,z_2)$, $u_2(z_2-T_2,z_2)\geq u_2(z_1-T_1,z_1)$: choosing a tax sched and only have to worry about two points. [can show pooling is not optimal and $(c_1,z_2)>(c_1,z_1)$ at optimum]\newline $\mathscr{L}=\pi_1u_1(z_1-T_1,z_1)+\pi_2u_2(z_2-T_2,z_2)+\lambda_1[u_1(z_1-T_1,z_1)-u_1(z_2-T_2,z_2)]-\lambda_2[u_2(z_2-T_2,z_2)-u_2(z_1-T_1,z_1)]+\mu[\pi_1T_1+\pi_2T-2-R]$
+FOCs: (w/ normal case, $\lambda_1=0,\lambda_2>0$)\newline $- \frac{\partial u_2}{\partial z_2} / \frac{\partial u_2}{\partial c_2} =1\Rightarrow$ (no distort at the top)\newline $-\frac{\partial u_1}{\partial z_1}/\frac{\partial u_1}{\partial c_1}=1-T'\Rightarrow T'=\frac{\lambda_2[\partial u_2/\partial c_1+\partial u_2/\partial z_1]}{\pi_1\partial u_1/\partial c_1}>0$ 
+  
